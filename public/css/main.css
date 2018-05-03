@@ -19,7 +19,7 @@ a {
     display: flex;
 }
 
-.main-header__logo {
+.header-logo {
     flex: 1 1;
     width: 20%;
     text-align: left;
@@ -31,7 +31,7 @@ a {
     align-self: center;
 }
 
-.main-header__menu {
+.main-menu-container {
     flex: 3 3;
     width: 70%;
     text-align: right;

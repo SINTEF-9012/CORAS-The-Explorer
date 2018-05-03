@@ -2,9 +2,12 @@
 
 @import url('https://fonts.googleapis.com/css?family=Oswald|Raleway');
 
+/* Shared template */
 html, body {
     margin: 0;
     padding: 0;
+    background: #FFFFFF;
+    font-family: 'Raleway', 'serif';
 }
 
 a {
@@ -60,21 +63,95 @@ a {
     content: '';
     height: .25rem;
     width: 100%;
-    background-color: rgb(120, 152, 172);
+    background-color: #7898ac;
     position: absolute;
     bottom: 0;
     left: 0;
     border-radius: 15px 15px 0 0;
 }
 
-.showoff {
+.button {
+    display: inline-block;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 2rem;
+    background-color: #7898ac;
+    font-family: Oswald, sans-serif;
+    padding: 0 .75rem;
+    text-transform: uppercase;
+}
+
+.button--call-to-action {
+    background-color: green;
+}
+
+
+/* Front page */
+.preview {
+    width: 100%;
+    background-color: #7898ac;
+}
+
+.preview-wrapper {
+    width: 95%;
+    max-width: 80em;
+    margin: 0 auto auto auto;
+    padding: 3rem 2.5%;
+    display: flex;
+}
+
+.preview-left {
+    flex: 1 1;
+    text-align: right;
+    padding: 2rem;
+}
+
+.preview-left__image {
+    width: 100%;
+    height: auto;
+}
+
+.preview-right {
+    flex: 1 1;
+    text-align: left;
+    font-size: 4.5rem;
+    padding: 2rem;
+    font-family: Oswald, sans-serif;
+}
+
+.fp-actions {
+    display: flex;
+    background-color: #7898ac;
+    padding-bottom: 2rem;
 
 }
 
-.showoff__logo {
-
+.fp-left {
+    flex: 1 1;
+    text-align: right;
+    padding: 2rem;
 }
 
-.showoff__book {
+.fp-right {
+    flex: 1 1;
+    text-align: left;
+    padding: 2rem;
+}
 
+.key-points {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem 0 0 0; 
+}
+
+.key-point {
+    flex: 3 1;
+    padding: 1rem 4rem;
+}
+
+.key-point__header {
+    font-family: Oswald, sans-serif;
+    color: #7898ac;
+    font-size: 1.5rem;
+    text-transform: uppercase;
 }

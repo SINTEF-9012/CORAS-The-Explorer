@@ -7,6 +7,11 @@ html, body {
     padding: 0;
 }
 
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
 .main-header {
     background-color: rgb(37, 65, 83);
     height: 3rem;
@@ -21,6 +26,9 @@ html, body {
     font-family: 'Oswald', 'sans-serif';
     font-size: 1.5rem;
     color: rgb(255, 255, 255);
+    padding: 0;
+    margin: auto auto .45rem .75rem;
+    align-self: center;
 }
 
 .main-header__menu {
@@ -48,24 +56,15 @@ html, body {
     margin: 0 .5rem;
 }
 
-.main-menu__item:hover::after {
+.main-menu__item--selected::after, .main-menu__item:hover::after {
     content: '';
-    height: .2rem;
+    height: .25rem;
     width: 100%;
-    background-color: blue;
+    background-color: rgb(120, 152, 172);
     position: absolute;
     bottom: 0;
     left: 0;
-}
-
-.main-menu__item--selected::after {
-    content: '';
-    height: .2rem;
-    width: 100%;
-    background-color: blue;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    border-radius: 15px 15px 0 0;
 }
 
 .showoff {

@@ -1,0 +1,21 @@
+.button {
+    display: inline-block;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 2rem;
+    background-color: #7898ac;
+    font-family: Oswald, sans-serif;
+    padding: 0 .75rem;
+    text-transform: uppercase;
+}
+
+.button--call-to-action {
+    background-color: green;
+}
+
+@media screen and (max-width: 60rem) {
+    .button {
+        font-size: 1.5rem;
+        padding: .5rem;
+    }
+}

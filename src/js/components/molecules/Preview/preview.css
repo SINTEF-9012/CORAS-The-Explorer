@@ -1,0 +1,52 @@
+.preview {
+    width: 100%;
+    background-color: #7898ac;
+}
+
+.preview-wrapper {
+    width: 95%;
+    max-width: 80em;
+    margin: 0 auto auto auto;
+    padding: 3rem 2.5%;
+    display: flex;
+}
+
+.preview-left {
+    flex: 1 1;
+    text-align: right;
+    padding: 2rem;
+}
+
+.preview-left__image {
+    width: 100%;
+    height: auto;
+}
+
+.preview-right {
+    flex: 1 1;
+    text-align: left;
+    font-size: 4.5rem;
+    padding: 2rem;
+    font-family: Oswald, sans-serif;
+}
+
+@media screen and (max-width: 60rem) {
+    .preview-wrapper {
+        width: auto;
+        margin: 0;
+        padding: 1rem 2rem;
+        flex-wrap: wrap;
+    }
+    
+    .preview-left {
+        flex: 2 1 100%;
+        padding: 0;
+    }
+    
+    .preview-right {
+        flex: 2 1 100%;
+        padding: 1rem 0 0 0;
+        font-size: 2rem;
+        text-align: center;
+    }
+}

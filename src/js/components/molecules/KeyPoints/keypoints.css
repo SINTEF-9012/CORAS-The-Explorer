@@ -1,0 +1,17 @@
+.key-points {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem 0 0 0; 
+}
+
+.key-point {
+    flex: 3 1;
+    padding: 1rem 4rem;
+}
+
+.key-point__header {
+    font-family: Oswald, sans-serif;
+    color: #7898ac;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}

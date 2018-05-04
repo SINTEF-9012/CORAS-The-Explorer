@@ -1,0 +1,18 @@
+.fp-actions {
+    display: flex;
+    background-color: #7898ac;
+    padding-bottom: 2rem;
+
+}
+
+.fp-left {
+    flex: 1 1;
+    text-align: right;
+    padding: 2rem;
+}
+
+.fp-right {
+    flex: 1 1;
+    text-align: left;
+    padding: 2rem;
+}

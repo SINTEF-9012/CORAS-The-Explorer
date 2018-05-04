@@ -16,7 +16,7 @@ a {
 }
 
 .main-header {
-    background-color: rgb(37, 65, 83);
+    background-color: #254153;
     height: 3rem;
     width: 100%;
     display: flex;
@@ -154,4 +154,23 @@ a {
     color: #7898ac;
     font-size: 1.5rem;
     text-transform: uppercase;
+}
+
+/* Introduction */
+.primer {
+    max-width: 80em;
+    margin: 0 auto auto auto;
+    padding: 1rem 2.5%;
+}
+
+.page-title {
+    width: 100%;
+}
+
+.page-title__title {
+    font-family: Oswald, sans-serif;
+    text-transform: uppercase;
+    color: #254153;
+    border-bottom: solid 1px #254153;
+    font-size: 4rem;
 }

@@ -82,7 +82,6 @@ class Editor extends React.Component {
             <div id="paper-holder-wrapper">
                 <div id="paper-holder"></div>
             </div>
-            <ToolChain onClickFn={this.addElement} />
         </div>);
     }
 }

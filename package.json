@@ -21,7 +21,11 @@
   },
   "homepage": "https://github.com/SINTEF-9012/CORAS-The-Explorer#readme",
   "dependencies": {
+    "backbone": "^1.3.3",
     "gojs": "^1.8.18",
+    "jointjs": "^2.1.2",
+    "jquery": "^3.3.1",
+    "lodash": "^4.17.10",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-router-dom": "^4.2.2"

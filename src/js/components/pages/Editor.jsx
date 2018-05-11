@@ -1,6 +1,8 @@
 import React from 'react';
-
 import joint from 'jointjs';
+
+import PageHeading from '../atoms/PageHeading/PageHeading';
+
 import "../../../../node_modules/jointjs/dist/joint.css";
 
 class Editor extends React.Component {
@@ -79,6 +81,7 @@ class Editor extends React.Component {
     render() {
         return(
         <div>
+            <div className="introduction-page"><PageHeading title={"CORAS Editor"} /></div>
             <div id="paper-holder-wrapper">
                 <div id="paper-holder"></div>
             </div>

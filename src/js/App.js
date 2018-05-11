@@ -12,7 +12,7 @@ import Editor from './components/pages/Editor';
 const App = (props) =>
     <Router>
         <div>
-            <Header />
+            <Header location={window.location.pathname} />
             <Route exact path={'/'} component={() => <Frontpage />} />
             <Route path={'/introduction'} component={() => <Introduction />} />
             <Route path={'/about'} component={() => <About />} />

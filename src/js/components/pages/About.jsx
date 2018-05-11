@@ -1,7 +1,10 @@
 import React from 'react';
 
+import PageHeading from '../atoms/PageHeading/PageHeading';
+
 const About = (props) =>
-    <div class="about-page">	
+    <div className="about-page">
+        <PageHeading title={"About CORAS"} />
         <p>
             The CORAS language is a graphical modelling language for communication, documentation and analysis of security threat and risk scenarios in security risk analyses. The language is an integral part of the CORAS method, which is based on the use of structured brainstorming. In these brainstorming sessions, the CORAS language is applied for making models of threat scenarios and risks on the fly. Such brainstorming sessions are characterized by the involvement of people with thorough knowledge of specific, but only partly overlapping aspects, of the target of analysis. Typical participants are the intended users of the target, its designers, developers, and relevant decision makers. These people normally have quite different backgrounds and it may be difficult for the analysts to make them work well together as a group. The CORAS language improves both the efficiency of the analysis process and the quality of the results.
         </p>

@@ -10,7 +10,7 @@ const Preview = (props) =>
                 <img className="preview-left__image" src={ed} />
             </div>
             <div className="preview-right">
-                A tool and language for asset-based risk analysis
+                The COOLEST risk assessment approach EVER
             </div>
         </div>
     </div>;

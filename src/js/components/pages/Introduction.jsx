@@ -1,13 +1,15 @@
 import React from 'react';
 
+import PageHeading from '../atoms/PageHeading/PageHeading';
+
 import stepImg from '../../../img/steps.jpg';
 
 const Introduction = (props) =>
-    <div class="introduction-page">
+    <div className="introduction-page">
+        <PageHeading title={"Introduction to CORAS"} />
         <p>
             Have you ever asked yourself some of the following questions.
         </p>
-        <p>
             <ul>
                 <li>Should I worry when using my credit card on the Internet?</li>
                 <li>How safe is my Internet bank account?</li>
@@ -15,13 +17,14 @@ const Introduction = (props) =>
                 <li>Can I be sure that I am the only one reading my e-mail?</li>
                 <li>How crucial can a single personal mistake be for my company?</li>
             </ul>
+        <p>
             A security risk analysis may provide answers to such questions. CORAS is a method for conducting security risk analysis. CORAS provides a customised language for threat and risk modelling, and comes with detailed guidelines explaining how the language should be used to capture and model relevant information during the various stages of the security analysis. In this respect CORAS is model-based. The Unified Modelling Language (UML) is typically used to model the target of the analysis. For documenting intermediate results, and for presenting the overall conclusions we use special CORAS diagrams which are inspired by UML. The CORAS method provides a computerised tool designed to support documenting, maintaining and reporting analysis results through risk modelling.<br />
         </p>
         <p>
             In the CORAS method a security risk analysis is conducted in eight steps:
         </p>
-        <img src={stepImg} />
-        <p>
+        <img src={stepImg} /><br />
+        <br />
 	  The eight steps of the CORAS method are summarised as follows.  
 	  <ul>
 	    <li><b>Step 1</b>: The first step is the initial
@@ -114,8 +117,7 @@ const Introduction = (props) =>
 	    incident. Since treatments can be costly, they are
 	    assessed with respect to their cost-benefit, before a
 	    final treatment plan is made.</li>
-	  </ul>  
-	  </p> 
+	  </ul>
 
     </div>;
 

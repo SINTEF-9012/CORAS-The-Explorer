@@ -3,6 +3,9 @@ import React from 'react';
 import './footer.css';
 
 const Footer = (props) =>
-    <span></span>;
+    <div>
+        <br />
+        <br />
+    </div>;
 
 export default Footer;

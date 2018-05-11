@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import "./header.css";
 
-
 const Header = (props) =>
     <header className="main-header">
         <div className="header-logo"><Link to='/'>CORAS</Link></div>

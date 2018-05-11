@@ -4,13 +4,13 @@ import './frontpageactions.css';
 
 import Button from '../../atoms/Button/Button.jsx';
 
-const FrontPageActions = (props) =>
+const FrontPageActions = ({ leftLink, rightLink }) =>
     <nav className="fp-actions">
         <div className="fp-left">
-            <Button link="/introduction" text="Read more" type="cta" />
+            <Button link={leftLink.path} text={leftLink.text} type="cta" minWidth="11rem" />
         </div>
         <div className="fp-right">
-            <Button link="/try-it" text="Try it out!" type="cta" />
+            <Button link={rightLink.path} text={rightLink.text} type="cta" minWidth="11rem" />
         </div>
     </nav>;
 

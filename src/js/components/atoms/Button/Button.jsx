@@ -9,7 +9,7 @@ function getTypeClass(type) {
     }
 }
 
-const Button = ({ link, text, type }) =>
-    <a className={"button" + getTypeClass(type)} href={link}>{text}</a>;
+const Button = ({ link, text, type, minWidth }) =>
+    <a className={"button" + getTypeClass(type)} href={link} style={ minWidth ? { minWidth } : null}>{text}</a>;
 
 export default Button;

@@ -1,16 +1,16 @@
 import React from 'react';
 
 import './preview.css';
-import ed from '../../../../img/exampleDiagram.png';
 
-const Preview = (props) =>
+
+const Preview = ({ imageUrl, tagLine }) =>
     <div className="preview">
         <div className="preview-wrapper">    
             <div className="preview-left">
-                <img className="preview-left__image" src={ed} />
+                <img className="preview-left__image" src={imageUrl} />
             </div>
             <div className="preview-right">
-                The COOLEST risk assessment approach EVER
+                {tagLine}
             </div>
         </div>
     </div>;

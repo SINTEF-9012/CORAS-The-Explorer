@@ -27,7 +27,7 @@ const Frontpage = (props) =>
     <div>
         <Preview imageUrl={ed} tagLine={"CORAS - A risk modeling approach"}/>
         <FrontPageActions
-            leftLink={{ path: '/introduction', text: "Learn CORAS" }}
+            leftLink={{ path: '/learn', text: "Learn CORAS" }}
             rightLink={{ path: '/try-it', text: "Try CORAS" }} />
         <KeyPoints keyPoints={keyPointData} />
     </div>;

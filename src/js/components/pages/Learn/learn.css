@@ -1,0 +1,35 @@
+.text-block {
+    line-height: 1.4rem;
+    padding: 1rem;
+}
+
+.navigation-block {
+    line-height: 1.4rem;
+    border: solid 1px #254153;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.navigation-block__heading {
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0 0 1rem 0;
+    font-family: Oswald, sans-serif;
+    text-transform: uppercase;
+}
+
+.navigation-block__navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+}
+
+.navigation-block__navbar-item {
+    flex: 1 1 auto;
+    text-align: center;
+    display: inline-block;
+    line-height: initial;
+}

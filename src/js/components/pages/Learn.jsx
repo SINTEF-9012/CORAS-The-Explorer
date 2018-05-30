@@ -5,6 +5,7 @@ import PageHeading from '../atoms/PageHeading/PageHeading';
 import LegacyIntro from './Learn/LegacyIntro';
 
 import Button from '../atoms/Button/Button';
+import Heading from '../atoms/Heading/Heading';
 
 import './Learn/learn.css';
 
@@ -74,6 +75,19 @@ const Introduction = ({ match, location, history }) =>
 					type: "small"
 				}
 			]} />
+		<TextBlock>
+			<p>
+				So you know what risk assessment and risk modelling is, and now you want to try it out
+				yourself? Great! Read on to learn how to use CORAS to achieve that. The following tutorials
+				and documents are split into three sections:
+			</p>
+			<Heading level={1} text={"TestHeader"} />
+			<Heading level={2} text={"TestHeader"} />
+			<Heading level={3} text={"TestHeader"} />
+			<Heading level={4} text={"TestHeader"} />
+			<Heading level={5} text={"TestHeader"} />
+			<Heading level={6} text={"TestHeader"} />
+		</TextBlock>
 		
 	</div>;
 

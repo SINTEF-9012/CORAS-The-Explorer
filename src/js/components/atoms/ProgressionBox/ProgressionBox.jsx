@@ -16,10 +16,10 @@ const ProgressionBox = ({ stepid, steps, rootPath }) =>
                 </a>)}
     </ul>;
 
-const ProgressionStep = ({ index, title, open, bgColor, altColor1, altColor2 }) =>
+const ProgressionStep = ({ index, shortTitle, open, bgColor, altColor1, altColor2 }) =>
     <li className="progression-box-item">
         <div className={`progression-box-item__index${open ? ' progression-box-item__index--active' : ''}`}>{index}</div>
-        {open ? <div className="progression-box-item__title">{title}</div> : null}
+        {open ? <div className="progression-box-item__title">{shortTitle}</div> : null}
         <Arrow colorLeft={altColor1 || bgColor} colorRight={altColor2 || bgColor} remSize={3} />
     </li>;
 

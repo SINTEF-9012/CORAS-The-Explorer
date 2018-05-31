@@ -1,0 +1,37 @@
+.quickstart-content-section {
+    padding: 1rem 3rem;
+}
+
+.quickstart-section-title__pre {
+    color: #CCC;
+}
+
+.lightbox {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 96vw;
+    height: 92vh;
+    background-color: rgba(0, 0, 0, .8);
+    z-index: 10000;
+    text-align: center;
+    padding: 4vh 2vw;
+}
+
+.show-editor-button {
+    position: absolute;
+    right: 0;
+    top: 30vh;
+    transform: rotate(-90deg);
+    transform-origin: bottom right;
+}
+
+.show-editor-button__button {
+    width: 20rem;
+    height: 5rem;
+    background-color: #7898ac;
+    border: none;
+    border-radius: 15px 15px 0 0;
+    font-size: 1.5rem;
+    color: #FFF;
+}

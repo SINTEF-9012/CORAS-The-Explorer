@@ -2,12 +2,14 @@ import React from 'react';
 import joint from 'jointjs';
 
 import "../../../../../node_modules/jointjs/dist/joint.css";
+import './editor.css';
 
 class Editor extends React.Component {
     constructor(props) {
         super(props);
 
         this.graph = new joint.dia.Graph();
+
         this.updatePaperSize = this.updatePaperSize.bind(this);
         this.removeElement = this.removeElement.bind(this);
         this.addLink = this.addLink.bind(this);
@@ -22,20 +24,30 @@ class Editor extends React.Component {
         this.paper = new joint.dia.Paper({
             el: document.getElementById('paper-holder'),
             model: this.graph,
-            width: document.getElementById('paper-holder-wrapper').offsetWidth,
-            height: document.getElementById('paper-holder-wrapper').offsetHeight,
-            gridSize: 10,
-            drawGrid: true,
+            width: this.props.width || document.getElementById('paper-holder-wrapper').offsetWidth,
+            height: this.props.height || document.getElementById('paper-holder-wrapper').offsetHeight,
+            gridSize: 1,
             background: {
-                color: 'rgba(0, 255, 0, 0.3)'
-            }
+                color: 'rgba(255, 255, 255, 1)',
+            },
+            interactive: this.props.interactive === undefined ? true : this.props.interactive
         });
 
+        this.paper.$el.css('pointer-events', 'none');
+
+        if(this.props.initialDiagram) {
+            // We have an initial diagram
+            this.graph.fromJSON(this.props.initialDiagram);
+        }
+
         window.addEventListener('resize', this.updatePaperSize);
-        this.paper.on('element:pointerdblclick', this.removeElement);
-        this.paper.on('link:pointerdblclick', this.removeElement);
-        this.paper.on('element:contextmenu', this.addLink);
-        this.paper.on('blank:contextmenu', this.addElement);
+
+        if(this.props.interactive === undefined ? true : this.props.interactive) {
+            this.paper.on('element:pointerdblclick', this.removeElement);
+            this.paper.on('link:pointerdblclick', this.removeElement);
+            this.paper.on('element:contextmenu', this.addLink);
+            this.paper.on('blank:contextmenu', this.addElement);
+        }
     }
 
     addLink(e) {
@@ -72,8 +84,8 @@ class Editor extends React.Component {
 
     updatePaperSize() {
         this.paper.setDimensions(
-            document.getElementById('paper-holder-wrapper').offsetWidth,
-            document.getElementById('paper-holder-wrapper').offsetHeight);
+            this.props.width ||document.getElementById('paper-holder-wrapper').offsetWidth,
+            this.props.height || document.getElementById('paper-holder-wrapper').offsetHeight);
     }
 
     render() {

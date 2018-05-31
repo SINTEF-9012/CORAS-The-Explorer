@@ -14,11 +14,13 @@ const App = (props) =>
     <Router>
         <div>
             <Header location={window.location.pathname} />
+            <div className="page-content-wrapper">
             <Route exact path={'/'} component={Frontpage} />
-            <Route path={'/quick-start'} component={QuickStart} />
+            <Route path={'/quick-start/:step?'} component={QuickStart} />
             <Route path={'/learn'} component={Learn} />
             <Route path={'/about'} component={About} />
             <Route path={'/try-it'} component={Editor} />
+            </div>
             <Footer />
         </div>
     </Router>;

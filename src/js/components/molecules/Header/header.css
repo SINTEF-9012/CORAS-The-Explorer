@@ -1,8 +1,13 @@
 .main-header {
     background-color: #254153;
-    height: 3rem;
     width: 100%;
+}
+
+.main-header-wrapper {
+    height: 3rem;
     display: flex;
+    max-width: 100rem;
+    margin: 0 auto auto auto;
 }
 
 .header-logo {

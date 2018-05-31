@@ -1,0 +1,70 @@
+.progression-box {
+    list-style: none;
+    min-height: 3rem;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: #FFF;
+    background-color: #7898ac;
+    border-bottom: solid 1px #254153;
+    flex-wrap: wrap;
+}
+
+.progression-box-item {
+    margin: 0;
+    padding: 0;
+    height: 3rem;
+    position: relative;
+    display: flex;
+    justify-content: space-around;    
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.progression-box-item__index {
+    font-size: 2rem;
+    font-family: Oswald, sans-serif;
+    padding: 0 1rem;
+}
+
+.progression-box-item__index--active {
+    color: #000;
+    background-color: #FFF;
+}
+
+.progression-box-item__title {
+    font-family: Oswald, sans-serif;
+    font-size: 1.5rem;
+    height: 3rem;
+    color: #000;
+    background-color: #FFF;
+    line-height: 2.8rem;
+}
+
+.arrow {
+    position: relative;
+}
+
+.arrow__left-box {
+    position: absolute;
+    left: 0;
+    z-index: 300;
+}
+
+.arrow__box {
+    position: absolute;
+    top: .4rem;
+    left: .45rem;
+    z-index: 200;
+    border-top: solid 1px #254153;
+    border-right: solid 1px #254153;
+    transform: rotate(45deg);
+}
+
+.arrow__right-box {
+    position: absolute;
+    right: 0;
+    z-index: 100;
+}

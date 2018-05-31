@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ProgressionBox from '../atoms/ProgressionBox/ProgressionBox';
+import Editor from '../molecules/Editor/Editor';
 
 const qsSteps = [
     {
@@ -34,11 +35,11 @@ const qsSteps = [
 
 const QuickStart = ({ match, location, history }) =>
     <div>
-        {console.log(match, location, history)}
         <ProgressionBox
             stepid={parseInt(match.params.step) < qsSteps.length ? parseInt(match.params.step) : 0}
             steps={qsSteps}
             rootPath={match.path.split("/")[1]} />
+        <Editor />
     </div>;
 
 export default QuickStart;

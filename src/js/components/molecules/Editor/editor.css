@@ -1,3 +1,15 @@
-#paper-holder-wrapper {
+.editor-paper {
     border: solid 1px #000;
+    width: 95%;
+    height: 80vh;
+    margin: 1rem 2.5%;
+    position: relative;
+}
+
+
+#paper-holder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0
 }

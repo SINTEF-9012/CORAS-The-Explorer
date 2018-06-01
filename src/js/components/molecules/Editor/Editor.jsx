@@ -15,6 +15,9 @@ class Editor extends React.Component {
         this.addLink = this.addLink.bind(this);
         this.addElement = this.addElement.bind(this);
 
+        this.paperId = this.props.paperId || 'paper-holder';
+        this.paperWrapperId = `${this.paperId}-wrapper`;
+        
         this.state = {
             currentLink: null
         }
@@ -22,10 +25,10 @@ class Editor extends React.Component {
 
     componentDidMount() {
         this.paper = new joint.dia.Paper({
-            el: document.getElementById('paper-holder'),
+            el: document.getElementById(this.paperId),
             model: this.graph,
-            width: this.props.width || document.getElementById('paper-holder-wrapper').offsetWidth,
-            height: this.props.height || document.getElementById('paper-holder-wrapper').offsetHeight,
+            width: document.getElementById(this.paperWrapperId).offsetWidth,
+            height: document.getElementById(this.paperWrapperId).offsetHeight,
             gridSize: 1,
             background: {
                 color: 'rgba(255, 255, 255, 1)',
@@ -33,7 +36,7 @@ class Editor extends React.Component {
             interactive: this.props.interactive === undefined ? true : this.props.interactive
         });
 
-        this.paper.$el.css('pointer-events', 'none');
+        //this.paper.$el.css('pointer-events', 'none');
 
         if(this.props.initialDiagram) {
             // We have an initial diagram
@@ -84,15 +87,15 @@ class Editor extends React.Component {
 
     updatePaperSize() {
         this.paper.setDimensions(
-            this.props.width ||document.getElementById('paper-holder-wrapper').offsetWidth,
-            this.props.height || document.getElementById('paper-holder-wrapper').offsetHeight);
+            document.getElementById(this.paperWrapperId).offsetWidth,
+            document.getElementById(this.paperWrapperId).offsetHeight);
     }
 
     render() {
         return(
-         <div id="paper-holder-wrapper">
-                <div id="paper-holder"></div>
-            </div>);
+         <div id={this.paperWrapperId} className="editor-paper" style={{ width: `${this.props.width}px`, height: `${this.props.height}px` }}>
+            <div id={this.paperId}></div>
+        </div>);
     }
 }
 

@@ -17,6 +17,10 @@ class Editor extends React.Component {
         this.handleScroll = this.handleScroll.bind(this);
         this.handleScrollBlank = this.handleScrollBlank.bind(this);
 
+        this.movePaper = this.movePaper.bind(this);
+        this.beginMovePaper = this.beginMovePaper.bind(this);
+        this.endMovePaper = this.endMovePaper.bind(this);
+
         this.paperId = this.props.paperId || 'paper-holder';
         this.paperWrapperId = `${this.paperId}-wrapper`;
         
@@ -40,20 +44,31 @@ class Editor extends React.Component {
         this.handleScroll(null, e, x, y, delta);
     }
 
+    beginMovePaper(e, x, y) {
+        this.setState({ paperMove: { moving: true, x, y } });
+    }
+
+    movePaper(e, x, y) {
+        const { tx, ty } = this.paper.translate();
+        this.paper.translate(tx + (x - this.state.paperMove.x), ty + (y - this.state.paperMove.y));
+    }
+
+    endMovePaper(e, x, y) {
+        this.setState({ paperMove: {moving: false}})
+    }
+
     componentDidMount() {
         this.paper = new joint.dia.Paper({
             el: document.getElementById(this.paperId),
             model: this.graph,
-            width: document.getElementById(this.paperWrapperId).offsetWidth,
-            height: document.getElementById(this.paperWrapperId).offsetHeight,
+            width: document.getElementById(this.paperWrapperId).offsetWidth-10,
+            height: document.getElementById(this.paperWrapperId).offsetHeight-10,
             gridSize: 1,
             background: {
                 color: 'rgba(255, 255, 255, 1)',
             },
             interactive: this.props.interactive === undefined ? true : this.props.interactive
         });
-
-        //this.paper.$el.css('pointer-events', 'none');
 
         if(this.props.initialDiagram) {
             // We have an initial diagram
@@ -62,14 +77,20 @@ class Editor extends React.Component {
         
         window.addEventListener('resize', this.updatePaperSize);
         
+        window.paper = this.paper;
 
         if(this.props.interactive === undefined ? true : this.props.interactive) {
             this.paper.on('element:pointerdblclick', this.removeElement);
             this.paper.on('link:pointerdblclick', this.removeElement);
             this.paper.on('element:contextmenu', this.addLink);
             this.paper.on('blank:contextmenu', this.addElement);
+
             this.paper.on('cell:mousewheel', this.handleScroll);
             this.paper.on('blank:mousewheel', this.handleScrollBlank);
+        
+            this.paper.on('blank:pointerdown', this.beginMovePaper);
+            this.paper.on('blank:pointermove', this.movePaper);
+            this.paper.on('blank:pointerup', this.endMovePaper);
         }
     }
 

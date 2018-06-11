@@ -34,9 +34,13 @@ class Editor extends React.Component {
         const currentScale = this.paper.scale();
         
         if(delta > 0) {
-            this.paper.scale(currentScale.sx*scaleFactor, currentScale.sy*scaleFactor);
+            const newX = currentScale.sx*scaleFactor > 5 ? currentScale.sx : currentScale.sx*scaleFactor;
+            const newY = currentScale.sy*scaleFactor > 5 ? currentScale.sy : currentScale.sy*scaleFactor;
+            this.paper.scale(newX, newY);
         } else if (delta < 0){
-            this.paper.scale(currentScale.sx/scaleFactor, currentScale.sy/scaleFactor);
+            const newX = currentScale.sx/scaleFactor < 0.52 ? currentScale.sx : currentScale.sx/scaleFactor;
+            const newY = currentScale.sy/scaleFactor < 0.52 ? currentScale.sy : currentScale.sy/scaleFactor;
+            this.paper.scale(newX, newY);
         }
     }
 

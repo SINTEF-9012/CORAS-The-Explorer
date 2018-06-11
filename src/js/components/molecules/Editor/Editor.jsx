@@ -14,6 +14,8 @@ class Editor extends React.Component {
         this.removeElement = this.removeElement.bind(this);
         this.addLink = this.addLink.bind(this);
         this.addElement = this.addElement.bind(this);
+        this.handleScroll = this.handleScroll.bind(this);
+        this.handleScrollBlank = this.handleScrollBlank.bind(this);
 
         this.paperId = this.props.paperId || 'paper-holder';
         this.paperWrapperId = `${this.paperId}-wrapper`;
@@ -21,6 +23,21 @@ class Editor extends React.Component {
         this.state = {
             currentLink: null
         }
+    }
+
+    handleScroll(cellView, e, x, y, delta) {
+        const scaleFactor = 1.1;
+        const currentScale = this.paper.scale();
+        
+        if(delta > 0) {
+            this.paper.scale(currentScale.sx*scaleFactor, currentScale.sy*scaleFactor);
+        } else if (delta < 0){
+            this.paper.scale(currentScale.sx/scaleFactor, currentScale.sy/scaleFactor);
+        }
+    }
+
+    handleScrollBlank(e, x, y, delta) {
+        this.handleScroll(null, e, x, y, delta);
     }
 
     componentDidMount() {
@@ -42,15 +59,22 @@ class Editor extends React.Component {
             // We have an initial diagram
             this.graph.fromJSON(this.props.initialDiagram);
         }
-
+        
         window.addEventListener('resize', this.updatePaperSize);
+        
 
         if(this.props.interactive === undefined ? true : this.props.interactive) {
             this.paper.on('element:pointerdblclick', this.removeElement);
             this.paper.on('link:pointerdblclick', this.removeElement);
             this.paper.on('element:contextmenu', this.addLink);
             this.paper.on('blank:contextmenu', this.addElement);
+            this.paper.on('cell:mousewheel', this.handleScroll);
+            this.paper.on('blank:mousewheel', this.handleScrollBlank);
         }
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updatePaperSize);
     }
 
     addLink(e) {

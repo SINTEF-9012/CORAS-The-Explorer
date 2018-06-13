@@ -13,3 +13,17 @@
     left: 0;
     margin: 0
 }
+
+.editor-toolbox {
+
+}
+
+.example-box-1 {
+    width: 10rem;
+    height: 6rem;
+    background-color: blue;
+    border: solid 1px black;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+}

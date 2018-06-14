@@ -25,6 +25,8 @@ const editorHandlers = [
 
         if(this.props.interactive === undefined ? true : this.props.interactive) {
             this.paper.on('element:contextmenu', this.addLink);
+            this.paper.on('link:contextmenu', this.removeLink);
+            this.paper.on('cell:pointerdblclick', this.editText);
 
             this.paper.on('cell:mousewheel', this.handleScroll);
             this.paper.on('blank:mousewheel', this.handleScrollBlank);
@@ -77,15 +79,51 @@ const editorHandlers = [
 
     function addLink(elementView, e, x, y) {
         if(!this.state.link) {
+            this.setState({ sourceElem: elementView });
             // Start of link creation
             this.setState({ link: new joint.shapes.standard.Link() });
             this.state.link.source(elementView.model);
         } else {
             // End of link creation
-            this.state.link.target(elementView.model);
-            this.state.link.addTo(this.graph);
+            if(this.state.sourceElem !== elementView) {
+                this.state.link.target(elementView.model);
+                this.state.link.addTo(this.graph);
+            } else elementView.model.remove();
+            this.setState({ sourceElem: null });
             this.setState({ link: null });
         }
+    },
+
+    function removeLink(elementView, e, x, y) {
+        if(!this.state.linkToRemove) this.setState({ linkToRemove: elementView });
+        else if(this.state.linkToRemove === elementView) {
+            this.setState({ linkToRemove: null });
+            elementView.model.remove();
+        } else this.setState({ linkToRemove: null });
+    },
+
+    function editText(elementView, e, x, y) {
+        const body = document.getElementsByTagName("body")[0];
+        const inputBox = document.createElement("input");
+        inputBox.id = x.toString();
+        
+        const target = this.paper.$el.offset();
+        const elemPos = elementView.model.position ? elementView.model.position() : {x, y};
+        inputBox.type = "text";
+        inputBox.style.cssText = `position: absolute; top: ${elemPos.y + target.top + 30}px; left: ${elemPos.x + target.left}px;`;
+
+        body.appendChild(inputBox);
+
+        function keyHandler(e) {
+            if(e.keyCode === 13) {
+                if(elementView.model.isLink()) elementView.model.insertLabel(0, { attrs: { text: { text: inputBox.value } } });
+                else elementView.model.attr('text/text', inputBox.value);
+                body.removeChild(inputBox);
+                body.removeEventListener('keyup', keyHandler);
+            }
+        }
+
+        body.addEventListener('keyup', keyHandler)
     }
 ]
 

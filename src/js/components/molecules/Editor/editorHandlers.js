@@ -24,10 +24,7 @@ const editorHandlers = [
         window.paper = this.paper;
 
         if(this.props.interactive === undefined ? true : this.props.interactive) {
-            this.paper.on('element:pointerdblclick', this.removeElement);
-            this.paper.on('link:pointerdblclick', this.removeElement);
             this.paper.on('element:contextmenu', this.addLink);
-            this.paper.on('blank:contextmenu', this.addElement);
 
             this.paper.on('cell:mousewheel', this.handleScroll);
             this.paper.on('blank:mousewheel', this.handleScrollBlank);
@@ -76,6 +73,19 @@ const editorHandlers = [
         this.paper.setDimensions(
             document.getElementById(this.paperWrapperId).offsetWidth-10,
             document.getElementById(this.paperWrapperId).offsetHeight-10);
+    },
+
+    function addLink(elementView, e, x, y) {
+        if(!this.state.link) {
+            // Start of link creation
+            this.setState({ link: new joint.shapes.standard.Link() });
+            this.state.link.source(elementView.model);
+        } else {
+            // End of link creation
+            this.state.link.target(elementView.model);
+            this.state.link.addTo(this.graph);
+            this.setState({ link: null });
+        }
     }
 ]
 

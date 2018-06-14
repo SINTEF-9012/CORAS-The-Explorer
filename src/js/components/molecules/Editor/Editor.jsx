@@ -52,9 +52,10 @@ class Editor extends React.Component {
                 <div id={this.paperWrapperId} className="editor-paper" style={{ width: `${this.props.width}px`, height: `${this.props.height}px` }}>
                     <div id={this.paperId}></div>
                 </div>
+                {this.props.interactive || this.props.interactive === undefined ?
                 <div className="editor-toolbox">
                     <div id="tool-paper"></div>
-                </div>
+                </div> : null}
             </div>);
     }
 }

@@ -11,19 +11,21 @@
     position: absolute;
     top: 0;
     left: 0;
-    margin: 0
+    margin: 1px;
 }
 
 .editor-toolbox {
-
+    border: solid 1px #000;
+    width: 95%;
+    height: auto;
+    margin: 1rem 2.5%;
+    position: relative;
 }
 
-.example-box-1 {
-    width: 10rem;
-    height: 6rem;
-    background-color: blue;
-    border: solid 1px black;
-    text-align: center;
-    vertical-align: middle;
-    color: white;
+#tool-paper {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin: 1px;
 }

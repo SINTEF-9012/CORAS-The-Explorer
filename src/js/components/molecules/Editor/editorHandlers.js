@@ -26,7 +26,7 @@ const editorHandlers = [
         if(this.props.interactive === undefined ? true : this.props.interactive) {
             this.paper.on('element:contextmenu', this.addLink);
             this.paper.on('link:contextmenu', this.removeLink);
-            this.paper.on('cell:pointerdblclick', this.editText);
+            this.paper.on('cell:pointerdblclick', this.edit);
 
             this.paper.on('cell:mousewheel', this.handleScroll);
             this.paper.on('blank:mousewheel', this.handleScrollBlank);
@@ -100,6 +100,25 @@ const editorHandlers = [
             this.setState({ linkToRemove: null });
             elementView.model.remove();
         } else this.setState({ linkToRemove: null });
+    },
+
+    function edit(elementView, e, x, y) {
+        this.setState({ 
+            elementEditor: {
+                visible: true,
+                data: {
+                    isLink: elementView.model.isLink(),
+                    position: {
+                        left: e.pageX,
+                        top: e.pageY
+                    },
+                    elementView,
+                    e,
+                    x,
+                    y
+                }
+            }
+        })
     },
 
     function editText(elementView, e, x, y) {

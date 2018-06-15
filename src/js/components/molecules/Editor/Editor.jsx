@@ -1,6 +1,8 @@
 import React from 'react';
 import joint from 'jointjs';
 
+import ElementEditor from './ElementEditor'
+
 import "../../../../../node_modules/jointjs/dist/joint.css";
 import './editor.css';
 
@@ -29,11 +31,30 @@ class Editor extends React.Component {
         registerEs(editorHandlers, this);
         registerEs(toolHandlers, this);
 
+        this.closeElementEditor = this.closeElementEditor.bind(this);
+
         this.paperId = this.props.paperId || 'paper-holder';
         this.paperWrapperId = `${this.paperId}-wrapper`;
-        
+
         this.state = {
-            currentLink: null
+            currentLink: null,
+            elementEditor: {
+                visible: false,
+                data: {
+                    isLink: false,
+                    position: {
+                        left: 0,
+                        top: 0
+                    },
+                    elementView: null,
+                    e: null,
+                    x: null,
+                    y: null,
+                    graph: null,
+                    paper: null,
+
+                }
+            }
         }
     }
 
@@ -46,16 +67,24 @@ class Editor extends React.Component {
         window.removeEventListener('resize', this.updatePaperSize);
     }
 
+    closeElementEditor() {
+        this.setState((prevstate) => {
+            prevstate.elementEditor.visible = false;
+            return prevstate;
+        });
+    }
+
     render() {
-        return(
+        return (
             <div>
+                {this.state.elementEditor.visible ? <ElementEditor {...this.state.elementEditor.data} closeFn={this.closeElementEditor}/> : null}
                 <div id={this.paperWrapperId} className="editor-paper" style={{ width: `${this.props.width}px`, height: `${this.props.height}px` }}>
                     <div id={this.paperId}></div>
                 </div>
                 {this.props.interactive || this.props.interactive === undefined ?
-                <div className="editor-toolbox">
-                    <div id="tool-paper"></div>
-                </div> : null}
+                    <div className="editor-toolbox">
+                        <div id="tool-paper"></div>
+                    </div> : null}
             </div>);
     }
 }

@@ -1,0 +1,68 @@
+.element-editor {
+    position: absolute;
+    z-index: 1000;
+    background-color: #FFF;
+    border: solid 1px darkblue;
+    border-radius: 5px;
+    width: 20rem;
+    height: auto;
+}
+
+.element-editor-section {
+    margin: .5rem 1rem;
+}
+
+.element-editor-section:first-of-type {
+    margin-top: 1rem;
+}
+
+.element-editor-section:last-of-type {
+    margin-bottom: 1rem;
+}
+
+.element-editor-section__label {
+    font-size: .75rem;
+    margin: .3rem .5rem 0 .5rem;
+}
+
+.element-editor-section__label--full {
+    display: block;
+    margin: initial;
+}
+
+.element-editor-section__partitioner {
+    width: 50%;
+    display: inline-block;
+}
+
+.element-editor-section__input {
+    border: none;
+    border-bottom: solid .5px #000;
+    height: 2rem;
+}
+
+.element-editor-section__input--100 {
+    display: block;
+    width: 100%;
+}
+
+.element-editor-section__input--75 {
+    width: 75%;
+}
+
+.element-editor-section__button {
+    background-color: lightslategray;
+    border: solid 1px #000;
+    border-radius: 2px;
+    color: #FFF;
+    margin: 1rem 1rem 0 1rem;
+    padding: .4rem;
+}
+
+.element-editor-section__button--cta {
+    background-color: green;
+}
+
+.element-editor-section__button--danger {
+    background-color: darkred;
+}

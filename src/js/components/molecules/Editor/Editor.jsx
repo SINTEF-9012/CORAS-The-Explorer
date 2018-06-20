@@ -31,7 +31,6 @@ class Editor extends React.Component {
 
         this.graph = this.props.graph;
 
-        this.initializeEditorHandlers = this.initializeEditorHandlers.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
         this.handleScrollBlank = this.handleScrollBlank.bind(this);
         this.beginMovePaper = this.beginMovePaper.bind(this);
@@ -52,7 +51,6 @@ class Editor extends React.Component {
         this.paperWrapperId = `${this.paperId}-wrapper`;
 
         this.state = {
-            currentLink: null,
             elementEditor: {
                 visible: false,
                 data: {
@@ -74,24 +72,9 @@ class Editor extends React.Component {
     }
 
     componentDidMount() {
-        this.initializeEditorHandlers();
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.updatePaperSize);
-    }
-
-    closeElementEditor() {
-        this.setState((prevstate) => {
-            prevstate.elementEditor.visible = false;
-            return prevstate;
-        });
-    }
-
-    initializeEditorHandlers() {
         this.paper = new joint.dia.Paper({
             el: document.getElementById(this.paperId),
-            model: this.graph,
+            model: this.props.graph,
             width: document.getElementById(this.paperWrapperId).offsetWidth - 10,
             height: document.getElementById(this.paperWrapperId).offsetHeight - 10,
             gridSize: 1,
@@ -103,12 +86,10 @@ class Editor extends React.Component {
 
         if (this.props.initialDiagram) {
             // We have an initial diagram
-            this.graph.fromJSON(this.props.initialDiagram);
+            this.props.graph.fromJSON(this.props.initialDiagram);
         }
 
         window.addEventListener('resize', this.updatePaperSize);
-
-        window.paper = this.paper;
 
         if (this.props.interactive === undefined ? true : this.props.interactive) {
             this.paper.on('element:contextmenu', (elementView, e, x, y) => this.props.elementRightClicked(elementView.model));
@@ -122,6 +103,17 @@ class Editor extends React.Component {
             this.paper.on('blank:pointermove', this.movePaper);
             this.paper.on('blank:pointerup', this.endMovePaper);
         }
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updatePaperSize);
+    }
+
+    closeElementEditor() {
+        this.setState((prevstate) => {
+            prevstate.elementEditor.visible = false;
+            return prevstate;
+        });
     }
 
     handleScroll(cellView, e, x, y, delta) {

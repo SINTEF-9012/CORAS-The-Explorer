@@ -1,7 +1,7 @@
 import React from 'react';
 import joint from 'jointjs';
 import { connect } from 'react-redux';
-import { ElementRightClicked } from '../../../store/Actions';
+import { ElementRightClicked, ElementDoubleClicked, ElementEditorCancel, ElementEditorSave, ElementEditorDelete } from '../../../store/Actions';
 
 import ElementEditor from './ElementEditor';
 import EditorTool from './EditorTool';
@@ -94,7 +94,7 @@ class Editor extends React.Component {
         if (this.props.interactive === undefined ? true : this.props.interactive) {
             this.paper.on('element:contextmenu', (elementView, e, x, y) => this.props.elementRightClicked(elementView.model));
             this.paper.on('link:contextmenu', this.removeLink);
-            this.paper.on('cell:pointerdblclick', this.edit);
+            this.paper.on('cell:pointerdblclick', (elementView, e, x, y) => this.props.elementDoubleClicked(elementView.model, e));
 
             this.paper.on('cell:mousewheel', this.handleScroll);
             this.paper.on('blank:mousewheel', this.handleScrollBlank);
@@ -202,7 +202,11 @@ class Editor extends React.Component {
     render() {
         return (
             <div>
-                {this.state.elementEditor.visible ? <ElementEditor {...this.state.elementEditor.data} closeFn={this.closeElementEditor} /> : null}
+                {this.props.elementEditor.visible ? <ElementEditor
+                    {...this.props.elementEditor.data}
+                    cancel={this.props.elementEditorCancel}
+                    save={this.props.elementEditorSave}
+                    delete={this.props.elementEditorDelete} /> : null}
                 <div id={this.paperWrapperId} className="editor-paper" style={{ width: `${this.props.width}px`, height: `${this.props.height}px` }}>
                     <div id={this.paperId}></div>
                 </div>
@@ -218,7 +222,12 @@ class Editor extends React.Component {
 }
 
 export default connect((state) => ({
-    graph: state.editor.viewGraph
+    graph: state.editor.viewGraph,
+    elementEditor: state.editor.elementEditor
 }), (dispatch) => ({
-    elementRightClicked: (element) => dispatch(ElementRightClicked(element))
+    elementRightClicked: (element) => dispatch(ElementRightClicked(element)),
+    elementDoubleClicked: (element, event) => dispatch(ElementDoubleClicked(element, event)),
+    elementEditorCancel: () => dispatch(ElementEditorCancel()),
+    elementEditorSave: () => dispatch(ElementEditorSave()),
+    elementEditorDelete: () => dispatch(ElementEditorDelete())
 }))(Editor);

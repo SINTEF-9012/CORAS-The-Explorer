@@ -8,46 +8,25 @@ class ElementEditor extends React.Component {
 
         this.setPosition = this.setPosition.bind(this);
 
-        this.remove = this.remove.bind(this);
-        this.close = this.close.bind(this);
-        this.save = this.save.bind(this);
-
         this.onLabelChange = this.onLabelChange.bind(this);
         this.onPositionChangeX = this.onPositionChangeX.bind(this);
         this.onPositionChangeY = this.onPositionChangeY.bind(this);
 
         this.state = {
-            originalLabel: this.props.elementView.model.attr('text/text'),
-            label: this.props.elementView.model.attr('text/text'),
-            originalPosition: this.props.isLink ? { x: null, y: null } : this.props.elementView.model.position(),
-            position: this.props.isLink ? { x: null, y: null } : this.props.elementView.model.position()
+            originalLabel: this.props.element.attr('text/text'),
+            label: this.props.element.attr('text/text'),
+            originalPosition: this.props.isLink ? { x: null, y: null } : this.props.element.position(),
+            position: this.props.isLink ? { x: null, y: null } : this.props.element.position()
         }
     }
 
     setPosition(x, y) {
-        if(!this.props.isLink) this.props.elementView.model.position(parseInt(x), parseInt(y));
-    }
-
-    remove() {
-        this.props.elementView.model.remove();
-        this.props.closeFn();
-    }
-
-    close() {
-        this.props.elementView.model.attr('text/text', this.state.originalLabel);
-        this.setPosition(this.state.originalPosition.x, this.state.originalPosition.y);
-        this.props.closeFn();
-    }
-
-    save() {
-        this.props.elementView.model.attr('text/text', this.state.label);
-        this.setPosition(this.state.position.x, this.state.position.y);
-        this.props.closeFn();
+        if(!this.props.isLink) this.props.element.position(parseInt(x), parseInt(y));
     }
     
     onLabelChange(e) {
         this.setState({ label: e.target.value });
-        this.props.elementView.model.attr('text/text', e.target.value);
+        this.props.element.attr('text/text', e.target.value);
     }
     
     onPositionChangeX(e) {
@@ -71,7 +50,7 @@ class ElementEditor extends React.Component {
 
     render() {
         return (
-            <form className="element-editor" style={{ left: this.props.position.left, top: this.props.position.top }}>
+            <form className="element-editor" style={{ left: this.props.editorPosition.left, top: this.props.editorPosition.top }}>
                 <div className="element-editor-section">
                     <label htmlFor="label" className="element-editor-section__label element-editor-section__label--full">Label</label>
                     <input id="label" className="element-editor-section__input element-editor-section__input--100" type="text" value={this.state.label} onChange={this.onLabelChange} />
@@ -88,9 +67,9 @@ class ElementEditor extends React.Component {
                     </div>
                 </div> : null}
                 <div className="element-editor-section">
-                    <button className="element-editor-section__button element-editor-section__button--cta" type="button" onClick={this.save}>Save</button>
-                    <button className="element-editor-section__button" type="button" onClick={this.close}>Cancel</button>
-                    <button className="element-editor-section__button element-editor-section__button--danger" type="button" onClick={this.remove}>Delete</button>
+                    <button className="element-editor-section__button element-editor-section__button--cta" type="button" onClick={this.props.save}>Save</button>
+                    <button className="element-editor-section__button" type="button" onClick={this.props.cancel}>Cancel</button>
+                    <button className="element-editor-section__button element-editor-section__button--danger" type="button" onClick={this.props.delete}>Delete</button>
                 </div>
             </form>
         );

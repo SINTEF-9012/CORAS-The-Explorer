@@ -10,18 +10,6 @@ import AddCorasShapes from './CORASShapes.js';
 
 AddCorasShapes(joint);
 
-function register(fn, self) {
-    self[fn.name] = self[fn.name].bind(self);
-}
-
-function registerE(fn, self) {
-    self[fn.name] = fn.bind(self);
-}
-
-function registerEs(fns, self) {
-    fns.forEach((fn, i) => registerE(fn, self));
-}
-
 class EditorView extends React.Component {
     constructor(props) {
         super(props);
@@ -62,8 +50,6 @@ class Editor extends React.Component {
         
         this.initializeToolHandlers = this.initializeToolHandlers.bind(this);
         this.dragElementToView = this.dragElementToView.bind(this);
-
-        registerEs(toolHandlers, this);
 
         this.closeElementEditor = this.closeElementEditor.bind(this);
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import joint from 'jointjs';
+import { connect } from 'react-redux';
 
 import ElementEditor from './ElementEditor';
 import EditorTool from './EditorTool';
@@ -242,4 +243,6 @@ class Editor extends React.Component {
     }
 }
 
-export default Editor;
+export default connect((state) => ({
+    
+}), (dispatch) => ({}))(Editor);

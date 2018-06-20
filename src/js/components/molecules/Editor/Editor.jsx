@@ -1,6 +1,7 @@
 import React from 'react';
 import joint from 'jointjs';
 import { connect } from 'react-redux';
+import { ElementRightClicked } from '../../../store/Actions';
 
 import ElementEditor from './ElementEditor';
 import EditorTool from './EditorTool';
@@ -28,8 +29,7 @@ class Editor extends React.Component {
     constructor(props) {
         super(props);
 
-        this.graph = new joint.dia.Graph();
-        this.toolGraph = new joint.dia.Graph();
+        this.graph = this.props.graph;
 
         this.initializeEditorHandlers = this.initializeEditorHandlers.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
@@ -38,7 +38,6 @@ class Editor extends React.Component {
         this.movePaper = this.movePaper.bind(this);
         this.endMovePaper = this.endMovePaper.bind(this);
         this.updatePaperSize = this.updatePaperSize.bind(this);
-        this.addLink = this.addLink.bind(this);
         this.removeLink = this.removeLink.bind(this);
         this.edit = this.edit.bind(this);
 
@@ -112,7 +111,7 @@ class Editor extends React.Component {
         window.paper = this.paper;
 
         if (this.props.interactive === undefined ? true : this.props.interactive) {
-            this.paper.on('element:contextmenu', this.addLink);
+            this.paper.on('element:contextmenu', (elementView, e, x, y) => this.props.elementRightClicked(elementView.model));
             this.paper.on('link:contextmenu', this.removeLink);
             this.paper.on('cell:pointerdblclick', this.edit);
 
@@ -163,23 +162,6 @@ class Editor extends React.Component {
         this.paper.setDimensions(
             document.getElementById(this.paperWrapperId).offsetWidth - 10,
             document.getElementById(this.paperWrapperId).offsetHeight - 10);
-    }
-
-    addLink(elementView, e, x, y) {
-        if (!this.state.link) {
-            this.setState({ sourceElem: elementView });
-            // Start of link creation
-            this.setState({ link: new joint.shapes.standard.Link() });
-            this.state.link.source(elementView.model);
-        } else {
-            // End of link creation
-            if (this.state.sourceElem !== elementView) {
-                this.state.link.target(elementView.model);
-                this.state.link.addTo(this.graph);
-            } else elementView.model.remove();
-            this.setState({ sourceElem: null });
-            this.setState({ link: null });
-        }
     }
 
     removeLink(elementView, e, x, y) {
@@ -244,5 +226,7 @@ class Editor extends React.Component {
 }
 
 export default connect((state) => ({
-    
-}), (dispatch) => ({}))(Editor);
+    graph: state.editor.viewGraph
+}), (dispatch) => ({
+    elementRightClicked: (element) => dispatch(ElementRightClicked(element))
+}))(Editor);

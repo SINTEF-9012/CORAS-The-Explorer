@@ -39,3 +39,13 @@ export const ElementChangeY = (y) => ({
     type: ActionTypes.EDITOR.ELEMENT_CHANGE_Y,
     payload: { y }
 });
+
+export const ToolElementClicked = (element) => ({
+    type: ActionTypes.EDITOR.TOOL_ELEMENT_CLICKED,
+    payload: { element }
+});
+
+export const ToolElementRelease = (pageX, pageY) => ({
+    type: ActionTypes.EDITOR.TOOL_ELEMENT_RELEASED,
+    payload: { pageX, pageY }
+});

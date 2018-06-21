@@ -29,6 +29,9 @@ function Editor(state, action) {
                         y: 0
                     }
                 }
+            },
+            movement: {
+                element: null
             }
         };
 
@@ -98,6 +101,17 @@ function Editor(state, action) {
         case ActionTypes.EDITOR.ELEMENT_CHANGE_Y:
         newState.elementEditor.data.position.y = parseInt(action.payload.y);
         newState.elementEditor.data.element.position(state.elementEditor.data.position.x, parseInt(action.payload.y));
+        return newState;
+
+        case ActionTypes.EDITOR.TOOL_ELEMENT_CLICKED:
+        newState.movement.element = action.payload.element;
+        return newState;
+
+        case ActionTypes.EDITOR.TOOL_ELEMENT_RELEASED:
+        if(!newState.movement.element) return newState;
+        newState.movement.element.position(action.payload.pageX, action.payload.pageY);
+        newState.viewGraph.addCell(newState.movement.element.clone());
+        newState.movement.element = null;
         return newState;
     }
 }

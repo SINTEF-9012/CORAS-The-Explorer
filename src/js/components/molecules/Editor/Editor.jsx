@@ -1,7 +1,7 @@
 import React from 'react';
 import joint from 'jointjs';
 import { connect } from 'react-redux';
-import { ElementRightClicked, ElementDoubleClicked, ElementEditorCancel, ElementEditorSave, ElementEditorDelete, ElementLabelEdit, ElementChangeX, ElementChangeY } from '../../../store/Actions';
+import { ElementRightClicked, ElementDoubleClicked, ElementEditorCancel, ElementEditorSave, ElementEditorDelete, ElementLabelEdit, ElementChangeX, ElementChangeY, ToolElementRelease } from '../../../store/Actions';
 
 import ElementEditor from './ElementEditor';
 import EditorTool from './EditorTool';
@@ -38,37 +38,11 @@ class Editor extends React.Component {
         this.endMovePaper = this.endMovePaper.bind(this);
         this.updatePaperSize = this.updatePaperSize.bind(this);
         this.removeLink = this.removeLink.bind(this);
-        this.edit = this.edit.bind(this);
 
-        this.closeElementEditor = this.closeElementEditor.bind(this);
-
-        this.getPaperOffset = this.getPaperOffset.bind(this);
-        this.getPaperHeight = this.getPaperHeight.bind(this);
-        this.getPaperWidth = this.getPaperWidth.bind(this);
-        this.getPaperTranslation = this.getPaperTranslation.bind(this);
+        this.paperOnMouseUp = this.paperOnMouseUp.bind(this);
 
         this.paperId = this.props.paperId || 'paper-holder';
         this.paperWrapperId = `${this.paperId}-wrapper`;
-
-        this.state = {
-            elementEditor: {
-                visible: false,
-                data: {
-                    isLink: false,
-                    position: {
-                        left: 0,
-                        top: 0
-                    },
-                    elementView: null,
-                    e: null,
-                    x: null,
-                    y: null,
-                    graph: null,
-                    paper: null,
-
-                }
-            }
-        }
     }
 
     componentDidMount() {
@@ -107,13 +81,6 @@ class Editor extends React.Component {
 
     componentWillUnmount() {
         window.removeEventListener('resize', this.updatePaperSize);
-    }
-
-    closeElementEditor() {
-        this.setState((prevstate) => {
-            prevstate.elementEditor.visible = false;
-            return prevstate;
-        });
     }
 
     handleScroll(cellView, e, x, y, delta) {
@@ -164,39 +131,11 @@ class Editor extends React.Component {
         } else this.setState({ linkToRemove: null });
     }
 
-    edit(elementView, e, x, y) {
-        this.setState({
-            elementEditor: {
-                visible: true,
-                data: {
-                    isLink: elementView.model.isLink(),
-                    position: {
-                        left: e.pageX,
-                        top: e.pageY
-                    },
-                    elementView,
-                    e,
-                    x,
-                    y
-                }
-            }
-        })
-    }
-
-    getPaperOffset() {
-        return this.paper.$el.offset();
-    }
-
-    getPaperHeight() {
-        return this.paper.$el.height();
-    }
-
-    getPaperWidth() {
-        return this.paper.$el.width();
-    }
-
-    getPaperTranslation() {
-        return this.paper.translate();
+    paperOnMouseUp(e) {
+        e.preventDefault();
+        const {left, top} = this.paper.$el.offset();
+        const {tx, ty} = this.paper.translate();
+        this.props.elementDropped(e.pageX - left - tx, e.pageY - top - ty);
     }
 
     render() {
@@ -210,16 +149,11 @@ class Editor extends React.Component {
                     labelOnChange={this.props.elementEditorLabelEdit}
                     xOnChange={this.props.elementEditorChangeX}
                     yOnChange={this.props.elementEditorChangeY} /> : null}
-                <div id={this.paperWrapperId} className="editor-paper" style={{ width: `${this.props.width}px`, height: `${this.props.height}px` }}>
+                <div id={this.paperWrapperId} className="editor-paper" onMouseMove={(e) => e.preventDefault()} onMouseUp={this.paperOnMouseUp} style={{ width: `${this.props.width}px`, height: `${this.props.height}px` }}>
                     <div id={this.paperId}></div>
                 </div>
                 {this.props.interactive || this.props.interactive === undefined ?
-                     <EditorTool
-                        offset={this.getPaperOffset}
-                        height={this.getPaperHeight}
-                        width={this.getPaperWidth}
-                        translate={this.getPaperTranslation}
-                        graph={this.graph} /> : null}
+                     <EditorTool /> : null}
             </div>);
     }
 }
@@ -235,5 +169,6 @@ export default connect((state) => ({
     elementEditorDelete: () => dispatch(ElementEditorDelete()),
     elementEditorLabelEdit: (label) => dispatch(ElementLabelEdit(label)),
     elementEditorChangeX: (x) => dispatch(ElementChangeX(x)),
-    elementEditorChangeY: (y) => dispatch(ElementChangeY(y))
+    elementEditorChangeY: (y) => dispatch(ElementChangeY(y)),
+    elementDropped: (pageX, pageY) => dispatch(ToolElementRelease(pageX, pageY))
 }))(Editor);

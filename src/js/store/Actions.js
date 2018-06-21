@@ -24,3 +24,18 @@ export const ElementEditorSave = () => ({
 export const ElementEditorDelete = () => ({
     type: ActionTypes.EDITOR.ELEMENT_DELETE
 });
+
+export const ElementLabelEdit = (label) => ({
+    type: ActionTypes.EDITOR.ELEMENT_LABEL_EDIT,
+    payload: { label }
+});
+
+export const ElementChangeX = (x) => ({
+    type: ActionTypes.EDITOR.ELEMENT_CHANGE_X,
+    payload: { x }
+});
+
+export const ElementChangeY = (y) => ({
+    type: ActionTypes.EDITOR.ELEMENT_CHANGE_Y,
+    payload: { y }
+});

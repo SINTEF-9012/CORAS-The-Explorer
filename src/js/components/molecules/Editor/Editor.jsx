@@ -1,7 +1,7 @@
 import React from 'react';
 import joint from 'jointjs';
 import { connect } from 'react-redux';
-import { ElementRightClicked, ElementDoubleClicked, ElementEditorCancel, ElementEditorSave, ElementEditorDelete } from '../../../store/Actions';
+import { ElementRightClicked, ElementDoubleClicked, ElementEditorCancel, ElementEditorSave, ElementEditorDelete, ElementLabelEdit, ElementChangeX, ElementChangeY } from '../../../store/Actions';
 
 import ElementEditor from './ElementEditor';
 import EditorTool from './EditorTool';
@@ -206,7 +206,10 @@ class Editor extends React.Component {
                     {...this.props.elementEditor.data}
                     cancel={this.props.elementEditorCancel}
                     save={this.props.elementEditorSave}
-                    delete={this.props.elementEditorDelete} /> : null}
+                    delete={this.props.elementEditorDelete}
+                    labelOnChange={this.props.elementEditorLabelEdit}
+                    xOnChange={this.props.elementEditorChangeX}
+                    yOnChange={this.props.elementEditorChangeY} /> : null}
                 <div id={this.paperWrapperId} className="editor-paper" style={{ width: `${this.props.width}px`, height: `${this.props.height}px` }}>
                     <div id={this.paperId}></div>
                 </div>
@@ -229,5 +232,8 @@ export default connect((state) => ({
     elementDoubleClicked: (element, event) => dispatch(ElementDoubleClicked(element, event)),
     elementEditorCancel: () => dispatch(ElementEditorCancel()),
     elementEditorSave: () => dispatch(ElementEditorSave()),
-    elementEditorDelete: () => dispatch(ElementEditorDelete())
+    elementEditorDelete: () => dispatch(ElementEditorDelete()),
+    elementEditorLabelEdit: (label) => dispatch(ElementLabelEdit(label)),
+    elementEditorChangeX: (x) => dispatch(ElementChangeX(x)),
+    elementEditorChangeY: (y) => dispatch(ElementChangeY(y))
 }))(Editor);

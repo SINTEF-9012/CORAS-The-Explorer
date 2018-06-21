@@ -6,9 +6,9 @@ const rootReducer = combineReducers({ editor: Editor });
 
 function Editor(state, action) {
     if(state === undefined) return {
-            viewGraph: new joint.dia.Graph(),
-            link: null,
-            previousElementRightClicked: null,
+        viewGraph: new joint.dia.Graph(),
+        link: null,
+        previousElementRightClicked: null,
             elementEditor: {
                 visible: false,
                 data: {
@@ -30,12 +30,14 @@ function Editor(state, action) {
                     }
                 }
             }
-    };
+        };
 
-    switch(action.type) {
-        case ActionTypes.EDITOR.CREATE:
-        return Object.assign({}, state);
-
+        const newState = Object.assign({}, state);
+        
+        switch(action.type) {
+            case ActionTypes.EDITOR.CREATE:
+            return Object.assign({}, state);
+            
         case ActionTypes.EDITOR.DROP_NEW_MODEL:
         return Object.assign({}, state);
 
@@ -73,7 +75,7 @@ function Editor(state, action) {
 
         case ActionTypes.EDITOR.ELEMENT_CANCEL:
         state.elementEditor.data.element.attr('text/text', state.elementEditor.originalLabel);
-        if(!state.elementEditor.data.isLink) state.elementEditor.data.element.position(state.elementEditor.data.position.x, state.elementEditor.data.position.y);
+        if(!state.elementEditor.data.isLink) state.elementEditor.data.element.position(state.elementEditor.originalPosition.x, state.elementEditor.originalPosition.y);
         return Object.assign({}, state, { elementEditor: { visible: false }});
 
         case ActionTypes.EDITOR.ELEMENT_SAVE:
@@ -82,6 +84,21 @@ function Editor(state, action) {
         case ActionTypes.EDITOR.ELEMENT_DELETE:
         state.elementEditor.data.element.remove();
         return Object.assign({}, state, { elementEditor: { visible: false }});
+
+        case ActionTypes.EDITOR.ELEMENT_LABEL_EDIT:
+        newState.elementEditor.data.element.attr('text/text', action.payload.label);
+        newState.elementEditor.data.label = action.payload.label;
+        return newState;
+
+        case ActionTypes.EDITOR.ELEMENT_CHANGE_X:
+        newState.elementEditor.data.position.x = parseInt(action.payload.x);
+        newState.elementEditor.data.element.position(parseInt(action.payload.x), state.elementEditor.data.position.y);
+        return newState;
+        
+        case ActionTypes.EDITOR.ELEMENT_CHANGE_Y:
+        newState.elementEditor.data.position.y = parseInt(action.payload.y);
+        newState.elementEditor.data.element.position(state.elementEditor.data.position.x, parseInt(action.payload.y));
+        return newState;
     }
 }
 

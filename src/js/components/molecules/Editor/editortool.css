@@ -1,0 +1,10 @@
+.editor-toolbox {
+    display: flex;
+    background-color: #FFF;
+}
+
+.editor-toolbox__element {
+    flex: 1 1;
+    padding: 1rem;
+    align-content: center;
+}

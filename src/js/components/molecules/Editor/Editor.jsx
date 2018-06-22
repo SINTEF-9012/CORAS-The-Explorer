@@ -11,6 +11,55 @@ import './editor.css';
 
 import AddCorasShapes from './CORASShapes.js';
 
+import Asset from './svg/asset.svg';
+import Risk from './svg/risk.svg';
+import Stakeholder from './svg/stakeholder.svg';
+import ThreatHumanAccidental from './svg/threat-human-accidental.svg';
+import ThreatHumanDeliberate from './svg/threat-human-deliberate.svg';
+import ThreatNonHuman from './svg/threat-non-human.svg';
+import Treatment from './svg/treatment.svg';
+import UnwantedIncident from './svg/unwanted-incident.svg';
+import Vulnerability from './svg/vulnerability.svg';
+
+const toolDefinitions = [
+    {
+        url: Asset,
+        shapeFn: () => new joint.shapes.coras.asset()
+    },
+    {
+        url: Risk,
+        shapeFn: () => new joint.shapes.coras.risk()
+    },
+    {
+        url: Stakeholder,
+        shapeFn: () => new joint.shapes.coras.stakeholder()
+    },
+    {
+        url: ThreatHumanAccidental,
+        shapeFn: () => new joint.shapes.coras.threathumanaccidental()
+    },
+    {
+        url: ThreatHumanDeliberate,
+        shapeFn: () => new joint.shapes.coras.threathumandeliberate()
+    },
+    {
+        url: ThreatNonHuman,
+        shapeFn: () => new joint.shapes.coras.threatnonhuman()
+    },
+    {
+        url: Treatment,
+        shapeFn: () => new joint.shapes.coras.treatment()
+    },
+    {
+        url: UnwantedIncident,
+        shapeFn: () => new joint.shapes.coras.unwantedincident()
+    },
+    {
+        url: Vulnerability,
+        shapeFn: () => new joint.shapes.coras.vulnerability()
+    }
+]
+
 AddCorasShapes(joint);
 
 class EditorView extends React.Component {
@@ -133,6 +182,7 @@ class Editor extends React.Component {
 
     paperOnMouseUp(e) {
         e.preventDefault();
+        console.log("Drop")
         const {left, top} = this.paper.$el.offset();
         const {tx, ty} = this.paper.translate();
         this.props.elementDropped(e.pageX - left - tx, e.pageY - top - ty);
@@ -149,11 +199,17 @@ class Editor extends React.Component {
                     labelOnChange={this.props.elementEditorLabelEdit}
                     xOnChange={this.props.elementEditorChangeX}
                     yOnChange={this.props.elementEditorChangeY} /> : null}
-                <div id={this.paperWrapperId} className="editor-paper" onMouseMove={(e) => e.preventDefault()} onMouseUp={this.paperOnMouseUp} style={{ width: `${this.props.width}px`, height: `${this.props.height}px` }}>
+                <div
+                    id={this.paperWrapperId}
+                    className="editor-paper"
+                    onDragEnter={(e) => e.preventDefault()}
+                    onDragOver={(e) => e.preventDefault()}
+                    onDrop={this.paperOnMouseUp} 
+                    style={{ width: `${this.props.width}px`, height: `${this.props.height}px` }}>
                     <div id={this.paperId}></div>
                 </div>
                 {this.props.interactive || this.props.interactive === undefined ?
-                     <EditorTool /> : null}
+                     <EditorTool svgs={toolDefinitions} /> : null}
             </div>);
     }
 }

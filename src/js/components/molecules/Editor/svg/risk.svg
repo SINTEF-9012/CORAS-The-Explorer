@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_1"
+   width="133.612"
+   height="91.083"
+   viewBox="0 0 133.612 91.083"
+   overflow="visible"
+   enable-background="new 0 0 44.612 36.083"
+   xml:space="preserve"
+   sodipodi:docname="risk.svg"
+   style="overflow:visible"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"><metadata
+   id="metadata23"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs21" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="3840"
+   inkscape:window-height="2066"
+   id="namedview19"
+   showgrid="false"
+   inkscape:zoom="6.5404761"
+   inkscape:cx="-5.0620385"
+   inkscape:cy="11.925737"
+   inkscape:window-x="-11"
+   inkscape:window-y="-11"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1" />
+<ellipse
+   id="path25"
+   cx="66.967606"
+   cy="55.768764"
+   rx="65.924484"
+   ry="33.962646"
+   style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.94838172;stroke-opacity:1" /><g
+   id="g16"
+   transform="matrix(0.9393847,0,0,0.95746501,44.418265,0.8722418)">
+	<g
+   id="g6">
+		<polygon
+   enable-background="new    "
+   points="22.186,0.77 0.725,35.66 43.883,35.677 "
+   id="polygon2"
+   style="fill:#c30009" />
+		<path
+   d="M 21.84,0.558 0,36.064 44.612,36.083 22.184,0 Z M 22.188,1.54 C 22.846,2.598 42.425,34.097 43.155,35.272 41.769,35.271 2.825,35.255 1.449,35.255 2.169,34.083 21.535,2.601 22.188,1.54 Z"
+   id="path4"
+   inkscape:connector-curvature="0" />
+	</g>
+	<path
+   d="M 22.201,7.239 C 24.438,10.838 35.295,28.306 37.762,32.273 33.069,32.271 11.474,32.263 6.81,32.261 9.242,28.306 19.981,10.847 22.201,7.239 Z"
+   id="path8"
+   inkscape:connector-curvature="0"
+   style="fill:#ffffff" />
+	<g
+   id="g12">
+		<rect
+   x="20.452"
+   y="13.433"
+   width="3.402"
+   height="11.096"
+   id="rect10" />
+	</g>
+	<path
+   d="m 24.145,28.582 c 0,1.115 -0.906,2.021 -2.029,2.021 -1.117,0 -2.024,-0.906 -2.024,-2.021 0,-1.117 0.907,-2.024 2.024,-2.024 1.123,-0.001 2.029,0.906 2.029,2.024 z"
+   id="path14"
+   inkscape:connector-curvature="0" />
+</g>
+<text
+   xml:space="preserve"
+   style="font-style:normal;font-weight:normal;line-height:1.25;font-family:Raleway;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+   x="25.839098"
+   y="71.512558"
+   id="text4542"><tspan
+     sodipodi:role="line"
+     id="tspan4540"
+     x="25.839098"
+     y="71.512558">Risk</tspan></text>
+</svg>

@@ -78,7 +78,7 @@ class Editor extends React.Component {
     constructor(props) {
         super(props);
 
-        this.graph = this.props.graph;
+        this.graph = new joint.dia.Graph();
 
         this.handleScroll = this.handleScroll.bind(this);
         this.handleScrollBlank = this.handleScrollBlank.bind(this);
@@ -97,7 +97,7 @@ class Editor extends React.Component {
     componentDidMount() {
         this.paper = new joint.dia.Paper({
             el: document.getElementById(this.paperId),
-            model: this.props.graph,
+            model: this.graph,
             width: document.getElementById(this.paperWrapperId).offsetWidth - 10,
             height: document.getElementById(this.paperWrapperId).offsetHeight - 10,
             gridSize: 1,
@@ -109,13 +109,13 @@ class Editor extends React.Component {
 
         if (this.props.initialDiagram) {
             // We have an initial diagram
-            this.props.graph.fromJSON(this.props.initialDiagram);
+            this.graph.fromJSON(this.props.initialDiagram);
         }
 
         window.addEventListener('resize', this.updatePaperSize);
 
         if (this.props.interactive === undefined ? true : this.props.interactive) {
-            this.paper.on('element:contextmenu', (elementView, e, x, y) => this.props.elementRightClicked(elementView.model));
+            this.paper.on('element:contextmenu', (elementView, e, x, y) => this.props.elementRightClicked(elementView.model, this.graph));
             this.paper.on('link:contextmenu', this.removeLink);
             this.paper.on('cell:pointerdblclick', (elementView, e, x, y) => this.props.elementDoubleClicked(elementView.model, e));
 
@@ -182,10 +182,8 @@ class Editor extends React.Component {
 
     paperOnMouseUp(e) {
         e.preventDefault();
-        console.log("Drop")
-        const {left, top} = this.paper.$el.offset();
-        const {tx, ty} = this.paper.translate();
-        this.props.elementDropped(e.pageX - left - tx, e.pageY - top - ty);
+        const localPoint = this.paper.pageToLocalPoint(e.pageX, e.pageY);
+        this.props.elementDropped(this.graph, localPoint.x, localPoint.y);
     }
 
     render() {
@@ -215,10 +213,9 @@ class Editor extends React.Component {
 }
 
 export default connect((state) => ({
-    graph: state.editor.viewGraph,
     elementEditor: state.editor.elementEditor
 }), (dispatch) => ({
-    elementRightClicked: (element) => dispatch(ElementRightClicked(element)),
+    elementRightClicked: (element, graph) => dispatch(ElementRightClicked(element, graph)),
     elementDoubleClicked: (element, event) => dispatch(ElementDoubleClicked(element, event)),
     elementEditorCancel: () => dispatch(ElementEditorCancel()),
     elementEditorSave: () => dispatch(ElementEditorSave()),
@@ -226,5 +223,5 @@ export default connect((state) => ({
     elementEditorLabelEdit: (label) => dispatch(ElementLabelEdit(label)),
     elementEditorChangeX: (x) => dispatch(ElementChangeX(x)),
     elementEditorChangeY: (y) => dispatch(ElementChangeY(y)),
-    elementDropped: (pageX, pageY) => dispatch(ToolElementRelease(pageX, pageY))
+    elementDropped: (graph, pageX, pageY) => dispatch(ToolElementRelease(graph, pageX, pageY))
 }))(Editor);

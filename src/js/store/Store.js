@@ -6,7 +6,6 @@ const rootReducer = combineReducers({ editor: Editor });
 
 function Editor(state, action) {
     if(state === undefined) return {
-        viewGraph: new joint.dia.Graph(),
         link: null,
         previousElementRightClicked: null,
             elementEditor: {
@@ -53,7 +52,7 @@ function Editor(state, action) {
             const link = new joint.shapes.standard.Link();
             link.source(state.previousElementRightClicked);
             link.target(action.payload.element);
-            link.addTo(state.viewGraph);
+            link.addTo(action.payload.graph);
             return Object.assign({}, state, { previousElementRightClicked: null });
         }
 
@@ -110,7 +109,7 @@ function Editor(state, action) {
         case ActionTypes.EDITOR.TOOL_ELEMENT_RELEASED:
         if(!newState.movement.element) return newState;
         newState.movement.element.position(action.payload.pageX, action.payload.pageY);
-        newState.viewGraph.addCell(newState.movement.element.clone());
+        action.payload.graph.addCell(newState.movement.element.clone());
         newState.movement.element = null;
         return newState;
     }

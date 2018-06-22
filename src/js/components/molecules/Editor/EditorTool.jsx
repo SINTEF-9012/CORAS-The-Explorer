@@ -7,9 +7,8 @@ const EditorToolSvg = ({ beginMoveElement, svgs }) =>
     <div className="editor-toolbox">
         {svgs ?
             svgs.map((svg, i) =>
-                <div className="editor-toolbox__element">
+                <div className="editor-toolbox__element" key={i} >
                     <img
-                        key={i}
                         draggable
                         src={svg.url}
                         onDragStart={(e) => beginMoveElement(svg.shapeFn())} />

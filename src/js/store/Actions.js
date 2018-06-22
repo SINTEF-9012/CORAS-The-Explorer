@@ -1,8 +1,8 @@
 import ActionTypes from './ActionTypes';
 
-export const ElementRightClicked = (element) => ({
+export const ElementRightClicked = (element, graph) => ({
     type: ActionTypes.EDITOR.ELEMENT_RIGHT_CLICKED,
-    payload: { element }
+    payload: { element, graph }
 });
 
 export const ElementDoubleClicked = (element, event) => ({
@@ -45,7 +45,7 @@ export const ToolElementClicked = (element) => ({
     payload: { element }
 });
 
-export const ToolElementRelease = (pageX, pageY) => ({
+export const ToolElementRelease = (graph, pageX, pageY) => ({
     type: ActionTypes.EDITOR.TOOL_ELEMENT_RELEASED,
-    payload: { pageX, pageY }
+    payload: { graph, pageX, pageY }
 });

@@ -188,7 +188,8 @@ class Editor extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="editor-wrapper">
+                <EditorMenu />
                 {this.props.elementEditor.visible ? <ElementEditor
                     {...this.props.elementEditor.data}
                     cancel={this.props.elementEditorCancel}
@@ -211,6 +212,13 @@ class Editor extends React.Component {
             </div>);
     }
 }
+
+const EditorMenu = (props) =>
+    <div className="editor-menu">
+        <button className="editor-menu__button">Load</button>
+        <button className="editor-menu__button">Save</button>
+        <button className="editor-menu__button">Clear</button>
+    </div>;
 
 export default connect((state) => ({
     elementEditor: state.editor.elementEditor

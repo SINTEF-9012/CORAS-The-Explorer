@@ -1,7 +1,17 @@
 import React from 'react';
 import joint from 'jointjs';
 import { connect } from 'react-redux';
-import { ElementRightClicked, ElementDoubleClicked, ElementEditorCancel, ElementEditorSave, ElementEditorDelete, ElementLabelEdit, ElementChangeX, ElementChangeY, ToolElementRelease } from '../../../store/Actions';
+import {
+    ElementRightClicked,
+    ElementDoubleClicked,
+    ElementEditorCancel,
+    ElementEditorSave,
+    ElementEditorDelete,
+    ElementLabelEdit,
+    ElementChangeX,
+    ElementChangeY,
+    ToolElementRelease
+} from '../../../store/Actions';
 
 import ElementEditor from './ElementEditor';
 import EditorTool from './EditorTool';
@@ -72,8 +82,6 @@ class EditorView extends React.Component {
     }
 }
 
-
-
 class Editor extends React.Component {
     constructor(props) {
         super(props);
@@ -90,8 +98,16 @@ class Editor extends React.Component {
 
         this.paperOnMouseUp = this.paperOnMouseUp.bind(this);
 
+        this.saveGraphToFile = this.saveGraphToFile.bind(this);
+        this.loadGraphFromFile = this.loadGraphFromFile.bind(this);
+        this.clearGraph = this.clearGraph.bind(this);
+        this.downloadSvg = this.downloadSvg.bind(this);
+
         this.paperId = this.props.paperId || 'paper-holder';
         this.paperWrapperId = `${this.paperId}-wrapper`;
+
+        this.loadRef = React.createRef();
+        this.paperRef = React.createRef();
     }
 
     componentDidMount() {
@@ -186,10 +202,72 @@ class Editor extends React.Component {
         this.props.elementDropped(this.graph, localPoint.x, localPoint.y);
     }
 
+    saveGraphToFile(e) {
+        e.preventDefault();
+        const a = document.createElement('a');
+        const graphContent = new Blob([JSON.stringify(this.graph.toJSON(), null, 2)], { type: 'text/plain' });
+        a.href = URL.createObjectURL(graphContent);
+        a.download = "CORASDiagram.json";
+        a.click();
+        a.remove();
+    }
+
+    loadGraphFromFile(e) {
+        const filePath = e.target;
+        const reader = new FileReader();
+        if(filePath.files && filePath.files[0]) {
+            reader.addEventListener('load', (e) => this.graph.fromJSON(JSON.parse(e.target.result)), { once: true });
+            reader.readAsText(filePath.files[0]);
+            filePath.value = "";
+        }
+    }
+
+    clearGraph(e) {
+        this.graph.clear();
+    }
+
+    downloadSvg() {
+        let svgElement = this.paperRef.current.getElementsByTagName('svg')[0];
+        //get svg source.
+        let serializer = new XMLSerializer();
+        let source = serializer.serializeToString(svgElement);
+
+        //add name spaces.
+        if(!source.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)){
+            source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
+        }
+        if(!source.match(/^<svg[^>]+"http\:\/\/www\.w3\.org\/1999\/xlink"/)){
+            source = source.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
+        }
+
+        // Fix svg size
+        let search = /(<svg xmlns="\S*" xmlns:xlink="\S*" version="\S*" id="\S*" width=)\S*( height=)\S*(>)/gm;
+        let replace = `$1"${this.paperRef.current.offsetWidth}px"$2"${this.paperRef.current.offsetHeight}px"$3`
+        source = source.replace(search, replace);
+
+        //add xml declaration
+        source = '<?xml version="1.0" standalone="no"?>\r\n' + source;
+
+        //convert svg source to URI data scheme.
+        let url = "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(source);
+
+        let a = document.createElement('a');
+        a.href = url;
+        a.download = 'CORASDiagram.svg';
+        a.click();
+        a.remove();
+    }
+
     render() {
         return (
             <div className="editor-wrapper">
-                <EditorMenu />
+                <EditorMenu
+                    loadStartFn={() => this.loadRef.current.click()}
+                    loadFn={this.loadGraphFromFile}
+                    loadRef={this.loadRef}
+                    saveFn={this.saveGraphToFile}
+                    clearFn={this.clearGraph}
+                    downloadFn={this.downloadSvg} />
                 {this.props.elementEditor.visible ? <ElementEditor
                     {...this.props.elementEditor.data}
                     cancel={this.props.elementEditorCancel}
@@ -204,7 +282,8 @@ class Editor extends React.Component {
                     onDragEnter={(e) => e.preventDefault()}
                     onDragOver={(e) => e.preventDefault()}
                     onDrop={this.paperOnMouseUp} 
-                    style={{ width: `${this.props.width}px`, height: `${this.props.height}px` }}>
+                    style={{ width: `${this.props.width}px`, height: `${this.props.height}px` }}
+                    ref={this.paperRef} >
                     <div id={this.paperId}></div>
                 </div>
                 {this.props.interactive || this.props.interactive === undefined ?
@@ -213,11 +292,13 @@ class Editor extends React.Component {
     }
 }
 
-const EditorMenu = (props) =>
+const EditorMenu = ({ loadStartFn, loadRef, loadFn, saveFn, clearFn, downloadFn }) =>
     <div className="editor-menu">
-        <button className="editor-menu__button">Load</button>
-        <button className="editor-menu__button">Save</button>
-        <button className="editor-menu__button">Clear</button>
+        <button className="editor-menu__button" onClick={loadStartFn}>Load</button>
+        <input type="file" name="loadFile" label="Load" className="editor-menu__hidden" onChange={loadFn} ref={loadRef} />
+        <button className="editor-menu__button" onClick={saveFn}>Save</button>
+        <button className="editor-menu__button" onClick={clearFn}>Clear</button>
+        <button className="editor-menu__button" onClick={downloadFn}>Download (SVG)</button>
     </div>;
 
 export default connect((state) => ({

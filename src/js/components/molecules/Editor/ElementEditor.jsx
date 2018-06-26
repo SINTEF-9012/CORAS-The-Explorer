@@ -39,12 +39,12 @@ class ElementEditor extends React.Component {
             <form className="element-editor" style={{ left: this.props.editorPosition.left, top: this.props.editorPosition.top }}>
                 <div className="element-editor-section">
                     <label htmlFor="label" className="element-editor-section__label element-editor-section__label--full">Label</label>
-                    <input
+                    <textarea
                         id="label"
                         className="element-editor-section__input element-editor-section__input--100"
                         type="text"
                         value={this.state.label}
-                        onChange={this.onLabelChange} />
+                        onChange={this.onLabelChange}></textarea>
                 </div>
                 {!this.props.isLink ? <div className="element-editor-section">
                     <label className="element-editor-section__label element-editor-section__label--full">Position</label>

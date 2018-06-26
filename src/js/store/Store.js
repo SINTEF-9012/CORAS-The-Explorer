@@ -109,6 +109,7 @@ function Editor(state, action) {
         case ActionTypes.EDITOR.TOOL_ELEMENT_RELEASED:
             if (!newState.movement.element) return newState;
             newState.movement.element.position(action.payload.pageX, action.payload.pageY);
+            newState.movement.element.resize(100, 50);
             action.payload.graph.addCell(newState.movement.element.clone());
             newState.movement.element = null;
             return newState;

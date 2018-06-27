@@ -39,6 +39,7 @@
     border: none;
     border-bottom: solid .5px #000;
     height: 2rem;
+    font-family: "raleway";
 }
 
 .element-editor-section__input--100 {

@@ -10,6 +10,7 @@
     flex: 1 1;
     padding: 1rem;
     align-content: center;
+    text-align: center;
 }
 
 .editor-menu {
@@ -28,4 +29,7 @@
 
 .editor-menu__hidden {
     display: none;
+}
+
+.editor-toolbox__icon {
 }

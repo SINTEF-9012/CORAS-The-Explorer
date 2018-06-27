@@ -40,9 +40,9 @@ export const ElementChangeY = (y) => ({
     payload: { y }
 });
 
-export const ToolElementClicked = (element) => ({
+export const ToolElementClicked = (element, width, height) => ({
     type: ActionTypes.EDITOR.TOOL_ELEMENT_CLICKED,
-    payload: { element }
+    payload: { element, width, height }
 });
 
 export const ToolElementRelease = (graph, pageX, pageY) => ({

@@ -7,15 +7,21 @@ const EditorToolSvg = ({ beginMoveElement, svgs }) =>
     <div className="editor-toolbox">
         {svgs ?
             svgs.map((svg, i) =>
-                <div className="editor-toolbox__element" key={i} >
-                    <img
-                        draggable
-                        src={svg.url}
-                        onDragStart={(e) => beginMoveElement(svg.shapeFn())} />
+                <div className="editor-toolbox__element"
+                draggable
+                onDragStart={(e) => {
+                    const shape = svg.shapeFn();
+                    shape.attr("icon/href", svg.icon);
+                    shape.attr("text/text", svg.text);
+                    beginMoveElement(shape, svg.width, svg.height)
+                }}
+                key={i} >
+                    <img src={svg.icon} className="editor-toolbox__icon" />
+                    <div>{svg.text}</div>
                 </div>) :
             null}
     </div>;
 
 export default connect((state) => ({}), (dispatch) => ({
-    beginMoveElement: (element) => dispatch(ToolElementClicked(element))
+    beginMoveElement: (element, width, height) => dispatch(ToolElementClicked(element, width, height))
 }))(EditorToolSvg);

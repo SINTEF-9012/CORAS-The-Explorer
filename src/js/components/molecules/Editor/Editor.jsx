@@ -31,42 +31,88 @@ import Treatment from './svg/treatment.svg';
 import UnwantedIncident from './svg/unwanted-incident.svg';
 import Vulnerability from './svg/vulnerability.svg';
 
+import assetIcon from './svg/asset-symbol.svg';
+import riskIcon from './svg/risk-symbol.svg';
+import stakeholderIcon from './svg/stakeholder-symbol.svg';
+import accidentalIcon from './svg/threat-human-accidental-symbol.svg';
+import deliberateIcon from './svg/threat-human-deliberate-symbol.svg';
+import nonHumanIcon from './svg/threat-non-human-symbol.svg';
+import treatmentIcon from './svg/treatment-symbol.svg';
+import incidentIcon from './svg/unwanted-incident-symbol.svg'
+import vulnerabilityIcon from './svg/vulnerability-symbol.svg';
+
 const toolDefinitions = [
     {
         url: Asset,
-        shapeFn: () => new joint.shapes.coras.asset()
+        shapeFn: () => new joint.shapes.coras.unboxedElement(),
+        width: 40,
+        height: 80,
+        icon: assetIcon,
+        text: "Asset"
     },
     {
         url: Risk,
-        shapeFn: () => new joint.shapes.coras.risk()
+        shapeFn: () => new joint.shapes.coras.ellipseElement(),
+        width: 190,
+        height: 80,
+        icon: riskIcon,
+        text: "Risk"
     },
     {
         url: Stakeholder,
-        shapeFn: () => new joint.shapes.coras.stakeholder()
+        shapeFn: () => new joint.shapes.coras.unboxedElement(),
+        width: 40,
+        height: 80,
+        icon: stakeholderIcon,
+        text: "Stakeholder"
     },
     {
         url: ThreatHumanAccidental,
-        shapeFn: () => new joint.shapes.coras.threathumanaccidental()
+        shapeFn: () => new joint.shapes.coras.unboxedElement(),
+        width: 40,
+        height: 80,
+        icon: accidentalIcon,
+        text: "Human Threat\nAccidental"
     },
     {
         url: ThreatHumanDeliberate,
-        shapeFn: () => new joint.shapes.coras.threathumandeliberate()
+        shapeFn: () => new joint.shapes.coras.unboxedElement(),
+        width: 40,
+        height: 80,
+        icon: deliberateIcon,
+        text: "Human Threat\nDeliberate"
     },
     {
         url: ThreatNonHuman,
-        shapeFn: () => new joint.shapes.coras.threatnonhuman()
+        shapeFn: () => new joint.shapes.coras.unboxedElement(),
+        width: 40,
+        height: 80,
+        icon: nonHumanIcon,
+        text: "Non-Human\nThreat"
     },
     {
         url: Treatment,
-        shapeFn: () => new joint.shapes.coras.treatment()
+        shapeFn: () => new joint.shapes.coras.ellipseElement(),
+        width: 190,
+        height: 80,
+        icon: treatmentIcon,
+        text: "Treatment"
     },
     {
         url: UnwantedIncident,
-        shapeFn: () => new joint.shapes.coras.unwantedincident()
+        shapeFn: () => new joint.shapes.coras.unwantedincident(),
+        width: 190,
+        height: 80,
+        icon: incidentIcon,
+        text: "Incident"
     },
     {
         url: Vulnerability,
-        shapeFn: () => new joint.shapes.coras.vulnerability()
+        shapeFn: () => new joint.shapes.coras.unboxedElement(),
+        width: 40,
+        height: 80,
+        icon: vulnerabilityIcon,
+        text: "Vulnerability"
     }
 ]
 

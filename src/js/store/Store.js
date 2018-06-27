@@ -103,15 +103,16 @@ function Editor(state, action) {
             return newState;
 
         case ActionTypes.EDITOR.TOOL_ELEMENT_CLICKED:
-            newState.movement.element = action.payload.element;
+            newState.movement = action.payload;
             return newState;
 
         case ActionTypes.EDITOR.TOOL_ELEMENT_RELEASED:
             if (!newState.movement.element) return newState;
-            newState.movement.element.position(action.payload.pageX, action.payload.pageY);
-            newState.movement.element.resize(100, 50);
-            action.payload.graph.addCell(newState.movement.element.clone());
+            const elem = newState.movement.element;
             newState.movement.element = null;
+            elem.position(action.payload.pageX, action.payload.pageY);
+            elem.resize(newState.movement.width, newState.movement.height);
+            action.payload.graph.addCell(elem);
             return newState;
     }
 }

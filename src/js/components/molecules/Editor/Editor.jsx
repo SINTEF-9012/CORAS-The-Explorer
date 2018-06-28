@@ -134,6 +134,9 @@ class Editor extends React.Component {
 
         this.graph = new joint.dia.Graph();
 
+        this.saveToLocalStorage = this.saveToLocalStorage.bind(this);
+        this.getFromLocalStorage = this.getFromLocalStorage.bind(this);
+
         this.handleScroll = this.handleScroll.bind(this);
         this.handleScrollBlank = this.handleScrollBlank.bind(this);
         this.beginMovePaper = this.beginMovePaper.bind(this);
@@ -156,6 +159,14 @@ class Editor extends React.Component {
         this.paperRef = React.createRef();
     }
 
+    saveToLocalStorage() {
+        window.localStorage.setItem(this.paperId+"graph", JSON.stringify(this.graph.toJSON()))
+    }
+
+    getFromLocalStorage() {
+        return window.localStorage.getItem(this.paperId+"graph");
+    }
+
     componentDidMount() {
         this.paper = new joint.dia.Paper({
             el: document.getElementById(this.paperId),
@@ -169,10 +180,12 @@ class Editor extends React.Component {
             interactive: this.props.interactive === undefined ? true : this.props.interactive
         });
 
-        if (this.props.initialDiagram) {
-            // We have an initial diagram
-            this.graph.fromJSON(this.props.initialDiagram);
-        }
+        // Load graph from localStorage or props
+        if(this.getFromLocalStorage()) this.graph.fromJSON(JSON.parse(this.getFromLocalStorage()));
+        else if (this.props.initialDiagram) this.graph.fromJSON(this.props.initialDiagram);
+
+        // Save in localStorage on change
+        this.periodicalSave = setInterval(this.saveToLocalStorage, 1000);
 
         window.addEventListener('resize', this.updatePaperSize);
 
@@ -192,6 +205,7 @@ class Editor extends React.Component {
 
     componentWillUnmount() {
         window.removeEventListener('resize', this.updatePaperSize);
+        clearInterval(this.periodicalSave);
     }
 
     handleScroll(cellView, e, x, y, delta) {
@@ -270,6 +284,8 @@ class Editor extends React.Component {
 
     clearGraph(e) {
         this.graph.clear();
+        window.localStorage.removeItem(this.paperId+"graph");
+        if(this.props.initialDiagram) this.graph.fromJSON(this.props.initialDiagram);
     }
 
     downloadSvg() {

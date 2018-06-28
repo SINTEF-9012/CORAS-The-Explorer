@@ -1,7 +1,7 @@
 function AddCorasShapes(joint) {
     joint.dia.Element.define("coras.unboxedElement", {
-        "attrs": {
-            "text": {
+        attrs: {
+            text: {
                 text: "Asset",
                 refX: "50%",
                 refY: "100%",
@@ -10,7 +10,7 @@ function AddCorasShapes(joint) {
             },
         }
     }, {
-        "markup": [
+        markup: [
             {
                 tagName: "image",
                 selector: "icon"
@@ -22,41 +22,41 @@ function AddCorasShapes(joint) {
         ]
     });
     joint.dia.Element.define("coras.ellipseElement", {
-        "attrs": {
-            "body": {
-                "refCx": "50%",
-                "refCy": "50%",
-                "refRx": "50%",
-                "refRy": "50%",
-                "fill": "#fff",
-                "stroke": "#000"
+        attrs: {
+            body: {
+                refCx: "50%",
+                refCy: "50%",
+                refRx: "50%",
+                refRy: "50%",
+                fill: "#fff",
+                stroke: "#000"
             },
-            "text": {
-                "refX": "50%",
-                "refY": "50%",
-                "textVerticalAnchor": 'middle',
-                "textAnchor": 'middle'
+            text: {
+                refX: "50%",
+                refY: "50%",
+                textVerticalAnchor: 'middle',
+                textAnchor: 'middle'
             },
-            "icon": {
-                "refWidth": "40%",
-                "refHeight": "40%",
-                "refX": "30%",
-                "refY": "-25%",
+            icon: {
+                refWidth: "40%",
+                refHeight: "40%",
+                refX: "30%",
+                refY: "-25%",
             }
         }
     }, {
-        "markup": [
+        markup: [
             {
-                "tagName": "ellipse",
-                "selector": "body"
+                tagName: "ellipse",
+                selector: "body"
             },
             {
-                "tagName": "image",
-                "selector": "icon"
+                tagName: "image",
+                selector: "icon"
             },
             {
-                "tagName": "text",
-                "selector": "text"
+                tagName: "text",
+                selector: "text"
             }
         ]
     });

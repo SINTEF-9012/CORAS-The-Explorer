@@ -31,15 +31,15 @@ import Treatment from './svg/treatment.svg';
 import UnwantedIncident from './svg/unwanted-incident.svg';
 import Vulnerability from './svg/vulnerability.svg';
 
-import assetIcon from './svg/asset-symbol.svg';
-import riskIcon from './svg/risk-symbol.svg';
-import stakeholderIcon from './svg/stakeholder-symbol.svg';
-import accidentalIcon from './svg/threat-human-accidental-symbol.svg';
-import deliberateIcon from './svg/threat-human-deliberate-symbol.svg';
-import nonHumanIcon from './svg/threat-non-human-symbol.svg';
-import treatmentIcon from './svg/treatment-symbol.svg';
-import incidentIcon from './svg/unwanted-incident-symbol.svg'
-import vulnerabilityIcon from './svg/vulnerability-symbol.svg';
+import assetSymbol from './svg/assetSymbol.js';
+import riskSymbol from './svg/riskSymbol.js';
+import stakeholderSymbol from './svg/stakeholderSymbol.js';
+import accidentalSymbol from './svg/threatHumanAccidentalSymbol.js';
+import deliberateSymbol from './svg/threatHumanDeliberateSymbol.js';
+import nonHumanSymbol from './svg/threatNonHumanSymbol.js';
+import treatmentSymbol from './svg/treatmentSymbol.js';
+import incidentSymbol from './svg/unwantedIncidentSymbol.js';
+import vulnerabilitySymbol from './svg/vulnerabilitySymbol.js';
 
 const toolDefinitions = [
     {
@@ -47,7 +47,7 @@ const toolDefinitions = [
         shapeFn: () => new joint.shapes.coras.unboxedElement(),
         width: 40,
         height: 80,
-        icon: assetIcon,
+        icon: "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(assetSymbol),
         text: "Asset"
     },
     {
@@ -55,7 +55,7 @@ const toolDefinitions = [
         shapeFn: () => new joint.shapes.coras.ellipseElement(),
         width: 190,
         height: 80,
-        icon: riskIcon,
+        icon: "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(riskSymbol),
         text: "Risk"
     },
     {
@@ -63,7 +63,7 @@ const toolDefinitions = [
         shapeFn: () => new joint.shapes.coras.unboxedElement(),
         width: 40,
         height: 80,
-        icon: stakeholderIcon,
+        icon: "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(stakeholderSymbol),
         text: "Stakeholder"
     },
     {
@@ -71,7 +71,7 @@ const toolDefinitions = [
         shapeFn: () => new joint.shapes.coras.unboxedElement(),
         width: 40,
         height: 80,
-        icon: accidentalIcon,
+        icon: "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(accidentalSymbol),
         text: "Human Threat\nAccidental"
     },
     {
@@ -79,7 +79,7 @@ const toolDefinitions = [
         shapeFn: () => new joint.shapes.coras.unboxedElement(),
         width: 40,
         height: 80,
-        icon: deliberateIcon,
+        icon: "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(deliberateSymbol),
         text: "Human Threat\nDeliberate"
     },
     {
@@ -87,7 +87,7 @@ const toolDefinitions = [
         shapeFn: () => new joint.shapes.coras.unboxedElement(),
         width: 40,
         height: 80,
-        icon: nonHumanIcon,
+        icon: "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(nonHumanSymbol),
         text: "Non-Human\nThreat"
     },
     {
@@ -95,7 +95,7 @@ const toolDefinitions = [
         shapeFn: () => new joint.shapes.coras.ellipseElement(),
         width: 190,
         height: 80,
-        icon: treatmentIcon,
+        icon: "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(treatmentSymbol),
         text: "Treatment"
     },
     {
@@ -103,7 +103,7 @@ const toolDefinitions = [
         shapeFn: () => new joint.shapes.coras.unwantedincident(),
         width: 190,
         height: 80,
-        icon: incidentIcon,
+        icon: "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(incidentSymbol),
         text: "Incident"
     },
     {
@@ -111,7 +111,7 @@ const toolDefinitions = [
         shapeFn: () => new joint.shapes.coras.unboxedElement(),
         width: 40,
         height: 80,
-        icon: vulnerabilityIcon,
+        icon: "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(vulnerabilitySymbol),
         text: "Vulnerability"
     }
 ]

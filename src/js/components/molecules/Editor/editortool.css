@@ -1,9 +1,36 @@
-.editor-toolbox {
+.editor-tools {
+    margin: 1rem;
+}
+
+.editor-tabrow {
     display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+.editor-tabrow__tab {
+    margin-right: .5rem;
+    background-color: darkblue;
+    color: white;
+    padding: .5rem;
+    display: inline-block;
+}
+
+.editor-tabrow__tab--selected {
+    background-color: white;
+    color: #000;
+    border-top: solid 1px #000;
+    border-left: solid 1px #000;
+    border-right: solid 1px #000;
+    position: relative;
+    top: 1px;
+}
+
+.editor-toolbox {
     background-color: #FFF;
     border: solid 1px #000;
+    display: flex;
     flex-wrap: wrap;
-    margin: 1rem;
 }
 
 .editor-toolbox__element {

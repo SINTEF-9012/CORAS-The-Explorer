@@ -6,6 +6,7 @@ const rootReducer = combineReducers({ editor: Editor });
 
 function Editor(state, action) {
     if (state === undefined) return {
+        editorToolSection: 0,
         link: null,
         previousElementRightClicked: null,
         elementEditor: {

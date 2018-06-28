@@ -60,7 +60,7 @@ function AddCorasShapes(joint) {
             }
         ]
     });
-    joint.dia.Element.define("coras.unwantedincident", {
+    joint.dia.Element.define("coras.rectElement", {
         attrs: {
             body: {
                 refX: "0",

@@ -21,16 +21,6 @@ import './editor.css';
 
 import AddCorasShapes from './CORASShapes.js';
 
-import Asset from './svg/asset.svg';
-import Risk from './svg/risk.svg';
-import Stakeholder from './svg/stakeholder.svg';
-import ThreatHumanAccidental from './svg/threat-human-accidental.svg';
-import ThreatHumanDeliberate from './svg/threat-human-deliberate.svg';
-import ThreatNonHuman from './svg/threat-non-human.svg';
-import Treatment from './svg/treatment.svg';
-import UnwantedIncident from './svg/unwanted-incident.svg';
-import Vulnerability from './svg/vulnerability.svg';
-
 import assetSymbol from './svg/assetSymbol.js';
 import riskSymbol from './svg/riskSymbol.js';
 import stakeholderSymbol from './svg/stakeholderSymbol.js';
@@ -43,76 +33,91 @@ import vulnerabilitySymbol from './svg/vulnerabilitySymbol.js';
 
 const toolDefinitions = [
     {
-        url: Asset,
-        shapeFn: () => new joint.shapes.coras.unboxedElement(),
-        width: 40,
-        height: 80,
-        icon: "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(assetSymbol),
-        text: "Asset"
+        name: "Basic CORAS",
+        shapes: [
+            {
+                shapeFn: () => new joint.shapes.coras.unboxedElement(),
+                width: 40,
+                height: 80,
+                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(assetSymbol),
+                text: "Asset"
+            },
+            {
+                shapeFn: () => new joint.shapes.coras.ellipseElement(),
+                width: 190,
+                height: 80,
+                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(riskSymbol),
+                text: "Risk"
+            },
+            {
+                shapeFn: () => new joint.shapes.coras.unboxedElement(),
+                width: 40,
+                height: 80,
+                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(stakeholderSymbol),
+                text: "Stakeholder"
+            },
+            {
+                shapeFn: () => new joint.shapes.coras.unboxedElement(),
+                width: 40,
+                height: 80,
+                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(accidentalSymbol),
+                text: "Human Threat\nAccidental"
+            },
+            {
+                shapeFn: () => new joint.shapes.coras.unboxedElement(),
+                width: 40,
+                height: 80,
+                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(deliberateSymbol),
+                text: "Human Threat\nDeliberate"
+            },
+            {
+                shapeFn: () => new joint.shapes.coras.unboxedElement(),
+                width: 40,
+                height: 80,
+                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(nonHumanSymbol),
+                text: "Non-Human\nThreat"
+            },
+            {
+                shapeFn: () => new joint.shapes.coras.ellipseElement(),
+                width: 190,
+                height: 80,
+                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbol),
+                text: "Treatment"
+            },
+            {
+                shapeFn: () => new joint.shapes.coras.rectElement(),
+                width: 190,
+                height: 80,
+                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(incidentSymbol),
+                text: "Incident"
+            },
+            {
+                shapeFn: () => new joint.shapes.coras.unboxedElement(),
+                width: 40,
+                height: 80,
+                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(vulnerabilitySymbol),
+                text: "Vulnerability"
+            }
+        ]
     },
     {
-        url: Risk,
-        shapeFn: () => new joint.shapes.coras.ellipseElement(),
-        width: 190,
-        height: 80,
-        icon: "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(riskSymbol),
-        text: "Risk"
-    },
-    {
-        url: Stakeholder,
-        shapeFn: () => new joint.shapes.coras.unboxedElement(),
-        width: 40,
-        height: 80,
-        icon: "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(stakeholderSymbol),
-        text: "Stakeholder"
-    },
-    {
-        url: ThreatHumanAccidental,
-        shapeFn: () => new joint.shapes.coras.unboxedElement(),
-        width: 40,
-        height: 80,
-        icon: "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(accidentalSymbol),
-        text: "Human Threat\nAccidental"
-    },
-    {
-        url: ThreatHumanDeliberate,
-        shapeFn: () => new joint.shapes.coras.unboxedElement(),
-        width: 40,
-        height: 80,
-        icon: "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(deliberateSymbol),
-        text: "Human Threat\nDeliberate"
-    },
-    {
-        url: ThreatNonHuman,
-        shapeFn: () => new joint.shapes.coras.unboxedElement(),
-        width: 40,
-        height: 80,
-        icon: "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(nonHumanSymbol),
-        text: "Non-Human\nThreat"
-    },
-    {
-        url: Treatment,
-        shapeFn: () => new joint.shapes.coras.ellipseElement(),
-        width: 190,
-        height: 80,
-        icon: "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(treatmentSymbol),
-        text: "Treatment"
-    },
-    {
-        url: UnwantedIncident,
-        shapeFn: () => new joint.shapes.coras.unwantedincident(),
-        width: 190,
-        height: 80,
-        icon: "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(incidentSymbol),
-        text: "Incident"
-    },
-    {
-        url: Vulnerability,
-        shapeFn: () => new joint.shapes.coras.unboxedElement(),
-        width: 40,
-        height: 80,
-        icon: "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(vulnerabilitySymbol),
-        text: "Vulnerability"
+        name: "Before/After",
+        shapes: [
+            {
+                shapeFn: () => new joint.shapes.coras.rectElement(),
+                width: 190,
+                height: 80,
+                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(incidentSymbol),
+                text: "Incident"
+            },
+            {
+                shapeFn: () => new joint.shapes.coras.unboxedElement(),
+                width: 40,
+                height: 80,
+                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(vulnerabilitySymbol),
+                text: "Vulnerability"
+            }
+        ]
     }
 ]
 
@@ -160,11 +165,11 @@ class Editor extends React.Component {
     }
 
     saveToLocalStorage() {
-        window.localStorage.setItem(this.paperId+"graph", JSON.stringify(this.graph.toJSON()))
+        window.localStorage.setItem(this.paperId + "graph", JSON.stringify(this.graph.toJSON()))
     }
 
     getFromLocalStorage() {
-        return window.localStorage.getItem(this.paperId+"graph");
+        return window.localStorage.getItem(this.paperId + "graph");
     }
 
     componentDidMount() {
@@ -181,7 +186,7 @@ class Editor extends React.Component {
         });
 
         // Load graph from localStorage or props
-        if(this.getFromLocalStorage()) this.graph.fromJSON(JSON.parse(this.getFromLocalStorage()));
+        if (this.getFromLocalStorage()) this.graph.fromJSON(JSON.parse(this.getFromLocalStorage()));
         else if (this.props.initialDiagram) this.graph.fromJSON(this.props.initialDiagram);
 
         // Save in localStorage on change
@@ -275,7 +280,7 @@ class Editor extends React.Component {
     loadGraphFromFile(e) {
         const filePath = e.target;
         const reader = new FileReader();
-        if(filePath.files && filePath.files[0]) {
+        if (filePath.files && filePath.files[0]) {
             reader.addEventListener('load', (e) => this.graph.fromJSON(JSON.parse(e.target.result)), { once: true });
             reader.readAsText(filePath.files[0]);
             filePath.value = "";
@@ -284,8 +289,8 @@ class Editor extends React.Component {
 
     clearGraph(e) {
         this.graph.clear();
-        window.localStorage.removeItem(this.paperId+"graph");
-        if(this.props.initialDiagram) this.graph.fromJSON(this.props.initialDiagram);
+        window.localStorage.removeItem(this.paperId + "graph");
+        if (this.props.initialDiagram) this.graph.fromJSON(this.props.initialDiagram);
     }
 
     downloadSvg() {
@@ -295,10 +300,10 @@ class Editor extends React.Component {
         let source = serializer.serializeToString(svgElement);
 
         //add name spaces.
-        if(!source.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)){
+        if (!source.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)) {
             source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
         }
-        if(!source.match(/^<svg[^>]+"http\:\/\/www\.w3\.org\/1999\/xlink"/)){
+        if (!source.match(/^<svg[^>]+"http\:\/\/www\.w3\.org\/1999\/xlink"/)) {
             source = source.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
         }
 
@@ -311,7 +316,7 @@ class Editor extends React.Component {
         source = '<?xml version="1.0" standalone="no"?>\r\n' + source;
 
         //convert svg source to URI data scheme.
-        let url = "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(source);
+        let url = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(source);
 
         let a = document.createElement('a');
         a.href = url;
@@ -343,13 +348,13 @@ class Editor extends React.Component {
                     className="editor-paper"
                     onDragEnter={(e) => e.preventDefault()}
                     onDragOver={(e) => e.preventDefault()}
-                    onDrop={this.paperOnMouseUp} 
+                    onDrop={this.paperOnMouseUp}
                     style={{ width: `${this.props.width}px`, height: `${this.props.height}px` }}
                     ref={this.paperRef} >
                     <div id={this.paperId}></div>
                 </div>
                 {this.props.interactive || this.props.interactive === undefined ?
-                     <EditorTool svgs={toolDefinitions} /> : null}
+                    <EditorTool toolDefinitions={toolDefinitions} /> : null}
             </div>);
     }
 }

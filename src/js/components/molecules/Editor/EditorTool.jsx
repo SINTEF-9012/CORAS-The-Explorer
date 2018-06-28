@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { ToolElementClicked } from '../../../store/Actions';
 import './editortool.css';
 
-const EditorToolSvg = ({ beginMoveElement, svgs }) =>
+const EditorToolBar = ({ beginMoveElement, svgs }) =>
     <div className="editor-toolbox">
         {svgs ?
             svgs.map((svg, i) =>
@@ -22,6 +22,19 @@ const EditorToolSvg = ({ beginMoveElement, svgs }) =>
             null}
     </div>;
 
-export default connect((state) => ({}), (dispatch) => ({
+const EditorTool = ({ beginMoveElement, toolDefinitions, selectedTab }) =>
+    <div className="editor-tools">
+        <div className="editor-tabrow">
+            {toolDefinitions.map((toolDefinition, i) => 
+                <a>
+                    <div className={`editor-tabrow__tab${i === selectedTab ? " editor-tabrow__tab--selected" : ""}`} key={i}>{toolDefinition.name}</div>
+                </a>)}
+        </div>
+        <EditorToolBar beginMoveElement={beginMoveElement} svgs={toolDefinitions[selectedTab].shapes} />
+    </div>;
+
+export default connect((state) => ({
+    selectedTab: state.editor.editorToolSection
+}), (dispatch) => ({
     beginMoveElement: (element, width, height) => dispatch(ToolElementClicked(element, width, height))
-}))(EditorToolSvg);
+}))(EditorTool);

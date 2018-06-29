@@ -49,3 +49,8 @@ export const ToolElementRelease = (graph, pageX, pageY) => ({
     type: ActionTypes.EDITOR.TOOL_ELEMENT_RELEASED,
     payload: { graph, pageX, pageY }
 });
+
+export const ToolTabSelected = (tabNo) => ({
+    type: ActionTypes.EDITOR.TOOL_TAB_SELECTED,
+    payload: { tabNo }
+});

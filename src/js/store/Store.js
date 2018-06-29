@@ -115,6 +115,10 @@ function Editor(state, action) {
             elem.resize(newState.movement.width, newState.movement.height);
             action.payload.graph.addCell(elem);
             return newState;
+        
+        case ActionTypes.EDITOR.TOOL_TAB_SELECTED:
+            newState.editorToolSection = action.payload.tabNo;
+            return newState;
     }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ToolElementClicked } from '../../../store/Actions';
+import { ToolElementClicked, ToolTabSelected } from '../../../store/Actions';
 import './editortool.css';
 
 const EditorToolBar = ({ beginMoveElement, svgs }) =>
@@ -22,12 +22,12 @@ const EditorToolBar = ({ beginMoveElement, svgs }) =>
             null}
     </div>;
 
-const EditorTool = ({ beginMoveElement, toolDefinitions, selectedTab }) =>
+const EditorTool = ({ beginMoveElement, toolDefinitions, selectedTab, selectTab }) =>
     <div className="editor-tools">
         <div className="editor-tabrow">
             {toolDefinitions.map((toolDefinition, i) => 
-                <a>
-                    <div className={`editor-tabrow__tab${i === selectedTab ? " editor-tabrow__tab--selected" : ""}`} key={i}>{toolDefinition.name}</div>
+                <a onClick={() => selectTab(i)} key={i} className="editor-tabrow__tablink">
+                    <div className={`editor-tabrow__tab${i === selectedTab ? " editor-tabrow__tab--selected" : ""}`}>{toolDefinition.name}</div>
                 </a>)}
         </div>
         <EditorToolBar beginMoveElement={beginMoveElement} svgs={toolDefinitions[selectedTab].shapes} />
@@ -36,5 +36,6 @@ const EditorTool = ({ beginMoveElement, toolDefinitions, selectedTab }) =>
 export default connect((state) => ({
     selectedTab: state.editor.editorToolSection
 }), (dispatch) => ({
-    beginMoveElement: (element, width, height) => dispatch(ToolElementClicked(element, width, height))
+    beginMoveElement: (element, width, height) => dispatch(ToolElementClicked(element, width, height)),
+    selectTab: (tabNo) => dispatch(ToolTabSelected(tabNo))
 }))(EditorTool);

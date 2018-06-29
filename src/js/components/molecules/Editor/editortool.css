@@ -26,6 +26,10 @@
     top: 1px;
 }
 
+.editor-tabrow__tablink {
+    cursor: pointer;
+}
+
 .editor-toolbox {
     background-color: #FFF;
     border: solid 1px #000;

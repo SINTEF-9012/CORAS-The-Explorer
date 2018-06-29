@@ -10,8 +10,11 @@ import {
     ElementLabelEdit,
     ElementChangeX,
     ElementChangeY,
-    ToolElementRelease
+    ToolElementRelease,
+    MenuClearClicked
 } from '../../../store/Actions';
+
+import Modal from '../../atoms/Modal/Modal';
 
 import ElementEditor from './ElementEditor';
 import EditorTool from './EditorTool';
@@ -334,6 +337,9 @@ class Editor extends React.Component {
                     loadRef={this.loadRef}
                     saveFn={this.saveGraphToFile}
                     clearFn={this.clearGraph}
+                    showClearModal={this.props.showClearModal}
+                    clearPosition={this.props.clearPosition}
+                    clearClicked={this.props.clearClicked}
                     downloadFn={this.downloadSvg} />
                 {this.props.elementEditor.visible ? <ElementEditor
                     {...this.props.elementEditor.data}
@@ -359,17 +365,27 @@ class Editor extends React.Component {
     }
 }
 
-const EditorMenu = ({ loadStartFn, loadRef, loadFn, saveFn, clearFn, downloadFn }) =>
+
+
+const EditorMenu = ({ loadStartFn, loadRef, loadFn, saveFn, clearFn, showClearModal, clearClicked, clearPosition, downloadFn }) =>
     <div className="editor-menu">
         <button className="editor-menu__button" onClick={loadStartFn}>Load</button>
         <input type="file" name="loadFile" label="Load" className="editor-menu__hidden" onChange={loadFn} ref={loadRef} />
         <button className="editor-menu__button" onClick={saveFn}>Save</button>
-        <button className="editor-menu__button" onClick={clearFn}>Clear</button>
+        <button className="editor-menu__button" onClick={clearClicked}>Clear</button>
+        <Modal isOpen={showClearModal} noBackground={true} position={clearPosition}>
+            Are you sure you want to clear the diagram?
+            <button onClick={clearFn}>Clear</button><button onClick={clearClicked}>Cancel</button>
+        </Modal>
         <button className="editor-menu__button" onClick={downloadFn}>Download (SVG)</button>
     </div>;
 
+
+
 export default connect((state) => ({
-    elementEditor: state.editor.elementEditor
+    elementEditor: state.editor.elementEditor,
+    showClearModal: state.editor.editorMenu.showClearModal,
+    clearPosition: state.editor.editorMenu.clearPosition
 }), (dispatch) => ({
     elementRightClicked: (element, graph) => dispatch(ElementRightClicked(element, graph)),
     elementDoubleClicked: (element, event) => dispatch(ElementDoubleClicked(element, event)),
@@ -379,5 +395,6 @@ export default connect((state) => ({
     elementEditorLabelEdit: (label) => dispatch(ElementLabelEdit(label)),
     elementEditorChangeX: (x) => dispatch(ElementChangeX(x)),
     elementEditorChangeY: (y) => dispatch(ElementChangeY(y)),
-    elementDropped: (graph, pageX, pageY) => dispatch(ToolElementRelease(graph, pageX, pageY))
+    elementDropped: (graph, pageX, pageY) => dispatch(ToolElementRelease(graph, pageX, pageY)),
+    clearClicked: (e) => dispatch(MenuClearClicked(e))
 }))(Editor);

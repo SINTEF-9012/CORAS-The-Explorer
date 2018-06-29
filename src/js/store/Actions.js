@@ -54,3 +54,8 @@ export const ToolTabSelected = (tabNo) => ({
     type: ActionTypes.EDITOR.TOOL_TAB_SELECTED,
     payload: { tabNo }
 });
+
+export const MenuClearClicked = (e) => ({
+    type: ActionTypes.EDITOR.MENU_CLEAR_CLICKED,
+    payload: { event: e }
+})

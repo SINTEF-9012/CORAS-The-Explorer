@@ -32,6 +32,13 @@ function Editor(state, action) {
         },
         movement: {
             element: null
+        },
+        editorMenu: {
+            showClearModal: false,
+            clearPosition: {
+                top: "",
+                left: ""
+            }
         }
     };
 
@@ -118,6 +125,11 @@ function Editor(state, action) {
         
         case ActionTypes.EDITOR.TOOL_TAB_SELECTED:
             newState.editorToolSection = action.payload.tabNo;
+            return newState;
+
+        case ActionTypes.EDITOR.MENU_CLEAR_CLICKED:
+            newState.editorMenu.showClearModal = !state.editorMenu.showClearModal;
+            newState.editorMenu.clearPosition = { top: `${action.payload.event.pageY}px`, left: `${action.payload.event.pageX}px`}
             return newState;
     }
 }

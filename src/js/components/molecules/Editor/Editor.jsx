@@ -114,6 +114,16 @@ const toolDefinitions = [
                 text: "Incident"
             },
             {
+                shapeFn: () => new joint.shapes.coras.ellipseElement(),
+                width: 190,
+                height: 80,
+                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbol),
+                text: "Treatment",
+                attrs: {
+                    "body/strokeDasharray": "8, 4"
+                }
+            },
+            {
                 shapeFn: () => new joint.shapes.coras.unboxedElement(),
                 width: 40,
                 height: 80,

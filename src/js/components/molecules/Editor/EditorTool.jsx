@@ -11,6 +11,8 @@ const EditorToolBar = ({ beginMoveElement, svgs }) =>
                 draggable
                 onDragStart={(e) => {
                     const shape = svg.shapeFn();
+                    if(svg.attrs)
+                        Object.keys(svg.attrs).map((key, index) => shape.attr(key, svg.attrs[key]));
                     shape.attr("icon/href", svg.icon);
                     shape.attr("text/text", svg.text);
                     beginMoveElement(shape, svg.width, svg.height)

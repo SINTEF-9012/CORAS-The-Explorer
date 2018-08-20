@@ -9,13 +9,15 @@ class ElementEditor extends React.Component {
         this.onLabelChange = this.onLabelChange.bind(this);
         this.onPositionChangeX = this.onPositionChangeX.bind(this);
         this.onPositionChangeY = this.onPositionChangeY.bind(this);
+        this.onDashedChange = this.onDashedChange.bind(this);
 
         const { x, y } = this.props.isLink ? { x: null, y: null } : this.props.element.position();
 
         this.state = {
             label: this.props.element.attr('text/text'),
             x,
-            y
+            y,
+            dashed: this.props.dashed
         }
     }
     
@@ -32,6 +34,11 @@ class ElementEditor extends React.Component {
     onLabelChange(e) {
         this.props.labelOnChange(e.target.value);
         this.setState({ label: e.target.value });
+    }
+
+    onDashedChange(e) {
+        this.props.dashedOnChange();
+        this.setState({ dashed: !this.state.dashed });
     }
 
     render() {
@@ -57,6 +64,10 @@ class ElementEditor extends React.Component {
                         <label htmlFor="y" className="element-editor-section__label">y</label>
                     </div>
                 </div> : null}
+                <div className="element-editor-section">
+                    <label className="element-editor-section__label">Dashed</label>
+                    <input id="dashed" type="element-editor-section__checkbox" type="checkbox" checked={this.state.dashed} onChange={this.onDashedChange}/>
+                </div>
                 <div className="element-editor-section">
                     <button className="element-editor-section__button element-editor-section__button--cta" type="button" onClick={this.props.save}>Save</button>
                     <button className="element-editor-section__button" type="button" onClick={this.props.cancel}>Cancel</button>

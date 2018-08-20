@@ -10,6 +10,7 @@ import {
     ElementLabelEdit,
     ElementChangeX,
     ElementChangeY,
+    ElementChangeDashed,
     ToolElementRelease,
     MenuClearClicked
 } from '../../../store/Actions';
@@ -358,7 +359,8 @@ class Editor extends React.Component {
                     delete={this.props.elementEditorDelete}
                     labelOnChange={this.props.elementEditorLabelEdit}
                     xOnChange={this.props.elementEditorChangeX}
-                    yOnChange={this.props.elementEditorChangeY} /> : null}
+                    yOnChange={this.props.elementEditorChangeY}
+                    dashedOnChange={this.props.elementEditorChangeDashed} /> : null}
                 <div
                     id={this.paperWrapperId}
                     className="editor-paper"
@@ -405,6 +407,7 @@ export default connect((state) => ({
     elementEditorLabelEdit: (label) => dispatch(ElementLabelEdit(label)),
     elementEditorChangeX: (x) => dispatch(ElementChangeX(x)),
     elementEditorChangeY: (y) => dispatch(ElementChangeY(y)),
+    elementEditorChangeDashed: () => dispatch(ElementChangeDashed()),
     elementDropped: (graph, pageX, pageY) => dispatch(ToolElementRelease(graph, pageX, pageY)),
     clearClicked: (e) => dispatch(MenuClearClicked(e))
 }))(Editor);

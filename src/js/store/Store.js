@@ -27,7 +27,8 @@ function Editor(state, action) {
                 position: {
                     x: 0,
                     y: 0
-                }
+                },
+                dashed: false
             }
         },
         movement: {
@@ -65,6 +66,7 @@ function Editor(state, action) {
             }
 
         case ActionTypes.EDITOR.ELEMENT_DOUBLE_CLICKED:
+            console.log(action.payload.element.attr('body/strokeDasharray'));
             return Object.assign({}, state, {
                 elementEditor: {
                     visible: true,
@@ -79,6 +81,7 @@ function Editor(state, action) {
                         element: action.payload.element,
                         label: action.payload.element.attr('text/text'),
                         position: action.payload.element.isLink() ? { x: null, y: null } : action.payload.element.position(),
+                        dashed: action.payload.element.attr('body/strokeDasharray') === undefined || action.payload.element.attr('body/strokeDasharray') === '' ? false : true
                     }
                 }
             });
@@ -108,6 +111,12 @@ function Editor(state, action) {
         case ActionTypes.EDITOR.ELEMENT_CHANGE_Y:
             newState.elementEditor.data.position.y = parseInt(action.payload.y);
             newState.elementEditor.data.element.position(state.elementEditor.data.position.x, parseInt(action.payload.y));
+            return newState;
+
+        case ActionTypes.EDITOR.ELEMENT_CHANGE_DASHED:
+            if (state.elementEditor.data.dashed) newState.elementEditor.data.element.attr('body/strokeDasharray', ''); 
+            else newState.elementEditor.data.element.attr('body/strokeDasharray', '8, 4');
+            newState.elementEditor.data.dashed = !state.elementEditor.data.dashed;
             return newState;
 
         case ActionTypes.EDITOR.TOOL_ELEMENT_CLICKED:

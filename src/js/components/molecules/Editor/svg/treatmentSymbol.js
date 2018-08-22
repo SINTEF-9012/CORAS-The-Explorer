@@ -5,7 +5,7 @@ export default `<?xml version="1.0" encoding="utf-8"?>
 	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
 ]>
 <svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="46.014" height="39.112"
-	 viewBox="0 0 46.014 39.112" overflow="visible" enable-background="new 0 0 46.014 39.112" xml:space="preserve">
+     viewBox="0 0 46.014 39.112" overflow="visible" enable-background="new 0 0 46.014 39.112" xml:space="preserve">
 <g>
 	<g>
 		<path fill="#68A539" enable-background="new    " d="M16.606,7.798l27.172,22.088c2.128,1.73,2.451,4.857,0.723,6.986

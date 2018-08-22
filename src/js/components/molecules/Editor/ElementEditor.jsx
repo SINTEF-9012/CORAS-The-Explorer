@@ -9,7 +9,7 @@ class ElementEditor extends React.Component {
         this.onLabelChange = this.onLabelChange.bind(this);
         this.onPositionChangeX = this.onPositionChangeX.bind(this);
         this.onPositionChangeY = this.onPositionChangeY.bind(this);
-        this.onDashedChange = this.onDashedChange.bind(this);
+        this.onTypeChange = this.onTypeChange.bind(this);
 
         const { x, y } = this.props.isLink ? { x: null, y: null } : this.props.element.position();
 
@@ -17,7 +17,7 @@ class ElementEditor extends React.Component {
             label: this.props.element.attr('text/text'),
             x,
             y,
-            dashed: this.props.dashed
+            type: this.props.element.get('corasType')
         }
     }
     
@@ -36,9 +36,9 @@ class ElementEditor extends React.Component {
         this.setState({ label: e.target.value });
     }
 
-    onDashedChange(e) {
-        this.props.dashedOnChange();
-        this.setState({ dashed: !this.state.dashed });
+    onTypeChange(e) {
+        this.props.typeOnChange(parseInt(e.target.value));
+        this.setState({ type: parseInt(e.target.value) });
     }
 
     render() {
@@ -65,8 +65,8 @@ class ElementEditor extends React.Component {
                     </div>
                 </div> : null}
                 <div className="element-editor-section">
-                    <label className="element-editor-section__label">Dashed</label>
-                    <input id="dashed" type="element-editor-section__checkbox" type="checkbox" checked={this.state.dashed} onChange={this.onDashedChange}/>
+                    <label className="element-editor-section__label element-editor-section__label--full">Element Type</label>
+                    <RadioGroup name="symboltype" values={[ "Regular", "Before", "After" ]} currentValue={this.state.type} onChange={this.onTypeChange} />
                 </div>
                 <div className="element-editor-section">
                     <button className="element-editor-section__button element-editor-section__button--cta" type="button" onClick={this.props.save}>Save</button>
@@ -77,5 +77,27 @@ class ElementEditor extends React.Component {
         );
     }
 }
+
+const RadioButton = ({ name, value, checked, onChange, label }) =>
+    <span>
+        <input
+            type="radio"
+            name={name}
+            value={value}
+            checked={checked}
+            onChange={onChange} />
+        <label className="element-editor-section__label">{label}</label>
+    </span>;
+
+const RadioGroup = ({ name, values, currentValue, onChange }) =>
+    <span>
+        {values.map((value, index) => <RadioButton
+                                        name={name}
+                                        value={index}
+                                        key={index}
+                                        checked={index === currentValue}
+                                        onChange={onChange}
+                                        label={value} />)}
+    </span>;
 
 export default ElementEditor;

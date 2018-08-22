@@ -10,7 +10,7 @@ import {
     ElementLabelEdit,
     ElementChangeX,
     ElementChangeY,
-    ElementChangeDashed,
+    ElementChangeType,
     ToolElementRelease,
     MenuClearClicked
 } from '../../../store/Actions';
@@ -32,6 +32,8 @@ import accidentalSymbol from './svg/threatHumanAccidentalSymbol.js';
 import deliberateSymbol from './svg/threatHumanDeliberateSymbol.js';
 import nonHumanSymbol from './svg/threatNonHumanSymbol.js';
 import treatmentSymbol from './svg/treatmentSymbol.js';
+import treatmentSymbolShaded from './svg/treatmentSymbolShaded.js';
+import treatmentSymbolOutlined from './svg/treatmentSymbolOutlined';
 import incidentSymbol from './svg/unwantedIncidentSymbol.js';
 import vulnerabilitySymbol from './svg/vulnerabilitySymbol.js';
 
@@ -86,7 +88,13 @@ const toolDefinitions = [
                 width: 190,
                 height: 80,
                 icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbol),
-                text: "Treatment"
+                text: "Treatment",
+                corasType: 0,
+                typeStyles: {
+                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbol), "body/strokeDasharray": "" },
+                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbolOutlined), "body/strokeDasharray": "8, 4" },
+                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbolShaded), "body/strokeDasharray": "8, 4" }
+                }
             },
             {
                 shapeFn: () => new joint.shapes.coras.rectElement(),
@@ -118,10 +126,26 @@ const toolDefinitions = [
                 shapeFn: () => new joint.shapes.coras.ellipseElement(),
                 width: 190,
                 height: 80,
-                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbol),
+                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbolOutlined),
                 text: "Treatment",
-                attrs: {
-                    "body/strokeDasharray": "8, 4"
+                corasType: 1,
+                typeStyles: {
+                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbol), "body/strokeDasharray": "" },
+                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbolOutlined), "body/strokeDasharray": "8, 4" },
+                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbolShaded), "body/strokeDasharray": "8, 4" }
+                }
+            },
+            {
+                shapeFn: () => new joint.shapes.coras.ellipseElement(),
+                width: 190,
+                height: 80,
+                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbolShaded),
+                text: "Treatment",
+                corasType: 2,
+                typeStyles: {
+                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbol), "body/strokeDasharray": "" },
+                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbolOutlined), "body/strokeDasharray": "8, 4" },
+                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbolShaded), "body/strokeDasharray": "8, 4" }
                 }
             },
             {
@@ -360,7 +384,7 @@ class Editor extends React.Component {
                     labelOnChange={this.props.elementEditorLabelEdit}
                     xOnChange={this.props.elementEditorChangeX}
                     yOnChange={this.props.elementEditorChangeY}
-                    dashedOnChange={this.props.elementEditorChangeDashed} /> : null}
+                    typeOnChange={this.props.elementEditorChangeType} /> : null}
                 <div
                     id={this.paperWrapperId}
                     className="editor-paper"
@@ -407,7 +431,7 @@ export default connect((state) => ({
     elementEditorLabelEdit: (label) => dispatch(ElementLabelEdit(label)),
     elementEditorChangeX: (x) => dispatch(ElementChangeX(x)),
     elementEditorChangeY: (y) => dispatch(ElementChangeY(y)),
-    elementEditorChangeDashed: () => dispatch(ElementChangeDashed()),
+    elementEditorChangeType: (type) => dispatch(ElementChangeType(type)),
     elementDropped: (graph, pageX, pageY) => dispatch(ToolElementRelease(graph, pageX, pageY)),
     clearClicked: (e) => dispatch(MenuClearClicked(e))
 }))(Editor);

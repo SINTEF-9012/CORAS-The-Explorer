@@ -40,8 +40,9 @@ export const ElementChangeY = (y) => ({
     payload: { y }
 });
 
-export const ElementChangeDashed = () => ({
-    type: ActionTypes.EDITOR.ELEMENT_CHANGE_DASHED
+export const ElementChangeType = (type) => ({
+    type: ActionTypes.EDITOR.ELEMENT_CHANGE_TYPE,
+    payload: { type }
 })
 
 export const ToolElementClicked = (element, width, height) => ({

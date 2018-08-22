@@ -46,42 +46,78 @@ const toolDefinitions = [
                 width: 40,
                 height: 80,
                 icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(assetSymbol),
-                text: "Asset"
+                text: "Asset",
+                corasType: 0,
+                typeStyles: {
+                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(assetSymbol)},
+                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(assetSymbol)},
+                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(assetSymbol)}
+                }
             },
             {
                 shapeFn: () => new joint.shapes.coras.ellipseElement(),
                 width: 190,
                 height: 80,
                 icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(riskSymbol),
-                text: "Risk"
+                text: "Risk",
+                corasType: 0,
+                typeStyles: {
+                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(riskSymbol), "body/strokeDasharray": "" },
+                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(riskSymbol), "body/strokeDasharray": "8, 4" },
+                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(riskSymbol), "body/strokeDasharray": "8, 4" }
+                }
             },
             {
                 shapeFn: () => new joint.shapes.coras.unboxedElement(),
                 width: 40,
                 height: 80,
                 icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(stakeholderSymbol),
-                text: "Stakeholder"
+                text: "Stakeholder",
+                corasType: 0,
+                typeStyles: {
+                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(stakeholderSymbol)},
+                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(stakeholderSymbol)},
+                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(stakeholderSymbol)}
+                }
             },
             {
                 shapeFn: () => new joint.shapes.coras.unboxedElement(),
                 width: 40,
                 height: 80,
                 icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(accidentalSymbol),
-                text: "Human Threat\nAccidental"
+                text: "Human Threat\nAccidental",
+                corasType: 0,
+                typeStyles: {
+                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(accidentalSymbol)},
+                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(accidentalSymbol)},
+                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(accidentalSymbol)}
+                }
             },
             {
                 shapeFn: () => new joint.shapes.coras.unboxedElement(),
                 width: 40,
                 height: 80,
                 icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(deliberateSymbol),
-                text: "Human Threat\nDeliberate"
+                text: "Human Threat\nDeliberate",
+                corasType: 0,
+                typeStyles: {
+                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(deliberateSymbol)},
+                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(deliberateSymbol)},
+                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(deliberateSymbol)}
+                }
             },
             {
                 shapeFn: () => new joint.shapes.coras.unboxedElement(),
                 width: 40,
                 height: 80,
                 icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(nonHumanSymbol),
-                text: "Non-Human\nThreat"
+                text: "Non-Human\nThreat",
+                corasType: 0,
+                typeStyles: {
+                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(nonHumanSymbol)},
+                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(nonHumanSymbol)},
+                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(nonHumanSymbol)}
+                }
             },
             {
                 shapeFn: () => new joint.shapes.coras.ellipseElement(),
@@ -101,14 +137,26 @@ const toolDefinitions = [
                 width: 190,
                 height: 80,
                 icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(incidentSymbol),
-                text: "Incident"
+                text: "Incident",
+                corasType: 0,
+                typeStyles: {
+                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(incidentSymbol), "body/strokeDasharray": "" },
+                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(incidentSymbol), "body/strokeDasharray": "8, 4" },
+                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(incidentSymbol), "body/strokeDasharray": "8, 4" }
+                }
             },
             {
                 shapeFn: () => new joint.shapes.coras.unboxedElement(),
                 width: 40,
                 height: 80,
                 icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(vulnerabilitySymbol),
-                text: "Vulnerability"
+                text: "Vulnerability",
+                corasType: 0,
+                typeStyles: {
+                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(vulnerabilitySymbol)},
+                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(vulnerabilitySymbol)},
+                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(vulnerabilitySymbol)}
+                }
             }
         ]
     },

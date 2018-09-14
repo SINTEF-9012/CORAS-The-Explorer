@@ -26,8 +26,13 @@ import './editor.css';
 import AddCorasShapes from './CORASShapes.js';
 
 import assetSymbol from './svg/assetSymbol.js';
+import assetSymbolOutlined from './svg/assetSymbolOutlined.js';
+import assetSymbolShaded from './svg/assetSymbolShaded.js';
 import riskSymbol from './svg/riskSymbol.js';
+import riskSymbolOutlined from './svg/riskSymbolOutlined.js';
+import riskSymbolShaded from './svg/riskSymbolShaded.js';
 import stakeholderSymbol from './svg/stakeholderSymbol.js';
+import stakeholderSymbolOutlined from './svg/stakeholderSymbolOutlined.js';
 import accidentalSymbol from './svg/threatHumanAccidentalSymbol.js';
 import deliberateSymbol from './svg/threatHumanDeliberateSymbol.js';
 import nonHumanSymbol from './svg/threatNonHumanSymbol.js';
@@ -50,8 +55,8 @@ const toolDefinitions = [
                 corasType: 0,
                 typeStyles: {
                     0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(assetSymbol)},
-                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(assetSymbol)},
-                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(assetSymbol)}
+                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(assetSymbolOutlined)},
+                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(assetSymbolShaded)}
                 }
             },
             {
@@ -63,8 +68,8 @@ const toolDefinitions = [
                 corasType: 0,
                 typeStyles: {
                     0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(riskSymbol), "body/strokeDasharray": "" },
-                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(riskSymbol), "body/strokeDasharray": "8, 4" },
-                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(riskSymbol), "body/strokeDasharray": "8, 4" }
+                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(riskSymbolOutlined), "body/strokeDasharray": "8, 4" },
+                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(riskSymbolShaded), "body/strokeDasharray": "8, 4" }
                 }
             },
             {
@@ -76,7 +81,7 @@ const toolDefinitions = [
                 corasType: 0,
                 typeStyles: {
                     0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(stakeholderSymbol)},
-                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(stakeholderSymbol)},
+                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(stakeholderSymbolOutlined)},
                     2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(stakeholderSymbol)}
                 }
             },

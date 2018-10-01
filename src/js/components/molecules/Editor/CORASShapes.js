@@ -100,42 +100,12 @@ function AddCorasShapes(joint) {
         ]
     });
     joint.dia.Link.define('coras.link', {
-        attrs: {
-            line: {
-                connection: true,
-                stroke: '#333333',
-                strokeWidth: 2,
-                strokeLinejoin: 'round',
-                targetMarker: {
-                    'type': 'path',
-                    'd': 'M 10 -5 0 0 10 5 z'
-                }
-            },
-            wrapper: {
-                connection: true,
-                strokeWidth: 10,
-                strokeLinejoin: 'round'
+        defaultLabel: {
+            attrs: {
+                text: { text: '*' },
+                '.connection': { stroke: '#000000', 'stroke-width': 2 }
             }
         }
-    }, {
-        markup: [{
-            tagName: 'path',
-            selector: 'wrapper',
-            attributes: {
-                'fill': 'none',
-                'cursor': 'pointer',
-                'stroke': 'transparent',
-                'strokeDasharray': "8, 4"
-            }
-        }, {
-            tagName: 'path',
-            selector: 'line',
-            attributes: {
-                'fill': 'none',
-                'pointer-events': 'none',
-                'strokeDasharray': "8, 4"
-            }
-        }]
     });
 }
 

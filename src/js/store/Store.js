@@ -59,6 +59,7 @@ function Editor(state, action) {
             if (!state.previousElementRightClicked) return Object.assign({}, state, { previousElementRightClicked: action.payload.element });
             else {
                 const link = new joint.shapes.coras.link();
+                link.set('corasType', 0);
                 link.source(state.previousElementRightClicked);
                 link.target(action.payload.element);
                 link.addTo(action.payload.graph);
@@ -113,10 +114,20 @@ function Editor(state, action) {
             return newState;
 
         case ActionTypes.EDITOR.ELEMENT_CHANGE_TYPE:
-            const styles = newState.elementEditor.data.element.get('typeStyles');
-            Object.keys(styles[action.payload.type]).map((item) => newState.elementEditor.data.element.attr(item, styles[action.payload.type][item]));
-            newState.elementEditor.data.type = action.payload.type;
-            newState.elementEditor.data.element.set('corasType', action.payload.type);
+            if(newState.elementEditor.data.element.isLink()) {
+                newState.elementEditor.data.type = action.payload.type;
+
+                if(action.payload.type === 0)
+                    newState.elementEditor.data.element.attr({ '.connection': { stroke: '#000000', 'stroke-width': 2, 'stroke-dasharray': '' }});
+                else if(action.payload.type === 1 || action.payload.type === 2)
+                    newState.elementEditor.data.element.attr({ '.connection': { stroke: '#000000', 'stroke-width': 2, 'stroke-dasharray': "5 2" } })
+                newState.elementEditor.data.element.set('corasType', action.payload.type);
+            } else {
+                const styles = newState.elementEditor.data.element.get('typeStyles');
+                Object.keys(styles[action.payload.type]).map((item) => newState.elementEditor.data.element.attr(item, styles[action.payload.type][item]));
+                newState.elementEditor.data.type = action.payload.type;
+                newState.elementEditor.data.element.set('corasType', action.payload.type);
+            }
             return newState;
 
         case ActionTypes.EDITOR.TOOL_ELEMENT_CLICKED:

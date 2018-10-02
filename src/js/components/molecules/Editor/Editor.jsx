@@ -33,7 +33,9 @@ import riskSymbolOutlined from './svg/riskSymbolOutlined.js';
 import riskSymbolShaded from './svg/riskSymbolShaded.js';
 import stakeholderSymbol from './svg/stakeholderSymbol.js';
 import stakeholderSymbolOutlined from './svg/stakeholderSymbolOutlined.js';
-import accidentalSymbol from './svg/threatHumanAccidentalSymbol.js';
+import accidentalSymbol from './svg/threat-human-accidental-symbol-regular.svg';
+import accidentalSymbolOutlined from './svg/threat-human-accidental-symbol-outline.svg';
+import accidentalSymbolShaded from './svg/threat-human-accidental-symbol-shadow.svg';
 import deliberateSymbol from './svg/threatHumanDeliberateSymbol.js';
 import nonHumanSymbol from './svg/threatNonHumanSymbol.js';
 import treatmentSymbol from './svg/treatmentSymbol.js';
@@ -41,6 +43,7 @@ import treatmentSymbolShaded from './svg/treatmentSymbolShaded.js';
 import treatmentSymbolOutlined from './svg/treatmentSymbolOutlined';
 import incidentSymbol from './svg/unwantedIncidentSymbol.js';
 import vulnerabilitySymbol from './svg/vulnerabilitySymbol.js';
+
 
 const toolDefinitions = [
     {
@@ -56,7 +59,7 @@ const toolDefinitions = [
                 typeStyles: {
                     0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(assetSymbol)},
                     1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(assetSymbolOutlined)},
-                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(assetSymbolShaded)}
+                    2: { "icon/href": accidentalSymbolShaded, "icon/height": "40px" }
                 }
             },
             {
@@ -89,13 +92,14 @@ const toolDefinitions = [
                 shapeFn: () => new joint.shapes.coras.unboxedElement(),
                 width: 40,
                 height: 80,
-                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(accidentalSymbol),
+                iconHeight: 40,
+                icon: accidentalSymbol,
                 text: "Human Threat\nAccidental",
                 corasType: 0,
                 typeStyles: {
-                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(accidentalSymbol)},
-                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(accidentalSymbol)},
-                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(accidentalSymbol)}
+                    0: { "icon/href": accidentalSymbol, "icon/height": iconHeight },
+                    1: { "icon/href":accidentalSymbolOutlined, "icon/height": iconHeight },
+                    2: { "icon/href": accidentalSymbolShaded, "icon/height": iconHeight }
                 }
             },
             {

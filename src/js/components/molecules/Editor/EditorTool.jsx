@@ -14,13 +14,14 @@ const EditorToolBar = ({ beginMoveElement, svgs }) =>
                     if(svg.attrs)
                         Object.keys(svg.attrs).map((key, index) => shape.attr(key, svg.attrs[key]));
                     shape.attr("icon/href", svg.icon);
+                    shape.attr("icon/height", svg.iconHeight || 40);
                     shape.attr("text/text", svg.text);
                     shape.set('corasType', svg.corasType);
                     shape.set('typeStyles', svg.typeStyles);
                     beginMoveElement(shape, svg.width, svg.height)
                 }}
                 key={i} >
-                    <img src={svg.icon} className="editor-toolbox__icon" />
+                    <img src={svg.icon} height={svg.iconHeight || 40} className="editor-toolbox__icon" />
                     <div>{svg.text}</div>
                 </div>) :
             null}

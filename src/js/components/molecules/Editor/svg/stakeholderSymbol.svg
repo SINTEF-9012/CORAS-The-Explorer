@@ -1,16 +1,13 @@
-export default `<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
 	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
 	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
 ]>
-<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="22" height="64"
-     viewBox="0 0 22 64" overflow="visible" enable-background="new 0 0 22 46" xml:space="preserve">
-     <defs>
-     <path id="outline" fill="#FFFFFF" d="M6.178,8.798l1.95,6.204l1.825,0.042l1.867-6.162c0,0-1.079-0.353-2.552-0.353S6.178,8.798,6.178,8.798z"/>
-
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="18.398" height="60.363"
+	 viewBox="0 0 18.398 60.363" overflow="visible" enable-background="new 0 0 18.398 42.363" xml:space="preserve">
 <path fill="#FFFFFF" d="M6.178,8.798l1.95,6.204l1.825,0.042l1.867-6.162c0,0-1.079-0.353-2.552-0.353S6.178,8.798,6.178,8.798z"/>
-<g id="colored">
+<g>
 	<path fill="#C29054" d="M11.877,8.647c0.697,0.061,1.162,0.118,1.922,0.256c1.982,0.361,4.148,1.309,4.148,3.068
 		c0,1.758,0.045,12.762,0.045,12.762s-0.045,1.938-1.76,1.938c-1.713,0-1.893-1.488-1.893-1.488v14.16c0,0,0.045,2.615-2.525,2.615
 		c-2.572,0-2.617-2.346-2.617-2.346s-0.043,2.346-2.615,2.346c-2.57,0-2.523-2.615-2.523-2.615v-14.16c0,0-0.182,1.488-1.895,1.488
@@ -70,6 +67,4 @@ export default `<?xml version="1.0" encoding="utf-8"?>
 			c-0.017-0.424-0.101-2.523-0.101-2.523L4.266,9.059z"/>
 	</g>
 </g>
-</defs>
-<use id="#colored" x="3px" y="0" />
-</svg>`;
+</svg>

@@ -1,4 +1,4 @@
-export default `<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
 	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
@@ -23,4 +23,4 @@ export default `<?xml version="1.0" encoding="utf-8"?>
 		c1.107-2.801,4.885-12.355,4.885-12.355S7.131,30.3,4.077,31.26c2.599-2.015,10.947-8.483,10.947-8.483S5.653,19.465,2.498,18.35
 		c3.285,0.001,12.404,0.003,12.404,0.003s-1.091-3.272-1.591-4.771c1.273,0.984,4.555,3.521,4.555,3.521L17.634,16.02z"/>
 </g>
-</svg>`;
+</svg>

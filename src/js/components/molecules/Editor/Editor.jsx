@@ -25,24 +25,50 @@ import './editor.css';
 
 import AddCorasShapes from './CORASShapes.js';
 
-import assetSymbol from './svg/assetSymbol.js';
-import assetSymbolOutlined from './svg/assetSymbolOutlined.js';
-import assetSymbolShaded from './svg/assetSymbolShaded.js';
-import riskSymbol from './svg/riskSymbol.js';
-import riskSymbolOutlined from './svg/riskSymbolOutlined.js';
-import riskSymbolShaded from './svg/riskSymbolShaded.js';
-import stakeholderSymbol from './svg/stakeholderSymbol.js';
-import stakeholderSymbolOutlined from './svg/stakeholderSymbolOutlined.js';
+const assetHeight = 60;
+import assetSymbol from './svg/assetSymbol.svg';
+import assetSymbolOutlined from './svg/assetSymbolOutlined.svg';
+import assetSymbolShaded from './svg/assetSymbolShaded.svg';
+
+const riskHeight = 40;
+import riskSymbol from './svg/riskSymbol.svg';
+import riskSymbolOutlined from './svg/riskSymbolOutlined.svg';
+import riskSymbolShaded from './svg/riskSymbolShaded.svg';
+
+const stakeholderHeight = 60;
+import stakeholderSymbol from './svg/stakeholderSymbol.svg';
+import stakeholderSymbolOutlined from './svg/stakeholderSymbolOutlined.svg';
+import stakeholderSymbolShaded from './svg/stakeholderSymbolShaded.svg';
+
+const accidentalHeight = 40;
 import accidentalSymbol from './svg/threat-human-accidental-symbol-regular.svg';
 import accidentalSymbolOutlined from './svg/threat-human-accidental-symbol-outline.svg';
 import accidentalSymbolShaded from './svg/threat-human-accidental-symbol-shadow.svg';
-import deliberateSymbol from './svg/threatHumanDeliberateSymbol.js';
-import nonHumanSymbol from './svg/threatNonHumanSymbol.js';
-import treatmentSymbol from './svg/treatmentSymbol.js';
-import treatmentSymbolShaded from './svg/treatmentSymbolShaded.js';
-import treatmentSymbolOutlined from './svg/treatmentSymbolOutlined';
-import incidentSymbol from './svg/unwantedIncidentSymbol.js';
-import vulnerabilitySymbol from './svg/vulnerabilitySymbol.js';
+
+const deliberateHeight = 40;
+import deliberateSymbol from './svg/threatHumanDeliberateSymbol.svg';
+import deliberateSymbolOutlined from './svg/threatHumanDeliberateSymbolOutlined.svg';
+import deliberateSymbolShaded from './svg/threatHumanDeliberateSymbolShaded.svg';
+
+const nonHumanHeight = 40;
+import nonHumanSymbol from './svg/threatNonHumanSymbol.svg';
+import nonHumanSymbolOutlined from './svg/threatNonHumanSymbolOutlined.svg';
+import nonHumanSymbolShaded from './svg/threatNonHumanSymbolShaded.svg';
+
+const treatmentHeight = 40;
+import treatmentSymbol from './svg/treatmentSymbol.svg';
+import treatmentSymbolShaded from './svg/treatmentSymbolShaded.svg';
+import treatmentSymbolOutlined from './svg/treatmentSymbolOutlined.svg';
+
+const incidentHeight = 40;
+import incidentSymbol from './svg/unwantedIncidentSymbol.svg';
+import incidentSymbolOutlined from './svg/unwantedIncidentSymbolOutlined.svg';
+import incidentSymbolShaded from './svg/unwantedIncidentSymbolShaded.svg';
+
+const vulnerabilityHeight = 40;
+import vulnerabilitySymbol from './svg/vulnerabilitySymbol.svg';
+import vulnerabilitySymbolOutlined from './svg/vulnerabilitySymbolOutlined.svg';
+import vulnerabilitySymbolShaded from './svg/vulnerabilitySymbolShaded.svg';
 
 
 const toolDefinitions = [
@@ -53,118 +79,126 @@ const toolDefinitions = [
                 shapeFn: () => new joint.shapes.coras.unboxedElement(),
                 width: 40,
                 height: 80,
-                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(assetSymbol),
+                iconHeight: assetHeight,
+                icon: assetSymbol,
                 text: "Asset",
                 corasType: 0,
                 typeStyles: {
-                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(assetSymbol)},
-                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(assetSymbolOutlined)},
-                    2: { "icon/href": accidentalSymbolShaded, "icon/height": "40px" }
+                    0: { "icon/href": assetSymbol, "icon/height": assetHeight },
+                    1: { "icon/href": assetSymbolOutlined, "icon/height": assetHeight },
+                    2: { "icon/href": assetSymbolShaded, "icon/height": assetHeight }
                 }
             },
             {
                 shapeFn: () => new joint.shapes.coras.ellipseElement(),
                 width: 190,
                 height: 80,
-                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(riskSymbol),
+                iconHeight: riskHeight,
+                icon: riskSymbol,
                 text: "Risk",
                 corasType: 0,
                 typeStyles: {
-                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(riskSymbol), "body/strokeDasharray": "" },
-                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(riskSymbolOutlined), "body/strokeDasharray": "8, 4" },
-                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(riskSymbolShaded), "body/strokeDasharray": "8, 4" }
+                    0: { "icon/href": riskSymbol, "icon/height": riskHeight },
+                    1: { "icon/href": riskSymbolOutlined, "icon/height": riskHeight },
+                    2: { "icon/href": riskSymbolShaded, "icon/height": riskHeight }
                 }
             },
             {
                 shapeFn: () => new joint.shapes.coras.unboxedElement(),
                 width: 40,
                 height: 80,
-                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(stakeholderSymbol),
+                iconHeight: stakeholderHeight,
+                icon: stakeholderSymbol,
                 text: "Stakeholder",
                 corasType: 0,
                 typeStyles: {
-                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(stakeholderSymbol)},
-                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(stakeholderSymbolOutlined)},
-                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(stakeholderSymbol)}
+                    0: { "icon/href": stakeholderSymbol, "icon/height": stakeholderHeight},
+                    1: { "icon/href": stakeholderSymbolOutlined, "icon/height": stakeholderHeight},
+                    2: { "icon/href": stakeholderSymbolShaded, "icon/height": stakeholderHeight }
                 }
             },
             {
                 shapeFn: () => new joint.shapes.coras.unboxedElement(),
                 width: 40,
                 height: 80,
-                iconHeight: 40,
+                iconHeight: accidentalHeight,
                 icon: accidentalSymbol,
                 text: "Human Threat\nAccidental",
                 corasType: 0,
                 typeStyles: {
-                    0: { "icon/href": accidentalSymbol, "icon/height": iconHeight },
-                    1: { "icon/href":accidentalSymbolOutlined, "icon/height": iconHeight },
-                    2: { "icon/href": accidentalSymbolShaded, "icon/height": iconHeight }
+                    0: { "icon/href": accidentalSymbol, "icon/height": accidentalHeight },
+                    1: { "icon/href":accidentalSymbolOutlined, "icon/height": accidentalHeight },
+                    2: { "icon/href": accidentalSymbolShaded, "icon/height": accidentalHeight }
                 }
             },
             {
                 shapeFn: () => new joint.shapes.coras.unboxedElement(),
                 width: 40,
-                height: 80,
-                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(deliberateSymbol),
+                height: 100,
+                iconHeight: deliberateHeight,
+                icon: deliberateSymbol,
                 text: "Human Threat\nDeliberate",
                 corasType: 0,
                 typeStyles: {
-                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(deliberateSymbol)},
-                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(deliberateSymbol)},
-                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(deliberateSymbol)}
+                    0: { "icon/href": deliberateSymbol, "icon/height": deliberateHeight },
+                    1: { "icon/href": deliberateSymbolOutlined, "icon/height": deliberateHeight },
+                    2: { "icon/href": deliberateSymbolShaded, "icon/height": deliberateHeight }
                 }
             },
             {
                 shapeFn: () => new joint.shapes.coras.unboxedElement(),
                 width: 40,
                 height: 80,
-                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(nonHumanSymbol),
+                iconHeight: nonHumanHeight,
+                icon: nonHumanSymbol,
                 text: "Non-Human\nThreat",
                 corasType: 0,
                 typeStyles: {
-                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(nonHumanSymbol)},
-                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(nonHumanSymbol)},
-                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(nonHumanSymbol)}
+                    0: { "icon/href": nonHumanSymbol, "icon/height": nonHumanHeight },
+                    1: { "icon/href": nonHumanSymbolOutlined, "icon/height": nonHumanHeight },
+                    2: { "icon/href": nonHumanSymbolShaded, "icon/height": nonHumanHeight }
                 }
             },
             {
                 shapeFn: () => new joint.shapes.coras.ellipseElement(),
                 width: 190,
                 height: 80,
-                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbol),
+                iconHeight: treatmentHeight,
+                icon: treatmentSymbol,
                 text: "Treatment",
                 corasType: 0,
                 typeStyles: {
-                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbol), "body/strokeDasharray": "" },
-                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbolOutlined), "body/strokeDasharray": "8, 4" },
-                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(treatmentSymbolShaded), "body/strokeDasharray": "8, 4" }
+                    0: { "icon/href": treatmentSymbol, "body/strokeDasharray": "", "icon/height": treatmentHeight },
+                    1: { "icon/href": treatmentSymbolOutlined, "body/strokeDasharray": "8, 4", "icon/height": treatmentHeight },
+                    2: { "icon/href": treatmentSymbolShaded, "body/strokeDasharray": "8, 4", "icon/height": treatmentHeight }
                 }
             },
             {
                 shapeFn: () => new joint.shapes.coras.rectElement(),
                 width: 190,
                 height: 80,
-                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(incidentSymbol),
+                iconHeight: incidentHeight,
+                icon: incidentSymbol,
                 text: "Incident",
                 corasType: 0,
                 typeStyles: {
-                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(incidentSymbol), "body/strokeDasharray": "" },
-                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(incidentSymbol), "body/strokeDasharray": "8, 4" },
-                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(incidentSymbol), "body/strokeDasharray": "8, 4" }
+                    0: { "icon/href": incidentSymbol, "body/strokeDasharray": "", "icon/height": incidentHeight },
+                    1: { "icon/href": incidentSymbolOutlined, "body/strokeDasharray": "8, 4", "icon/height": incidentHeight },
+                    2: { "icon/href": incidentSymbolShaded, "body/strokeDasharray": "8, 4", "icon/height": incidentHeight }
                 }
             },
             {
                 shapeFn: () => new joint.shapes.coras.unboxedElement(),
                 width: 40,
                 height: 80,
-                icon: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(vulnerabilitySymbol),
+                iconHeight: vulnerabilityHeight,
+                icon: vulnerabilitySymbol,
                 text: "Vulnerability",
                 corasType: 0,
                 typeStyles: {
-                    0: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(vulnerabilitySymbol)},
-                    1: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(vulnerabilitySymbol)},
-                    2: { "icon/href": "data:image/svg+xml;charset=utf-8," + encodeURIComponent(vulnerabilitySymbol)}
+                    0: { "icon/href": vulnerabilitySymbol, "icon/height": vulnerabilityHeight },
+                    1: { "icon/href": vulnerabilitySymbolOutlined, "icon/height": vulnerabilityHeight },
+                    2: { "icon/href": vulnerabilitySymbolShaded, "icon/height": vulnerabilityHeight }
                 }
             }
         ]

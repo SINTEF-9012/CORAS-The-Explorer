@@ -1,4 +1,4 @@
-export default `<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
 	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
@@ -9,7 +9,7 @@ export default `<?xml version="1.0" encoding="utf-8"?>
      
 <defs>
     <g id="outline">
-        <path fill="#000000" enable-background="new    " d="M15.877,4.054c0,0,0.744-3.392,1.738-3.604
+        <path fill="#FFFFFF" enable-background="new    " d="M15.877,4.054c0,0,0.744-3.392,1.738-3.604
             c0.992-0.213,1.346,3.189,1.346,3.189s1.773-1.843,2.977-2.197c1.205-0.354,2.199-0.07,1.277,0.993
             c-0.922,1.062-2.014,4.46-1.986,6.096c0.072,3.898,3.734,5.19,5.934,6.647c6.643,4.402,7.922,8.644,7.922,13.365
             c0,6.883-6.721,12.086-17.258,12.086c-11.766,0-17.367-6.162-17.367-12.463c0-5.457,2.982-9.528,7.096-11.867
@@ -88,4 +88,4 @@ export default `<?xml version="1.0" encoding="utf-8"?>
 </defs>
 <use href="#outline" x="0" y="2.5px" />
 <use href="#colored" x="2.5px" y="0" />
-</svg>`;
+</svg>

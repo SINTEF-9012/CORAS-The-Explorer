@@ -7,14 +7,18 @@ let importStatement = 'import { ';
 console.log('Converting files to base64 strings');
 
 filelist.forEach((file, index) => {
-    console.log(`Opening and converting ${file}`);
-
-    const fileContent = fs.readFileSync(file).toString();
-    const noNewlines = fileContent.replace(/\n/, '');
-    const nnlBuffer = Buffer.from(noNewlines);
-    const base64Version = nnlBuffer.toString('base64');
+    if(file.split('.')[1] === 'js') {
+        console.log(`Skipping js file ${file}`);
+        return;
+    }
     
-    const urlString = `data:image/svg+xml;base64,${base64Version}`;
+    console.log(`Opening and converting ${file}`);
+    
+    const fileContent = fs.readFileSync(file).toString();
+    const noNewlines = fileContent.replace(/(?:\r\n|\r|\n)/g, '');
+    const nnlEscaped = encodeURIComponent(noNewlines);
+     
+    const urlString = `data:image/svg+xml;utf8,${nnlEscaped}`;
     
     const importName = file.split('.')[0];
     console.log(`Export as ${importName}`);

@@ -1,6 +1,7 @@
 import { createStore, combineReducers } from 'redux';
 import ActionTypes from './ActionTypes';
 import joint from 'jointjs';
+import _ from 'lodash';
 
 const rootReducer = combineReducers({ editor: Editor });
 
@@ -67,6 +68,7 @@ function Editor(state, action) {
             }
 
         case ActionTypes.EDITOR.ELEMENT_DOUBLE_CLICKED:
+            console.log(action.payload.element.labels())
             return Object.assign({}, state, {
                 elementEditor: {
                     visible: true,
@@ -79,7 +81,9 @@ function Editor(state, action) {
                             top: action.payload.event.pageY
                         },
                         element: action.payload.element,
-                        label: action.payload.element.attr('text/text'),
+                        label: action.payload.element.isLink() ?
+                            action.payload.element.attr('text/text') :
+                            _.get(action.payload.element, "0.attrs.text.text", ""),
                         position: action.payload.element.isLink() ? { x: null, y: null } : action.payload.element.position(),
                         type: parseInt(action.payload.element.get('corasType'))
                     }
@@ -99,7 +103,8 @@ function Editor(state, action) {
             return Object.assign({}, state, { elementEditor: { visible: false } });
 
         case ActionTypes.EDITOR.ELEMENT_LABEL_EDIT:
-            newState.elementEditor.data.element.attr('text/text', action.payload.label);
+            if(newState.elementEditor.data.element.isLink()) newState.elementEditor.data.element.labels([{attrs: {text: {text: action.payload.label}}}]);
+            else newState.elementEditor.data.element.attr('text/text', action.payload.label);
             newState.elementEditor.data.label = action.payload.label;
             return newState;
 

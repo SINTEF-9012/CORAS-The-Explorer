@@ -68,7 +68,6 @@ function Editor(state, action) {
             }
 
         case ActionTypes.EDITOR.ELEMENT_DOUBLE_CLICKED:
-            console.log(action.payload.element.labels())
             return Object.assign({}, state, {
                 elementEditor: {
                     visible: true,

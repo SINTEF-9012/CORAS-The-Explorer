@@ -530,7 +530,7 @@ class Editor extends React.Component {
         if (this.getFromLocalStorage()) this.graph.fromJSON(JSON.parse(this.getFromLocalStorage()));
         else if (this.props.initialDiagram) this.graph.fromJSON(this.props.initialDiagram);
 
-        // Save in localStorage on change
+        // Save in localStorage on change (or rather, every second currently)
         this.periodicalSave = setInterval(this.saveToLocalStorage, 1000);
 
         window.addEventListener('resize', this.updatePaperSize);

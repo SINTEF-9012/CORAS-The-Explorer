@@ -14,3 +14,24 @@
     left: 0;
     margin: 1px;
 }
+
+.editor-clear-modal {
+
+}
+
+.editor-clear-modal__description {
+    margin-bottom: 1rem;
+}
+
+.editor-clear-modal__button {
+    background-color: lightslategray;
+    border: solid 1px #000;
+    border-radius: 2px;
+    color: #FFF;
+    margin-right: 1rem;
+    padding: .4rem;
+}
+
+.editor-clear-modal__button--danger {
+    background-color: darkred;
+}

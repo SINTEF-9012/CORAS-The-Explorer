@@ -155,6 +155,10 @@ function Editor(state, action) {
             newState.editorMenu.showClearModal = !state.editorMenu.showClearModal;
             newState.editorMenu.clearPosition = { top: `${action.payload.event.pageY}px`, left: `${action.payload.event.pageX}px`}
             return newState;
+
+        case ActionTypes.EDITOR.MENU_CLEAR_CONFIRMED:
+            newState.editorMenu.showClearModal = !state.editorMenu.showClearModal;
+            return newState;
     }
 }
 

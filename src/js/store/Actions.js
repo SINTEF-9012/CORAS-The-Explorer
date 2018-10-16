@@ -43,7 +43,7 @@ export const ElementChangeY = (y) => ({
 export const ElementChangeType = (type) => ({
     type: ActionTypes.EDITOR.ELEMENT_CHANGE_TYPE,
     payload: { type }
-})
+});
 
 export const ToolElementClicked = (element, width, height) => ({
     type: ActionTypes.EDITOR.TOOL_ELEMENT_CLICKED,
@@ -63,4 +63,8 @@ export const ToolTabSelected = (tabNo) => ({
 export const MenuClearClicked = (e) => ({
     type: ActionTypes.EDITOR.MENU_CLEAR_CLICKED,
     payload: { event: e }
-})
+});
+
+export const MenuClearConfirmed = () => ({
+    type: ActionTypes.EDITOR.MENU_CLEAR_CONFIRMED
+});

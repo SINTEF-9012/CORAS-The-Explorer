@@ -12,7 +12,8 @@ import {
     ElementChangeY,
     ElementChangeType,
     ToolElementRelease,
-    MenuClearClicked
+    MenuClearClicked,
+    MenuClearConfirmed
 } from '../../../store/Actions';
 
 import Modal from '../../atoms/Modal/Modal';
@@ -631,6 +632,7 @@ class Editor extends React.Component {
         this.graph.clear();
         window.localStorage.removeItem(this.paperId + "graph");
         if (this.props.initialDiagram) this.graph.fromJSON(this.props.initialDiagram);
+        this.props.clearConfirmed();
     }
 
     downloadSvg() {
@@ -712,8 +714,11 @@ const EditorMenu = ({ loadStartFn, loadRef, loadFn, saveFn, clearFn, showClearMo
         <button className="editor-menu__button" onClick={saveFn}>Save</button>
         <button className="editor-menu__button" onClick={clearClicked}>Clear</button>
         <Modal isOpen={showClearModal} noBackground={true} position={clearPosition}>
-            Are you sure you want to clear the diagram?
-            <button onClick={clearFn}>Clear</button><button onClick={clearClicked}>Cancel</button>
+            <div className="editor-clear-modal">
+                <div className="editor-clear-modal__description">Are you sure you want to clear the diagram?</div>
+                <button className="editor-clear-modal__button editor-clear-modal__button--danger" onClick={clearFn}>Yes, clear</button>
+                <button className="editor-clear-modal__button editor-clear-modal__button" onClick={clearClicked}>No, cancel</button>
+            </div>
         </Modal>
         <button className="editor-menu__button" onClick={downloadFn}>Download (SVG)</button>
     </div>;
@@ -735,5 +740,6 @@ export default connect((state) => ({
     elementEditorChangeY: (y) => dispatch(ElementChangeY(y)),
     elementEditorChangeType: (type) => dispatch(ElementChangeType(type)),
     elementDropped: (graph, pageX, pageY) => dispatch(ToolElementRelease(graph, pageX, pageY)),
-    clearClicked: (e) => dispatch(MenuClearClicked(e))
+    clearClicked: (e) => dispatch(MenuClearClicked(e)),
+    clearConfirmed: () => dispatch(MenuClearConfirmed())
 }))(Editor);

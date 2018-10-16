@@ -64,44 +64,6 @@ const nonHumanHeight = 40;
 const incidentHeight = 40;
 const vulnerabilityHeight = 40;
 const treatmentHeight = 40;
-/*
-//import assetSymbol from './svg/assetSymbol.svg';
-const assetSymbol = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDEyLjAuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgNTE0NDgpICAtLT4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIiBbCgk8IUVOVElUWSBuc19zdmcgImh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KCTwhRU5USVRZIG5zX3hsaW5rICJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KXT4KPHN2ZyAgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9IiZuc19zdmc7IiB4bWxuczp4bGluaz0iJm5zX3hsaW5rOyIgd2lkdGg9IjM1LjU0MyIgaGVpZ2h0PSI2MC4wODciCgkgdmlld0JveD0iMCAwIDM1LjU0MyA2MC4wODciIG92ZXJmbG93PSJ2aXNpYmxlIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAzNS41NDMgNDEuMDg3IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8Zz4KCQk8cGF0aCBmaWxsPSIjQzI5MDU0IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3ICAgICIgZD0iTTE1Ljg3Nyw0LjA1NGMwLDAsMC43NDQtMy4zOTIsMS43MzgtMy42MDQKCQkJYzAuOTkyLTAuMjEzLDEuMzQ2LDMuMTg5LDEuMzQ2LDMuMTg5czEuNzczLTEuODQzLDIuOTc3LTIuMTk3YzEuMjA1LTAuMzU0LDIuMTk5LTAuMDcsMS4yNzcsMC45OTMKCQkJYy0wLjkyMiwxLjA2Mi0yLjAxNCw0LjQ2LTEuOTg2LDYuMDk2YzAuMDcyLDMuODk4LDMuNzM0LDUuMTksNS45MzQsNi42NDdjNi42NDMsNC40MDIsNy45MjIsOC42NDQsNy45MjIsMTMuMzY1CgkJCWMwLDYuODgzLTYuNzIxLDEyLjA4Ni0xNy4yNTgsMTIuMDg2Yy0xMS43NjYsMC0xNy4zNjctNi4xNjItMTcuMzY3LTEyLjQ2M2MwLTUuNDU3LDIuOTgyLTkuNTI4LDcuMDk2LTExLjg2NwoJCQljNC40MzYtMi41MjUsNi42NTgtMy4zNzMsOC41LTQuNzkxYzEuODQyLTEuNDE3LTEuOTE0LTUuNDU5LTMuNDczLTYuNTIxYy0xLjI0NC0wLjg0OS0xLjIwNS0wLjk5My0zLjMzMi0xLjc3MgoJCQljMCwwLDEuNzc3LTEuNjMyLDMuNjE1LTEuMDYzYzIuMTkzLDAuNjc4LDQuMTExLDMuMjYxLDQuMTExLDMuMjYxIi8+CgkJPHBhdGggZD0iTTE1LjU5OSwzLjI4NWMtMC43MzEtMC42NDEtMS42MjctMS4yNzMtMi41OTctMS41NzNjLTIuMDY2LTAuNjM5LTMuOTgxLDEuMDktNC4wNjIsMS4xNjRsLTAuNTU2LDAuNTFsMC43MDgsMC4yNTkKCQkJYzEuNjY3LDAuNjExLDEuOTMsMC43OTksMi42MzIsMS4zbDAuNTk5LDAuNDJjMS4yNjksMC44NjUsMy43MjQsMy41MDYsMy43NjksNS4wNTNjMC4wMDksMC4zMjEtMC4wOTIsMC41NTItMC4zMTcsMC43MjUKCQkJYy0xLjA2MywwLjgxOS0yLjI5OSwxLjQ2My00LjAwOSwyLjM1NUw3LjMyOCwxNS45QzIuNjcxLDE4LjU0NywwLDIzLjAxOCwwLDI4LjE2NmMwLDYuNDMyLDUuNTEyLDEyLjkyMiwxNy44MjcsMTIuOTIyCgkJCWMxMC40MzIsMCwxNy43MTctNS4xNTgsMTcuNzE3LTEyLjU0NWMwLTQuMzQzLTAuOTg0LTkuMDE0LTguMTI3LTEzLjc0OGwtMS4zMDctMC43OTJjLTIuMDQ3LTEuMTg4LTQuMzY3LTIuNTM1LTQuNDIyLTUuNDgxCgkJCWMtMC4wMjUtMS41MjksMS4wNDMtNC44MjgsMS44NzQtNS43ODZjMC42MDUtMC42OTgsMC41MjItMS4xNywwLjM0Ny0xLjQ0M2MtMC4zMDctMC40NzktMS4wOTItMC41ODctMi4xLTAuMjkyCgkJCWMtMC44NTYsMC4yNTItMS44NjYsMS4wOTItMi41MjIsMS42OTVjLTAuMTU3LTAuOTA1LTAuNDYzLTIuMTEtMS4wNDgtMi41MzVMMTcuNTE5LDBDMTYuNTQ2LDAuMjA4LDE1LjkyMywyLjAzNiwxNS41OTksMy4yODV6CgkJCSBNMTcuNzExLDAuODk4YzAuMjU4LDAuMTE4LDAuNjU2LDEuNDc0LDAuNzkzLDIuNzg4bDAuMTAzLDAuOTgybDAuNjg2LTAuNzExYzAuNDctMC40ODksMS44ODYtMS44MTMsMi43NzUtMi4wNzYKCQkJYzAuNjEyLTAuMTgsMC45NjItMC4xMjQsMS4wNTMtMC4wNzdjLTAuMDI5LDAuMDIxLTAuMDc3LDAuMTI2LTAuMjUyLDAuMzI5Yy0wLjk3OSwxLjEyNy0yLjEsNC41MjQtMi4xLDYuMzM0CgkJCWMwLDAuMDI0LDAsMC4wNDcsMC4wMDEsMC4wN2MwLjA2MywzLjQ2NSwyLjczMyw1LjAxNSw0Ljg3OSw2LjI2bDEuMjYsMC43NjNjNi40MDQsNC4yNDQsNy43MTcsOC4yNTksNy43MTcsMTIuOTgyCgkJCWMwLDYuODQ2LTYuOTA4LDExLjYyNy0xNi43OTksMTEuNjI3Yy0xMS42OCwwLTE2LjkwOC02LjAyOS0xNi45MDgtMTIuMDA0YzAtNC44NzgsMi40MzgtOC45NTEsNi44NjMtMTEuNDY3bDQuNDA4LTIuMzg1CgkJCWMxLjc1Mi0wLjkxNCwzLjAxNy0xLjU3NCw0LjE0NS0yLjQ0MmMwLjQ0My0wLjM0MSwwLjY3Ni0wLjgyOSwwLjY3Ni0xLjQxNWMwLTAuMDIxLDAtMC4wNDMtMC4wMDEtMC4wNjQKCQkJYy0wLjA2MS0yLjEwOS0zLjAwNy00Ljk5My00LjE2OS01Ljc4NWwtMC41ODMtMC40MDljLTAuNTk4LTAuNDI3LTAuOTc1LTAuNjc3LTIuMDUtMS4xMDZjMC42MS0wLjM3NiwxLjU2Mi0wLjc5OSwyLjUyMS0wLjUwMgoJCQljMi4wMjEsMC42MjUsMy44NiwzLjA3MSwzLjg3OCwzLjA5NmwwLjczNy0wLjU0OGMtMC4wMzQtMC4wNDYtMC40MDYtMC41MzItMC45ODItMS4xMjdDMTYuNzI4LDIuNDQsMTcuMzU0LDAuOTc1LDE3LjcxMSwwLjg5OHoiCgkJCS8+Cgk8L2c+Cgk8Zz4KCQk8cGF0aCBmaWxsPSIjRkVFODRDIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3ICAgICIgZD0iTTIyLjczNyw2LjUxYy0wLjAzNS0wLjMxOS0wLjIxMy0wLjc5Ny0xLjc1NC0wLjU2NwoJCQljLTEuODM2LDAuMjc0LTUuNTcyLDEuMTY0LTYuMzk4LDEuNTc3Yy0wLjc0NCwwLjM3My0xLjAxLDAuNzk5LTAuNzI3LDEuMjIzYzAuMjgzLDAuNDI2LDEuNDE4LDAuNDk3LDEuNDE4LDAuNDk3CgkJCXMtMS4wNjIsMC41MzEtMC44NjksMS4wNDZjMC4yMjEsMC41ODEsMS4wMzUsMC41ODEsMi45OTYsMC4xNTlDMTguNTQ1LDEwLjE5OCwyMSw5LjY2NSwyMi4wODEsOS4zMQoJCQljMS4wODItMC4zNTQsMS4yMjctMS4wOTcsMS4xNy0xLjM2NGMtMC4wOTYtMC40NjMtMS4xNy0wLjUzMi0xLjE3LTAuNTMyUzIyLjc3Miw2LjgyOCwyMi43MzcsNi41MXoiLz4KCQk8cGF0aCBkPSJNMjAuOTE2LDUuNDg4Yy0xLjcyNywwLjI1OC01LjYwNywxLjE1Ni02LjUzNywxLjYyMWMtMC42MDUsMC4zMDQtMC45NTIsMC42NDctMS4wNTksMS4wNTFsMC4xNTYsMC44MzgKCQkJYzAuMTYsMC4yNCwwLjQ0OCwwLjM4NiwwLjc0NSwwLjQ5Yy0wLjE2NSwwLjE5My0wLjMsMC40MDktMC4zLDAuNjYyYzAsMC4wOTYsMC4wMTcsMC4xOTQsMC4wNTUsMC4yOTcKCQkJYzAuMzkyLDEuMDMyLDEuNzY3LDAuODI0LDMuNTIzLDAuNDQ3YzEuNTM4LTAuMzMyLDMuNzAxLTAuODExLDQuNzI1LTEuMTQ3YzEuMTI0LTAuMzY4LDEuNDk2LTEuMTU5LDEuNDk2LTEuNjkyCgkJCWMwLTAuMDczLTAuMDA3LTAuMTQyLTAuMDIxLTAuMjA0Yy0wLjA3OC0wLjM3OS0wLjQtMC41OTYtMC43NDMtMC43MjRjMC4xMzMtMC4xOTQsMC4yNDEtMC4zOTYsMC4yNDEtMC41OTYKCQkJYzAtMC4wMjQtMC4wMDItMC4wNDgtMC4wMDQtMC4wNzFsLTAuMzk4LTAuNzQ0QzIyLjQxOSw1LjQyNSwyMS44MjIsNS4zNTMsMjAuOTE2LDUuNDg4eiBNMTQuODM2LDEwLjEyMgoJCQljMC4wMzUtMC4wNjcsMC4zNTItMC4zMjQsMC42NDYtMC40NzJsMS41MDQtMC43NTlsLTEuNjgxLTAuMTFjLTAuNDUtMC4wMjktMC45NzgtMC4xNzUtMS4wNjUtMC4yOTMKCQkJYy0wLjAyNi0wLjExMywwLjAzNi0wLjI5OSwwLjU1MS0wLjU1N2MwLjcxNy0wLjM1OCw0LjM0NS0xLjI0Nyw2LjI2MS0xLjUzNGMwLjg5Ni0wLjEzMywxLjE0NCwwLjAxNSwxLjE4NCwwLjA0NgoJCQljMCwwLDAuMDE3LDAuMDQyLDAuMDMsMC4wNzdjLTAuMDUsMC4xMTItMC4yNjgsMC4zNjEtMC40ODEsMC41NDJsLTAuODYxLDAuNzMybDEuMTI4LDAuMDc3YzAuMzEzLDAuMDIxLDAuNjk1LDAuMTI2LDAuNzcsMC4yMTIKCQkJYy0wLjAwMiwwLjA2NS0wLjA5OSwwLjUzMy0wLjg4MiwwLjc4OWMtMS4wOTcsMC4zNjEtMy43NTgsMC45MzQtNC42MzIsMS4xMjJDMTYuNzMsMTAuMTE5LDE0Ljk3OCwxMC40OTYsMTQuODM2LDEwLjEyMnoKCQkJIE0yMy4xOTQsNi40NTlsLTAuMDEtMC4wODhMMjMuMTk0LDYuNDU5eiBNMjMuMTk0LDYuNDU5TDIzLjE5NCw2LjQ1OUwyMy4xOTQsNi40NTlMMjMuMTk0LDYuNDU5eiIvPgoJPC9nPgoJPGc+CgkJPHJlY3QgeD0iMTguMTEzIiB5PSI0LjcwNiIgdHJhbnNmb3JtPSJtYXRyaXgoLTAuMjQ1NSAtMC45Njk0IDAuOTY5NCAtMC4yNDU1IDE1LjA0MzMgMjguMzk2NSkiIHdpZHRoPSIwLjkxOSIgaGVpZ2h0PSI3LjI3NyIvPgoJPC9nPgoJPGc+CgkJPHBhdGggZD0iTTE3LjY1MSwzNi45NnYtMi4wMjdjLTEuMDEtMC4xMjctMS44MjYtMC4zNTItMi40NTctMC42NzRjLTAuNjMxLTAuMzI0LTEuMTc2LTAuODQ2LTEuNjM1LTEuNTcKCQkJYy0wLjQ1Ny0wLjcyMS0wLjcyNS0xLjYwNC0wLjc5OS0yLjY0NWwyLjAyNy0wLjM4N2MwLjE1NiwxLjA4LDAuNDMyLDEuODc1LDAuODI4LDIuMzgxYzAuNTY2LDAuNzE3LDEuMjQ0LDEuMTEzLDIuMDM1LDEuMTk1CgkJCXYtNi4zMjJjLTAuODIyLTAuMjE1LTEuNjY4LTAuNTY0LTIuNTMxLTEuMDQ5Yy0wLjY0MS0wLjM1Ny0xLjEzNy0wLjg1Mi0xLjQ4LTEuNDg0Yy0wLjM0OC0wLjYzNS0wLjUyMS0xLjM1NS0wLjUyMS0yLjE2MgoJCQljMC0xLjQzLDAuNTA2LTIuNTksMS41Mi0zLjQ3OGMwLjY3Ni0wLjU5NywxLjY4LTAuOTYyLDMuMDE0LTEuMDk3di0wLjk1M2gxLjE5MXYwLjk1M2MxLjE2NCwwLjExNCwyLjA4OCwwLjQ1OCwyLjc3MywxLjAzNAoJCQljMC44NzMsMC43MzQsMS40LDEuNzQxLDEuNTc4LDMuMDIxbC0yLjA1NywwLjMyOGMtMC4xMTktMC43OTktMC4zNjUtMS40MTItMC43NDQtMS44MzhjLTAuMzc3LTAuNDI4LTAuODk1LTAuNzA4LTEuNTUxLTAuODQ1CgkJCXY1Ljc4OWMxLjAxNCwwLjI2NiwxLjY4NCwwLjQ2OSwyLjAxLDAuNjExYzAuNjI3LDAuMjc1LDEuMTM3LDAuNjExLDEuNTMxLDEuMDA2czAuNjk5LDAuODYzLDAuOTEsMS40MDYKCQkJYzAuMjEzLDAuNTQ1LDAuMzE4LDEuMTMzLDAuMzE4LDEuNzY2YzAsMS4zOTUtMC40NDMsMi41NTctMS4zMjgsMy40ODZjLTAuODg3LDAuOTMyLTIuMDM1LDEuNDMyLTMuNDQxLDEuNDk4djIuMDU3SDE3LjY1MXoKCQkJIE0xNy42NTEsMTkuMzEyYy0wLjc3NywwLjExOS0xLjM4OSwwLjQzMy0xLjgzNCwwLjkzOGMtMC40NDcsMC41MDgtMC42NzIsMS4xMDktMC42NzIsMS44MDJjMCwwLjY4NiwwLjE5MSwxLjI2LDAuNTcsMS43MjMKCQkJYzAuMzc5LDAuNDYxLDEuMDIzLDAuODA5LDEuOTM2LDEuMDQ1VjE5LjMxMnogTTE4Ljg0MiwzMy4yMzRjMC43ODMtMC4wOTgsMS40MzItMC40MzQsMS45NDUtMS4wMTYKCQkJYzAuNTEyLTAuNTgsMC43NjgtMS4yOTcsMC43NjgtMi4xNTJjMC0wLjczLTAuMTgyLTEuMzE0LTAuNTQ5LTEuNzU4Yy0wLjM2NS0wLjQ0MS0xLjA4Ni0wLjgwMy0yLjE2NC0xLjA4NFYzMy4yMzR6Ii8+Cgk8L2c+CjwvZz4KPC9zdmc+Cg==";
-import assetSymbolOutlined from './svg/assetSymbolOutlined.svg';
-import assetSymbolShaded from './svg/assetSymbolShaded.svg';
-
-import riskSymbol from './svg/riskSymbol.svg';
-import riskSymbolOutlined from './svg/riskSymbolOutlined.svg';
-import riskSymbolShaded from './svg/riskSymbolShaded.svg';
-
-import stakeholderSymbol from './svg/stakeholderSymbol.svg';
-import stakeholderSymbolOutlined from './svg/stakeholderSymbolOutlined.svg';
-import stakeholderSymbolShaded from './svg/stakeholderSymbolShaded.svg';
-
-import accidentalSymbol from './svg/threatHumanAccidentalSymbol.svg';
-import accidentalSymbolOutlined from './svg/threatHumanAccidentalSymbolOutline.svg';
-import accidentalSymbolShaded from './svg/threatHumanAccidentalSymbolShadow.svg';
-
-import deliberateSymbol from './svg/threatHumanDeliberateSymbol.svg';
-import deliberateSymbolOutlined from './svg/threatHumanDeliberateSymbolOutlined.svg';
-import deliberateSymbolShaded from './svg/threatHumanDeliberateSymbolShaded.svg';
-
-import nonHumanSymbol from './svg/threatNonHumanSymbol.svg';
-import nonHumanSymbolOutlined from './svg/threatNonHumanSymbolOutlined.svg';
-import nonHumanSymbolShaded from './svg/threatNonHumanSymbolShaded.svg';
-
-import treatmentSymbol from './svg/treatmentSymbol.svg';
-import treatmentSymbolShaded from './svg/treatmentSymbolShaded.svg';
-import treatmentSymbolOutlined from './svg/treatmentSymbolOutlined.svg';
-
-import incidentSymbol from './svg/unwantedIncidentSymbol.svg';
-import incidentSymbolOutlined from './svg/unwantedIncidentSymbolOutlined.svg';
-import incidentSymbolShaded from './svg/unwantedIncidentSymbolShaded.svg';
-
-import vulnerabilitySymbol from './svg/vulnerabilitySymbol.svg';
-import vulnerabilitySymbolOutlined from './svg/vulnerabilitySymbolOutlined.svg';
-import vulnerabilitySymbolShaded from './svg/vulnerabilitySymbolShaded.svg';*/
-
 
 const toolDefinitions = [
     {
@@ -239,6 +201,20 @@ const toolDefinitions = [
         name: "Before",
         shapes: [
             {
+                shapeFn: () => new joint.shapes.coras.unboxedElement(),
+                width: 40,
+                height: 80,
+                iconHeight: assetHeight,
+                icon: assetSymbol,
+                text: "Asset",
+                corasType: 1,
+                typeStyles: {
+                    0: { "icon/href": assetSymbol, "icon/height": assetHeight },
+                    1: { "icon/href": assetSymbolOutlined, "icon/height": assetHeight },
+                    2: { "icon/href": assetSymbolShaded, "icon/height": assetHeight }
+                }
+            },
+            {
                 shapeFn: () => new joint.shapes.coras.ellipseElement(),
                 width: 190,
                 height: 80,
@@ -250,6 +226,20 @@ const toolDefinitions = [
                     0: { "icon/href": riskSymbol, "icon/height": riskHeight },
                     1: { "icon/href": riskSymbolOutlined, "icon/height": riskHeight },
                     2: { "icon/href": riskSymbolShaded, "icon/height": riskHeight }
+                }
+            },
+            {
+                shapeFn: () => new joint.shapes.coras.unboxedElement(),
+                width: 40,
+                height: 80,
+                iconHeight: stakeholderHeight,
+                icon: stakeholderSymbol,
+                text: "Stakeholder",
+                corasType: 1,
+                typeStyles: {
+                    0: { "icon/href": stakeholderSymbol, "icon/height": stakeholderHeight},
+                    1: { "icon/href": stakeholderSymbolOutlined, "icon/height": stakeholderHeight},
+                    2: { "icon/href": stakeholderSymbolShaded, "icon/height": stakeholderHeight }
                 }
             },
             {
@@ -342,6 +332,20 @@ const toolDefinitions = [
         name: "After",
         shapes: [
             {
+                shapeFn: () => new joint.shapes.coras.unboxedElement(),
+                width: 40,
+                height: 80,
+                iconHeight: assetHeight,
+                icon: assetSymbol,
+                text: "Asset",
+                corasType: 2,
+                typeStyles: {
+                    0: { "icon/href": assetSymbol, "icon/height": assetHeight },
+                    1: { "icon/href": assetSymbolOutlined, "icon/height": assetHeight },
+                    2: { "icon/href": assetSymbolShaded, "icon/height": assetHeight }
+                }
+            },
+            {
                 shapeFn: () => new joint.shapes.coras.ellipseElement(),
                 width: 190,
                 height: 80,
@@ -353,6 +357,20 @@ const toolDefinitions = [
                     0: { "icon/href": riskSymbol, "icon/height": riskHeight },
                     1: { "icon/href": riskSymbolOutlined, "icon/height": riskHeight },
                     2: { "icon/href": riskSymbolShaded, "icon/height": riskHeight }
+                }
+            },
+            {
+                shapeFn: () => new joint.shapes.coras.unboxedElement(),
+                width: 40,
+                height: 80,
+                iconHeight: stakeholderHeight,
+                icon: stakeholderSymbol,
+                text: "Stakeholder",
+                corasType: 2,
+                typeStyles: {
+                    0: { "icon/href": stakeholderSymbol, "icon/height": stakeholderHeight},
+                    1: { "icon/href": stakeholderSymbolOutlined, "icon/height": stakeholderHeight},
+                    2: { "icon/href": stakeholderSymbolShaded, "icon/height": stakeholderHeight }
                 }
             },
             {

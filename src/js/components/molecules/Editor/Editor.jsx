@@ -30,6 +30,9 @@ import {        CorasSymbolsBase64,
     assetSymbol,
     assetSymbolOutlined,
     assetSymbolShaded,
+    indirectAssetSymbol,
+    indirectAssetSymbolOutlined,
+    indirectAssetSymbolShaded,
     riskSymbol,
     riskSymbolOutlined,
     riskSymbolShaded,
@@ -58,6 +61,7 @@ import {        CorasSymbolsBase64,
 
 const assetHeight = 60;
 const riskHeight = 40;
+const indirectHeight = 60;
 const stakeholderHeight = 60;
 const accidentalHeight = 40;
 const deliberateHeight = 40;
@@ -82,6 +86,20 @@ const toolDefinitions = [
                     0: { "icon/href": assetSymbol, "icon/height": assetHeight },
                     1: { "icon/href": assetSymbolOutlined, "icon/height": assetHeight },
                     2: { "icon/href": assetSymbolShaded, "icon/height": assetHeight }
+                }
+            },
+            {
+                shapeFn: () => new joint.shapes.coras.unboxedElement(),
+                width: 40,
+                height: 80,
+                iconHeight: indirectHeight,
+                icon: indirectAssetSymbol,
+                text: "Indirect\nAsset",
+                corasType: 0,
+                typeStyles: {
+                    0: { "icon/href": indirectAssetSymbol, "icon/height": indirectHeight },
+                    1: { "icon/href": indirectAssetSymbolOutlined, "icon/height": indirectHeight },
+                    2: { "icon/href": indirectAssetSymbolShaded, "icon/height": indirectHeight }
                 }
             },
             {
@@ -216,6 +234,20 @@ const toolDefinitions = [
                 }
             },
             {
+                shapeFn: () => new joint.shapes.coras.unboxedElement(),
+                width: 40,
+                height: 80,
+                iconHeight: indirectHeight,
+                icon: indirectAssetSymbol,
+                text: "Indirect\nAsset",
+                corasType: 1,
+                typeStyles: {
+                    0: { "icon/href": indirectAssetSymbol, "icon/height": indirectHeight },
+                    1: { "icon/href": indirectAssetSymbolOutlined, "icon/height": indirectHeight },
+                    2: { "icon/href": indirectAssetSymbolShaded, "icon/height": indirectHeight }
+                }
+            },
+            {
                 shapeFn: () => new joint.shapes.coras.ellipseElement(),
                 width: 190,
                 height: 80,
@@ -344,6 +376,20 @@ const toolDefinitions = [
                     0: { "icon/href": assetSymbol, "icon/height": assetHeight },
                     1: { "icon/href": assetSymbolOutlined, "icon/height": assetHeight },
                     2: { "icon/href": assetSymbolShaded, "icon/height": assetHeight }
+                }
+            },
+            {
+                shapeFn: () => new joint.shapes.coras.unboxedElement(),
+                width: 40,
+                height: 80,
+                iconHeight: indirectHeight,
+                icon: indirectAssetSymbol,
+                text: "Indirect\nAsset",
+                corasType: 2,
+                typeStyles: {
+                    0: { "icon/href": indirectAssetSymbol, "icon/height": indirectHeight },
+                    1: { "icon/href": indirectAssetSymbolOutlined, "icon/height": indirectHeight },
+                    2: { "icon/href": indirectAssetSymbolShaded, "icon/height": indirectHeight }
                 }
             },
             {

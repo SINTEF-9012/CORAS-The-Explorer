@@ -108,7 +108,7 @@ const toolDefinitions = [
                 height: 80,
                 iconHeight: riskHeight,
                 icon: riskSymbol,
-                text: "Risk",
+                text: "Threat\nScenario",
                 corasType: 0,
                 typeStyles: {
                     0: { "icon/href": riskSymbol, "icon/height": riskHeight },
@@ -253,7 +253,7 @@ const toolDefinitions = [
                 height: 80,
                 iconHeight: riskHeight,
                 icon: riskSymbol,
-                text: "Risk",
+                text: "Threat\nScenario",
                 corasType: 1,
                 typeStyles: {
                     0: { "icon/href": riskSymbol, "icon/height": riskHeight },
@@ -398,7 +398,7 @@ const toolDefinitions = [
                 height: 80,
                 iconHeight: riskHeight,
                 icon: riskSymbol,
-                text: "Risk",
+                text: "Threat\nScenario",
                 corasType: 2,
                 typeStyles: {
                     0: { "icon/href": riskSymbol, "icon/height": riskHeight },

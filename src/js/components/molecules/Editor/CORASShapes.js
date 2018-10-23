@@ -135,14 +135,6 @@ function AddCorasShapes(joint) {
             }
         ]
     });
-    joint.dia.Link.define('coras.link', {
-        defaultLabel: {
-            attrs: {
-                text: { text: '*' },
-                '.connection': { stroke: '#000000', 'stroke-width': 2 }
-            }
-        }
-    });
 }
 
 export default AddCorasShapes;

@@ -13,13 +13,18 @@ import {
     ElementChangeType,
     ToolElementRelease,
     MenuClearClicked,
-    MenuClearConfirmed
+    MenuClearConfirmed,
+    CellClicked,
+    CellHandleClicked,
+    CellHandleRelased,
+    CellHandleMoved
 } from '../../../store/Actions';
 
 import Modal from '../../atoms/Modal/Modal';
 
 import ElementEditor from './ElementEditor';
 import EditorTool from './EditorTool';
+import CellTool from './CellTool';
 
 import "../../../../../node_modules/jointjs/dist/joint.css";
 import './editor.css';
@@ -55,6 +60,7 @@ class Editor extends React.Component {
         this.endMovePaper = this.endMovePaper.bind(this);
         this.updatePaperSize = this.updatePaperSize.bind(this);
         this.removeLink = this.removeLink.bind(this);
+        this.cellToolHandleMoved = this.cellToolHandleMoved.bind(this);
 
         this.paperOnMouseUp = this.paperOnMouseUp.bind(this);
 
@@ -111,6 +117,16 @@ class Editor extends React.Component {
             this.paper.on('blank:pointerdown', this.beginMovePaper);
             this.paper.on('blank:pointermove', this.movePaper);
             this.paper.on('blank:pointerup', this.endMovePaper);
+
+            this.paper.on('cell:pointerclick', (ev) => {
+                ev.highlight();
+                const elementPosition = ev.model.position();
+                const { width, height } = ev.model.size();
+                
+                const { x, y } = this.paper.localToPagePoint(elementPosition.x, elementPosition.y);
+                
+                this.props.cellClicked(x, y, width, height);
+            });
         }
     }
 
@@ -246,6 +262,14 @@ class Editor extends React.Component {
         a.remove();
     }
 
+    cellToolHandleMoved(e) {
+        const { pageX, pageY } = e;
+
+        const newHeight = pageY - (this.props.cellTool.position.y + this.props.cellToolHeight) + this.props.cellToolHeight;
+
+        if(this.props.cellTool.handleHeld) this.props.cellHandleMoved(this.props.cellToolWidth, newHeight);
+    }
+
     render() {
         return (
             <div className="editor-wrapper">
@@ -268,6 +292,14 @@ class Editor extends React.Component {
                     xOnChange={this.props.elementEditorChangeX}
                     yOnChange={this.props.elementEditorChangeY}
                     typeOnChange={this.props.elementEditorChangeType} /> : null}
+                {this.props.cellTool.open ? <CellTool 
+                    x={this.props.cellTool.position.x} 
+                    y={this.props.cellTool.position.y}
+                    width={this.props.cellToolWidth}
+                    height={this.props.cellToolHeight}
+                    holdFn={this.props.cellHandleClicked}
+                    releaseFn={this.props.cellHandleReleased}
+                    moveFn={this.cellToolHandleMoved} /> : null}
                 <div
                     id={this.paperWrapperId}
                     className="editor-paper"
@@ -307,7 +339,10 @@ const EditorMenu = ({ loadStartFn, loadRef, loadFn, saveFn, clearFn, showClearMo
 export default connect((state) => ({
     elementEditor: state.editor.elementEditor,
     showClearModal: state.editor.editorMenu.showClearModal,
-    clearPosition: state.editor.editorMenu.clearPosition
+    clearPosition: state.editor.editorMenu.clearPosition,
+    cellTool: state.editor.cellTool,
+    cellToolWidth: state.editor.cellTool.size.width,
+    cellToolHeight: state.editor.cellTool.size.height
 }), (dispatch) => ({
     elementRightClicked: (element, graph) => dispatch(ElementRightClicked(element, graph)),
     elementDoubleClicked: (element, event) => dispatch(ElementDoubleClicked(element, event)),
@@ -320,5 +355,9 @@ export default connect((state) => ({
     elementEditorChangeType: (type) => dispatch(ElementChangeType(type)),
     elementDropped: (graph, pageX, pageY) => dispatch(ToolElementRelease(graph, pageX, pageY)),
     clearClicked: (e) => dispatch(MenuClearClicked(e)),
-    clearConfirmed: () => dispatch(MenuClearConfirmed())
+    clearConfirmed: () => dispatch(MenuClearConfirmed()),
+    cellClicked: (x, y, width, height) => dispatch(CellClicked(x, y, width, height)),
+    cellHandleClicked: (handle) => dispatch(CellHandleClicked(handle)),
+    cellHandleReleased: () => dispatch(CellHandleRelased()),
+    cellHandleMoved: (width, height) => dispatch(CellHandleMoved(width, height))
 }))(Editor);

@@ -41,6 +41,19 @@ function Editor(state, action) {
                 top: "",
                 left: ""
             }
+        },
+        cellTool: {
+            open: false,
+            position: {
+                x: 0,
+                y: 0
+            },
+            size: {
+                width: 0,
+                height: 0
+            },
+            handleHeld: false,
+            handle: ""
         }
     };
 
@@ -158,6 +171,35 @@ function Editor(state, action) {
 
         case ActionTypes.EDITOR.MENU_CLEAR_CONFIRMED:
             newState.editorMenu.showClearModal = !state.editorMenu.showClearModal;
+            return newState;
+
+        case ActionTypes.EDITOR.CELL_CLICKED:
+            const { x, y, width, height } = action.payload;
+            newState.cellTool = {
+                open: true,
+                position: {
+                    x,
+                    y
+                },
+                size: {
+                    width,
+                    height
+                }
+            };
+            return newState;
+        
+        case ActionTypes.EDITOR.CELL_HANDLE_CLICKED:
+            newState.cellTool.handleHeld = true;
+            newState.cellTool.handle = action.payload.handle;
+            return newState;
+        
+        case ActionTypes.EDITOR.CELL_HANDLE_RELEASED:
+            newState.cellTool.handleHeld = false;
+            newState.cellTool.handle = "";
+            return newState;
+        
+        case ActionTypes.EDITOR.CELL_HANDLE_MOVED:
+            if(state.cellTool.handleHeld) newState.cellTool.size = action.payload;
             return newState;
     }
 }

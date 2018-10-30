@@ -68,3 +68,22 @@ export const MenuClearClicked = (e) => ({
 export const MenuClearConfirmed = () => ({
     type: ActionTypes.EDITOR.MENU_CLEAR_CONFIRMED
 });
+
+export const CellClicked = (x, y, width, height) => ({
+    type: ActionTypes.EDITOR.CELL_CLICKED,
+    payload: { x, y, width, height }
+});
+
+export const CellHandleClicked = (handle) => ({
+    type: ActionTypes.EDITOR.CELL_HANDLE_CLICKED,
+    payload: { handle }
+});
+
+export const CellHandleRelased = () => ({
+    type: ActionTypes.EDITOR.CELL_HANDLE_RELEASED
+});
+
+export const CellHandleMoved = (width, height) => ({
+    type: ActionTypes.EDITOR.CELL_HANDLE_MOVED,
+    payload: { width, height }
+});

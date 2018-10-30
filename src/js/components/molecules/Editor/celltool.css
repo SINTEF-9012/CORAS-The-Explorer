@@ -1,0 +1,37 @@
+.cell-tool {
+    position: absolute;
+    z-index: 1000;
+}
+
+.cell-tool__drag-handle {
+    position: absolute;
+    background-color: grey;
+    border: solid 1px lightgrey;
+    border-radius: 100%;
+    width: 1rem;
+    height: 1rem;
+}
+
+.cell-tool__drag-handle--top {
+    top: -.5rem;
+    right: 45%;
+    cursor: n-resize;
+}
+
+.cell-tool__drag-handle--right {
+    right: -.5rem;
+    top: 40%;
+    cursor: e-resize;
+}
+
+.cell-tool__drag-handle--bottom {
+    bottom: -.5rem;
+    right: 45%;
+    cursor: s-resize;
+}
+
+.cell-tool__drag-handle--left {
+    left: -.5rem;
+    top: 40%;
+    cursor: w-resize;
+}

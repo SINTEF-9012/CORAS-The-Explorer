@@ -2,8 +2,6 @@
 
 A web application presenting the CORAS approach and language, to aid in learning the framework.
 
-![CORAS The Explorer Logo][logo]
-
 ## Vision
 
 To make a comprehensive web application that can serve users of the CORAS approach of all levels from beginner to advanced, by providing up-to-date introduction and tutorials, and documentation of the language. The application should also include an interactive CORAS editing tool to allow users to test and work with the language in the browser.

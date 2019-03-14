@@ -107,8 +107,7 @@ class Editor extends React.Component {
         window.addEventListener('resize', this.updatePaperSize);
 
         if (this.props.interactive === undefined ? true : this.props.interactive) {
-            this.paper.on('element:contextmenu', (elementView, e, x, y) => this.props.elementRightClicked(elementView.model, this.graph));
-            this.paper.on('link:contextmenu', this.removeLink);
+            this.paper.on('cell:contextmenu', (elementView, e, x, y) => this.props.elementDoubleClicked(elementView.model, e));
             this.paper.on('cell:pointerdblclick', (elementView, e, x, y) => this.props.elementDoubleClicked(elementView.model, e));
 
             this.paper.on('cell:mousewheel', this.handleScroll);
@@ -117,16 +116,6 @@ class Editor extends React.Component {
             this.paper.on('blank:pointerdown', this.beginMovePaper);
             this.paper.on('blank:pointermove', this.movePaper);
             this.paper.on('blank:pointerup', this.endMovePaper);
-
-            this.paper.on('cell:pointerclick', (ev) => {
-                ev.highlight();
-                const elementPosition = ev.model.position();
-                const { width, height } = ev.model.size();
-                
-                const { x, y } = this.paper.localToPagePoint(elementPosition.x, elementPosition.y);
-                
-                this.props.cellClicked(x, y, width, height);
-            });
         }
     }
 
@@ -292,14 +281,6 @@ class Editor extends React.Component {
                     xOnChange={this.props.elementEditorChangeX}
                     yOnChange={this.props.elementEditorChangeY}
                     typeOnChange={this.props.elementEditorChangeType} /> : null}
-                {this.props.cellTool.open ? <CellTool 
-                    x={this.props.cellTool.position.x} 
-                    y={this.props.cellTool.position.y}
-                    width={this.props.cellToolWidth}
-                    height={this.props.cellToolHeight}
-                    holdFn={this.props.cellHandleClicked}
-                    releaseFn={this.props.cellHandleReleased}
-                    moveFn={this.cellToolHandleMoved} /> : null}
                 <div
                     id={this.paperWrapperId}
                     className="editor-paper"

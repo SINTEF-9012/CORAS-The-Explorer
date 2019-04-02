@@ -85,6 +85,8 @@ class Editor extends React.Component {
     }
 
     componentDidMount() {
+        const arrowheadShape = 'M 10 0 L 0 5 L 10 10 z';
+
         this.paper = new joint.dia.Paper({
             el: document.getElementById(this.paperId),
             model: this.graph,
@@ -94,7 +96,14 @@ class Editor extends React.Component {
             background: {
                 color: 'rgba(255, 255, 255, 1)',
             },
-            interactive: this.props.interactive === undefined ? true : this.props.interactive
+            interactive: this.props.interactive === undefined ? true : this.props.interactive,
+            defaultLink: new joint.shapes.devs.Link({
+                attrs: {
+                    '.marker-target': {
+                        d: arrowheadShape
+                    }
+                }
+            })
         });
 
         // Load graph from localStorage or props
